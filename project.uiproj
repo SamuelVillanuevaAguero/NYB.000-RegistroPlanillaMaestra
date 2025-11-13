@@ -1,0 +1,6 @@
+{
+  "Name": "NYB.000-RegistroPlanillaMaestra",
+  "ProjectType": "Process",
+  "Description": "El bot obtiene la información personal del practicante/residente y los registra en planilla maestra.",
+  "MainFile": "Main.xaml"
+}
