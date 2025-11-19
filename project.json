@@ -85,6 +85,13 @@
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\WorkflowTestCaseTemplate.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "5fa13bae-4843-4599-a8fd-4508b836c9c9",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Process\\PDF\\TestCase_ReadActaDeNacimiento.xaml"
       }
     ],
     "saveToCloud": false
