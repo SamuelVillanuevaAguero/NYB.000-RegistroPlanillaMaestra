@@ -145,7 +145,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[CurrentEmail.AttachmentsNamesList.Where(Function(a) a.Contains(&quot;CURP&quot;)).Any() And&#xD;&#xA;CurrentEmail.AttachmentsNamesList.Where(Function(a) a.Contains(&quot;RFC&quot;)).Any() And&#xD;&#xA;CurrentEmail.AttachmentsNamesList.Where(Function(a) a.Contains(&quot;Acta de nacimiento&quot;)).Any()]" sap:VirtualizedContainerService.HintSize="451.2,671.2" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[CurrentEmail.AttachmentsNamesList.Where(Function(a) a.Contains(&quot;CURP&quot;)).Any() And&#xD;&#xA;CurrentEmail.AttachmentsNamesList.Where(Function(a) a.Contains(&quot;RFC&quot;)).Any() And&#xD;&#xA;CurrentEmail.AttachmentsNamesList.Where(Function(a) a.Contains(&quot;NSS&quot;)).Any() And&#xD;&#xA;CurrentEmail.AttachmentsNamesList.Where(Function(a) a.Contains(&quot;Acta de nacimiento&quot;)).Any()]" sap:VirtualizedContainerService.HintSize="451.2,671.2" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
                 <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,452" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <sap:WorkflowViewStateService.ViewState>
