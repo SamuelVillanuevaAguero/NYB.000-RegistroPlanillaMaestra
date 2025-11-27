@@ -1,5 +1,7 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="CarreraUniversidadV2" this:CarreraUniversidadV2.in_CVPath="C:\Users\Samue\Downloads\10. CV - Karla Itzel Castelán Salgado..pdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.C64DDBF8A82_chat_sub_completions_Create.Bundle;assembly=C64DDBF8A82_chat_sub.DjU482mzCKQ1dYf5T7dkZ14" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="CarreraUniversidadV2" this:CarreraUniversidadV2.in_CVPath="C:\Users\Samue\Downloads\CV_Test.pdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.C64DDBF8A82_chat_sub_completions_Create.Bundle;assembly=C64DDBF8A82_chat_sub.DjU482mzCKQ1dYf5T7dkZ14" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="out_University" Type="OutArgument(x:String)" />
+    <x:Property Name="out_Career" Type="OutArgument(x:String)" />
     <x:Property Name="in_CVPath" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
@@ -45,6 +47,7 @@
       <x:String>UiPath.IntegrationService.Activities.Runtime.Helpers.TypeDetailsCustomization</x:String>
       <x:String>UiPath.IntegrationService.Activities.Runtime.Activities</x:String>
       <x:String>UiPath.Platform.Activities</x:String>
+      <x:String>UiPath.Activities.System.Text</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -100,14 +103,21 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CarreraUniversidadV2" sap:VirtualizedContainerService.HintSize="610,780" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CarreraUniversidadV2" sap:VirtualizedContainerService.HintSize="847.6,773.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Reading Career and University&quot;]" />
-    <Sequence sap:VirtualizedContainerService.HintSize="449.6,582.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <ui:LogMessage DisplayName="Log Message Career and University" sap:VirtualizedContainerService.HintSize="483.2,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Reading Career and University&quot;]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
+    <Sequence sap2010:Annotation.AnnotationText="Extracción por medio de IA (Deepseek):&#xD;&#xA;- Extracción de la carrera&#xD;&#xA;- Extracción del nombre de la universidad" DisplayName="GetCareerAndUniversity" sap:VirtualizedContainerService.HintSize="483.2,693.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="CVText" />
         <Variable x:TypeArguments="x:String" Name="Resultado" />
@@ -115,20 +125,27 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(in_CVPath)]" Text="[CVText]" />
-      <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACs1V224aMRD9lZWfCQk0bSOkPIQlaWmTQrmkaqsImd0BHBbb9YWGIKT+Rn+vX9Lx3rJcAulbxQsez4znnJk5uyRXDKJQ+4IbyjgoUluSLlAVTOgwguSS1L7flUiTS2tyw5J8ojMgNSKVmElDSqTBtIzoIjW3czPoQDFpmOBojpN4RnhWgzcSysN3jBegbwTOxVPww4J2gb2FdIm0UYyP8dwVyrRU6EqsxGnZGDMuybWgYX3RgBG1kSE1oyyUSFtolj7ZVmxG1YKsSqSDyZmCMPOK0VyLgKaudRE6vxzbTIQQbUG7yaxryLoQQYDQJuBdNL040oEMY5RjQGrxFT5GgFoKrmE/wqpLHyO6pZF1XiGA1ADTI8cYOl9yOyv2YfN+d1wBXH6hgGrhWr8jKL9b3R3k/JK7kelrUK05KMVC2NONEvGx6ZiaYzzpc22lRPjYmxf3CStqWbNzKD8wM3B4a7Wn0dJbjXyXdAU83w2hn3tu9fapV33WpmZSbnIDY9dQwbug5iyA8kVg2BxRgi53v1xyk/z135w2GvWrs4uzalzQQNvhoFDTwEeGDZTrlocRlPe4lLxducqN+/7pWXX26H/8XAm/jl733obTb5XTkncLSmP4eaV84n4Yjq2yCs45WKNoVPLadhix4CMsemIK/JzbyE11J13A2ohGGrnvZPP6TC+SFmBgi/uUz6nOHJsauxB7J5bC6Bl4MM92I/R66fVaD3q4WEbIbJXQbVM68j3a3Ku9c7s6DDk7+zZ++B+ZKOBOtgmLcnLrJn+Tg07m4BU81mhAXZ3jZmnUkczVCUysN39+/Xb2pFiPSontdSvp9Law5P8ZPXf4RJNrQ3kAbaqQCIOj68pJRxhj4yGONYNzVFmhcGrRbJnEbTzK1Sr7g57pOi5SsFlt+PrwHjOkfO/SiPfGyBswE4FInHI50URmAhqxRwizvIclxKfBBJAAMbUy1lWHaZXZ60r8RKVsGpil9lQZEVn6wW3TYErHUGShWlmnIa2igbi7Ce78qhj2qlzNkb9YAg8S1ZLxNy1+I9GoLfZa3R7anGTi6dglOV7PcU352CJIvAb36A19aOOxi1TjZ/7kBBNSXcfkU7c1E/R2NKaD6HSiHolgGhO2+gsqM+DfzAgAAA==" ConnectionId="da75aae5-28fa-457e-a21b-d064ddbf8a82" DisplayName="Generate Chat Completion" sap:VirtualizedContainerService.HintSize="416,268" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="f3d0276d-032a-30f7-b0f3-cfbbadda0f68">
+      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" sap2010:Annotation.AnnotationText="Extracción de todo el texto contenido por el CV" ApplyOcr="False" DisplayName="Extract PDF Text CV" sap:VirtualizedContainerService.HintSize="449.6,88" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(in_CVPath)]" Text="[CVText]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </uisape:ExtractPDFText>
+      <isactr:ConnectorActivity sap2010:Annotation.AnnotationText="Extracción de carrera y universidad por medio de un prompt. Ejemplo del formato de salida:&#xD;&#xA;{carrera: CARRERA, universidad: UNIVERSIDAD}" Configuration="H4sIAAAAAAAACs1V224aMRD9lZWfCQk0bSOkPIQlaWmTQrmkaqsImd0BHBbb9YWGIKT+Rn+vX9Lx3rJcAulbxQsez4znnJk5uyRXDKJQ+4IbyjgoUluSLlAVTOgwguSS1L7flUiTS2tyw5J8ojMgNSKVmElDSqTBtIzoIjW3czPoQDFpmOBojpN4RnhWgzcSysN3jBegbwTOxVPww4J2gb2FdIm0UYyP8dwVyrRU6EqsxGnZGDMuybWgYX3RgBG1kSE1oyyUSFtolj7ZVmxG1YKsSqSDyZmCMPOK0VyLgKaudRE6vxzbTIQQbUG7yaxryLoQQYDQJuBdNL040oEMY5RjQGrxFT5GgFoKrmE/wqpLHyO6pZF1XiGA1ADTI8cYOl9yOyv2YfN+d1wBXH6hgGrhWr8jKL9b3R3k/JK7kelrUK05KMVC2NONEvGx6ZiaYzzpc22lRPjYmxf3CStqWbNzKD8wM3B4a7Wn0dJbjXyXdAU83w2hn3tu9fapV33WpmZSbnIDY9dQwbug5iyA8kVg2BxRgi53v1xyk/z135w2GvWrs4uzalzQQNvhoFDTwEeGDZTrlocRlPe4lLxducqN+/7pWXX26H/8XAm/jl733obTb5XTkncLSmP4eaV84n4Yjq2yCs45WKNoVPLadhix4CMsemIK/JzbyE11J13A2ohGGrnvZPP6TC+SFmBgi/uUz6nOHJsauxB7J5bC6Bl4MM92I/R66fVaD3q4WEbIbJXQbVM68j3a3Ku9c7s6DDk7+zZ++B+ZKOBOtgmLcnLrJn+Tg07m4BU81mhAXZ3jZmnUkczVCUysN39+/Xb2pFiPSontdSvp9Law5P8ZPXf4RJNrQ3kAbaqQCIOj68pJRxhj4yGONYNzVFmhcGrRbJnEbTzK1Sr7g57pOi5SsFlt+PrwHjOkfO/SiPfGyBswE4FInHI50URmAhqxRwizvIclxKfBBJAAMbUy1lWHaZXZ60r8RKVsGpil9lQZEVn6wW3TYErHUGShWlmnIa2igbi7Ce78qhj2qlzNkb9YAg8S1ZLxNy1+I9GoLfZa3R7anGTi6dglOV7PcU352CJIvAb36A19aOOxi1TjZ/7kBBNSXcfkU7c1E/R2NKaD6HSiHolgGhO2+gsqM+DfzAgAAA==" ConnectionId="da75aae5-28fa-457e-a21b-d064ddbf8a82" DisplayName="Generate Chat Completion CV" sap:VirtualizedContainerService.HintSize="449.6,117.6" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="f3d0276d-032a-30f7-b0f3-cfbbadda0f68">
         <isactr:ConnectorActivity.FieldObjects>
           <isactr:FieldObject Name="prompt" Type="FieldArgument">
             <isactr:FieldObject.Value>
-              <InArgument x:TypeArguments="x:String" xml:space="preserve">["
-Extrae estos datos de un CV
-- carrera
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">["Extrae estos datos de un CV
+- carrera (sin tomar la especialidad)
 - universidad
-Devuélvelo en JSON sin ninguna clase de comillas y con estas claves exactas:
-{carrera: carrera extraida sin tomar la especialidad,
-universidad: universidad extraida}
+Devuélvelo estrictamente en este formato, sin texto adicional y sin comillas, aunque no sea JSON válido:
+{carrera: CARRERA_MAYUSCULAS, universidad: UNIVERSIDAD_MAYUSCULAS}
 Texto OCR: " +CVText]</InArgument>
             </isactr:FieldObject.Value>
           </isactr:FieldObject>
@@ -153,8 +170,41 @@ Texto OCR: " +CVText]</InArgument>
             </isactr:FieldObject.Value>
           </isactr:FieldObject>
         </isactr:ConnectorActivity.FieldObjects>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </isactr:ConnectorActivity>
-      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="416,108.8" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[Resultado]" />
+      <Sequence sap2010:Annotation.AnnotationText="Por medio de las actividades 'Extract text' se realiza la extracción de la carrera y la universidad, tomando como referencia los textos que están antes y después de estos datos.&#xD;&#xA;&#xD;&#xA;Ejemplo: La carrera está entre el texto 'carrera:' y ','" DisplayName="Extract Career and University" sap:VirtualizedContainerService.HintSize="449.6,344" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <uast:ExtractText FirstMatch="{x:Null}" Results="{x:Null}" sap2010:Annotation.AnnotationText="Extracción de la carrera del formato tipo JSON" DisplayName="Extract Text career" EndingText="," ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" sap:VirtualizedContainerService.HintSize="416,88" sap2010:WorkflowViewState.IdRef="ExtractText_1" IgnoreDuplicates="False" MatchCase="False" Result="[out_Career]" Source="[CVText]" StartingText="carrera:">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </uast:ExtractText>
+        <uast:ExtractText FirstMatch="{x:Null}" Results="{x:Null}" sap2010:Annotation.AnnotationText="Extracción de la universidad del formato tipo JSON" DisplayName="Extract Text university" EndingText="}" ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" sap:VirtualizedContainerService.HintSize="416,79.2" sap2010:WorkflowViewState.IdRef="ExtractText_2" IgnoreDuplicates="False" MatchCase="False" Result="[out_University]" Source="[CVText]" StartingText="universidad:">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </uast:ExtractText>
+      </Sequence>
     </Sequence>
   </Sequence>
 </Activity>
