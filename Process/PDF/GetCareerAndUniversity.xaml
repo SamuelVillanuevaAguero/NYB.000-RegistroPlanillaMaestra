@@ -97,7 +97,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtraccionCV" sap:VirtualizedContainerService.HintSize="592,1867.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExtraccionCV" sap:VirtualizedContainerService.HintSize="490.6666666666667,1805.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextCV" />
     </Sequence.Variables>
@@ -114,77 +114,105 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap:VirtualizedContainerService.HintSize="450,1787.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap:VirtualizedContainerService.HintSize="450,1725.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
-        <Variable x:TypeArguments="x:Boolean" Name="ISC" />
+        <Variable x:TypeArguments="x:String" Name="Universidad" />
         <Variable x:TypeArguments="x:String" Name="BloqueEducacion" />
-        <Variable x:TypeArguments="x:String" Name="TempDatoCarrera" />
-        <Variable x:TypeArguments="x:String" Name="TempDatoUniversidad" />
+        <Variable x:TypeArguments="x:String" Name="DatoCarrera" />
+        <Variable x:TypeArguments="x:String" Name="DatoUniversidad" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="416,124" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(in_FileCV)]" Text="[TextCV]" />
-      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_8">
+      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="416,124" sap2010:WorkflowViewState.IdRef="ExtractPDFText_2" PdfFile="[LocalResource.FromPath(in_FileCV)]" Text="[TextCV]" />
+      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_11">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[TextCV]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[If(TextCV Is Nothing, String.Empty, TextCV.ToUpper.Replace("Á", "A").Replace("É", "E").Replace("Í", "I").Replace("Ó", "O").Replace("Ú", "U"))]</InArgument>
+          <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(TextCV.ToUpper.Replace("Á", "A").Replace("É", "E").Replace("Í", "I").Replace("Ó", "O").Replace("Ú", "U").Replace(",", " ").Replace(".", " ").Replace(":", " ").Replace("-", " "), "\s+", " ")]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_9">
+      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_12">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[TextCV]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[If(TextCV Is Nothing, String.Empty, System.Text.RegularExpressions.Regex.Replace(TextCV, "[^a-zA-Z0-9\s-]", " ").Trim)]</InArgument>
+          <InArgument x:TypeArguments="x:String">[TextCV.Replace(" I ", " ").Replace(" A EN ", " EN ").Replace(" INGENIER EN ", " INGENIERIA ").Replace(" SISTEMAS COMPUTACIONALES ", " SISTEMAS COMPUTACIONALES ").Replace(" COMPUTACIONALES ", " COMPUTACIONALES ").Replace("E S T U D A N T E D E N G E N E R A E N S S T E M A S C O M P U T A C O N A L E S", " ESTUDIANTE DE INGENIERIA EN SISTEMAS COMPUTACIONALES ").Replace("E S T U D I A N T E D E I N G E N I E R I A E N S I S T E M A S C O M P U T A C I O N A L E S", " ESTUDIANTE DE INGENIERIA EN SISTEMAS COMPUTACIONALES ")]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_10">
+      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_13">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:Boolean">[ISC]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[BloqueEducacion]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:Boolean">[TextCV.ToUpper.Contains("ISC")]</InArgument>
+          <InArgument x:TypeArguments="x:String">[If(System.Text.RegularExpressions.Regex.Match(TextCV, "(?i)(?:EDUCACION|FORMACION ACADEMICA|FORMACION|ESTUDIOS)\s+(.*?)(?:\s+(EXPERIENCIA|HABILIDADES|APTITUDES|CONTACTO|IDIOMAS|CERTIFICACIONES|OTRAS HABILIDADES)|$)", System.Text.RegularExpressions.RegexOptions.Singleline).Success, System.Text.RegularExpressions.Regex.Match(TextCV, "(?i)(?:EDUCACION|FORMACION ACADEMICA|FORMACION|ESTUDIOS)\s+(.*?)(?:\s+(EXPERIENCIA|HABILIDADES|APTITUDES|CONTACTO|IDIOMAS|CERTIFICACIONES|OTRAS HABILIDADES)|$)", System.Text.RegularExpressions.RegexOptions.Singleline).Groups(1).Value.Trim, String.Empty)]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_14">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[TempDatoCarrera]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[BloqueEducacion]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[If(ISC, "INGENIERIA EN SISTEMAS COMPUTACIONALES", If(TextCV.Contains("MECATRONICA"), "INGENIERIA EN MECATRONICA", If(System.Text.RegularExpressions.Regex.Match(TextCV, "(?i)(INGENIERIA|LICENCIATURA|MASTER|CARRERA\s+TECNICA)\s*(.*?)(?:\r\n|$)", System.Text.RegularExpressions.RegexOptions.Singleline).Success, System.Text.RegularExpressions.Regex.Match(TextCV, "(?i)(INGENIERIA|LICENCIATURA|MASTER|CARRERA\s+TECNICA)\s*(.*?)(?:\r\n|$)").Value.Trim, String.Empty)))]</InArgument>
+          <InArgument x:TypeArguments="x:String">[BloqueEducacion.Replace("CARRERA TECNICA", "EDUCACION_TECNICA")]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_15">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[TempDatoUniversidad]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[DatoCarrera]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[If(TextCV.Contains("CHIMALHUACAN"), "TESCHI", If(TextCV.Contains("LA PAZ"), "TECNOLOGICO DE ESTUDIOS SUPERIORES", If(TextCV.Contains("ITI"), "INSTITUTO TECNOLÓGICO DE IGUALA", If(TextCV.Contains("UAEM"), "UNIVERSIDAD AUTÓNOMA DEL ESTADO DE MÉXICO", String.Empty))))]</InArgument>
+          <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(TextCV, "(?i)(ESTUDIANTE DE ING|INGENIERIA|LICENCIATURA|CARRERA:).{1,200}?(SISTEMAS COMPUTACIONALES|SISTEMAS|MECATRONICA|DERECHO|MERCADOTECNIA ESTRATEGICA)\s*.*?(EXPERIENCIA|20\d{2}|$)").Value.Trim]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_7">
+      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_16">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[DatoUniversidad]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[If(TextCV.Contains("CHIMALHUACAN"), "TECNOLÓGICO DE ESTUDIOS SUPERIORES DE CHIMALHUACÁN", If(TextCV.Contains("IGUALA"), "TECNOLÓGICO NACIONAL DE MÉXICO CAMPUS IGUALA", If(TextCV.Contains("ZACATEPEC"), "INSTITUTO TECNOLÓGICO DE ZACATEPEC", If(TextCV.Contains("LA PAZ"), "TECNOLÓGICO DE ESTUDIOS SUPERIORES", If(TextCV.Contains("UAEM"), "UNIVERSIDAD AUTÓNOMA DEL ESTADO DE MÉXICO", System.Text.RegularExpressions.Regex.Match(BloqueEducacion, "(?i)((?:UNIVERSIDAD|INSTITUTO TECNOLOGICO|TECNOLOGICO|INSTITUTO|CAMPUS|ESCUELA|FACULTAD|CENTRO).+?)(?:\||•|LICENCIATURA|INGENIERIA|CARRERA|PROMEDIO|PROYECTOS|\d{4}|$)", System.Text.RegularExpressions.RegexOptions.Singleline).Groups(1).Value.Trim)))))]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_17">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[out_Carrera]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[If(TempDatoCarrera.Contains("MECATRONICA"), "INGENIERIA EN MECATRONICA", TempDatoCarrera.Replace("ING ENIER A EN", "INGENIERIA EN").Replace("ENIER A EN", "EN").Replace(" EN SISTEMAS COMPUTACIONALES", " EN SISTEMAS COMPUTACIONALES").Replace("ISC", "INGENIERIA EN SISTEMAS COMPUTACIONALES").Trim)]</InArgument>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(DatoCarrera.Contains("SISTEMAS") And DatoCarrera.Contains("COMPUTACIONALES"), "INGENIERIA EN SISTEMAS COMPUTACIONALES",
+    If(DatoCarrera.Contains("MECATRONICA"), "INGENIERIA EN MECATRONICA",
+        If(DatoCarrera.Contains("CARRERA TECNICA") Or DatoCarrera.Contains("CARRERA TECNICA EN"), String.Empty,
+            DatoCarrera.Trim
+        )
+    )
+)]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_18">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[out_Universidad]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[If(TempDatoUniversidad Is Nothing OR TempDatoUniversidad = "", String.Empty, TempDatoUniversidad)]</InArgument>
+          <InArgument x:TypeArguments="x:String">[If(DatoUniversidad Is Nothing OR DatoUniversidad = "", String.Empty, DatoUniversidad)]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;CARRERA FINAL: &quot; + out_Carrera]" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;UNIVERSIDAD FINAL: &quot; + out_Universidad]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,57.333333333333336" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[&quot;CARRERA FINAL: &quot; + out_Carrera]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:LogMessage>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[&quot;UNIVERSIDAD FINAL: &quot; + out_Universidad]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:LogMessage>
     </Sequence>
   </Sequence>
 </Activity>
