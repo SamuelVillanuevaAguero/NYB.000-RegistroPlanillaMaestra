@@ -123,7 +123,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="UploadQueue" sap:VirtualizedContainerService.HintSize="610,990.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="UploadQueue" sap:VirtualizedContainerService.HintSize="847.6,990.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -161,7 +161,7 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" ContinueOnError="True" DisplayName="Add Queue Item Email" FolderPath="[in_OrquestratorFolder]" sap:VirtualizedContainerService.HintSize="416,217.6" sap2010:WorkflowViewState.IdRef="AddQueueItem_2" Priority="Normal" QueueType="[in_QueueName]" Reference="[CurrentEmail.FromAddress]">
                     <ui:AddQueueItem.ItemInformation>
-                      <InArgument x:TypeArguments="x:String" x:Key="correo">[CurrentEmail.FromAddress]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="EmailID">[CurrentEmail.MessageId]</InArgument>
                     </ui:AddQueueItem.ItemInformation>
                   </ui:AddQueueItem>
                 </Sequence>
