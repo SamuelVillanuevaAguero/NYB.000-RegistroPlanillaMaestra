@@ -1,8 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="CarreraUniversidadV2" this:CarreraUniversidadV2.in_CVPath="C:\Users\Samue\Downloads\CV_Test.pdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.C64DDBF8A82_chat_sub_completions_Create.Bundle;assembly=C64DDBF8A82_chat_sub.DjU482mzCKQ1dYf5T7dkZ14" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="CarreraUniversidadV2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.C64DDBF8A82_chat_sub_completions_Create.Bundle;assembly=C64DDBF8A82_chat_sub.DjU482mzCKQ1dYf5T7dkZ14" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_University" Type="OutArgument(x:String)" />
     <x:Property Name="out_Career" Type="OutArgument(x:String)" />
-    <x:Property Name="in_CVPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_CVPath" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -103,7 +107,7 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CarreraUniversidadV2" sap:VirtualizedContainerService.HintSize="847.6,773.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CarreraUniversidadV2" sap:VirtualizedContainerService.HintSize="847.6,571.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -117,7 +121,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Extracción por medio de IA (Deepseek):&#xD;&#xA;- Extracción de la carrera&#xD;&#xA;- Extracción del nombre de la universidad" DisplayName="GetCareerAndUniversity" sap:VirtualizedContainerService.HintSize="483.2,693.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="Extracción por medio de IA (Deepseek):&#xD;&#xA;- Extracción de la carrera&#xD;&#xA;- Extracción del nombre de la universidad" DisplayName="GetCareerAndUniversity" sap:VirtualizedContainerService.HintSize="483.2,491.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="CVText" />
         <Variable x:TypeArguments="x:String" Name="Resultado" />
@@ -178,10 +182,10 @@ Texto OCR: " +CVText]</InArgument>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </isactr:ConnectorActivity>
-      <Sequence sap2010:Annotation.AnnotationText="Por medio de las actividades 'Extract text' se realiza la extracción de la carrera y la universidad, tomando como referencia los textos que están antes y después de estos datos.&#xD;&#xA;&#xD;&#xA;Ejemplo: La carrera está entre el texto 'carrera:' y ','" DisplayName="Extract Career and University" sap:VirtualizedContainerService.HintSize="449.6,344" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence sap2010:Annotation.AnnotationText="Por medio de las actividades 'Extract text' se realiza la extracción de la carrera y la universidad, tomando como referencia los textos que están antes y después de estos datos.&#xD;&#xA;&#xD;&#xA;Ejemplo: La carrera está entre el texto 'carrera:' y ','" DisplayName="Extract Career and University" sap:VirtualizedContainerService.HintSize="449.6,141.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
