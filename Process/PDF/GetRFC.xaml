@@ -1,11 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ReadRFC" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadRFC" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="out_RFC" Type="OutArgument(x:String)" />
-    <x:Property Name="in_FilePath" Type="InArgument(x:String)">
+    <x:Property Name="in_File" Type="InArgument(ugdm:GDriveRemoteItem)">
       <x:Property.Attributes>
         <RequiredArgumentAttribute />
       </x:Property.Attributes>
     </x:Property>
+    <x:Property Name="out_RFC" Type="OutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -45,6 +45,14 @@
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>UiPath.Activities.System.Text</x:String>
       <x:String>UiPath.Platform</x:String>
+      <x:String>UiPath.GSuite.Activities.Drive.Enums</x:String>
+      <x:String>UiPath.GSuite.Drive.Models</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.GSuite.Activities.Models</x:String>
+      <x:String>UiPath.GSuite.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.GSuite</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -90,9 +98,18 @@
       <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.DocumentUnderstanding.ML.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadRFC" sap:VirtualizedContainerService.HintSize="847.6,437.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadRFC" sap:VirtualizedContainerService.HintSize="855.6,503.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextRFC" />
     </Sequence.Variables>
@@ -109,7 +126,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Extracción del formato RFC:&#xD;&#xA;- Extracción del RFC (Registro Federal de Contribuyentes)" DisplayName="GetRFC" sap:VirtualizedContainerService.HintSize="483.2,357.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="Extracción del formato RFC:&#xA;- Extracción del RFC (Registro Federal de Contribuyentes)" DisplayName="GetRFC" sap:VirtualizedContainerService.HintSize="483.2,423.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -117,16 +134,16 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uisape:ExtractPDFText FilePassword="{x:Null}" sap2010:Annotation.AnnotationText="Extracción de todo el texto contenido por el RFC" ApplyOcr="True" DisplayName="Extract PDF Text RFC" sap:VirtualizedContainerService.HintSize="449.6,88" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" OcrEngine="UIPATH_DOCUMENT_OCR" PdfFile="[LocalResource.FromPath(in_FilePath)]" Text="[TextRFC]">
+      <uisape:ExtractPDFText FilePassword="{x:Null}" sap2010:Annotation.AnnotationText="Extracción de todo el texto contenido por el RFC" ApplyOcr="True" DisplayName="Extract PDF Text RFC" sap:VirtualizedContainerService.HintSize="449.6,153.6" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" OcrEngine="UIPATH_DOCUMENT_OCR" PdfFile="[in_File]" Text="[TextRFC]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uisape:ExtractPDFText>
-      <Sequence sap2010:Annotation.AnnotationText="Por medio de las actividades 'Extract text' se realiza la extracción del RFC, tomando como referencia los textos que están antes y después de estos datos.&#xD;&#xA;&#xD;&#xA;Ejemplo: La carrera está entre el texto 'RFC:' y 'CURP:'" DisplayName="Extract RFC" sap:VirtualizedContainerService.HintSize="449.6,141.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence sap2010:Annotation.AnnotationText="Por medio de las actividades 'Extract text' se realiza la extracción del RFC, tomando como referencia los textos que están antes y después de estos datos.&#xA;&#xA;Ejemplo: La carrera está entre el texto 'RFC:' y 'CURP:'" DisplayName="Extract RFC" sap:VirtualizedContainerService.HintSize="449.6,141.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -143,7 +160,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </uast:ExtractText>
-        <Assign sap2010:Annotation.AnnotationText="Remover los espacios extremos de ambos datos con la función trim()&#xD;&#xA;&#xD;&#xA;Ejemplo:  Convertir '  RFC  ' a 'RFC'" DisplayName="Remove Spaces" sap:VirtualizedContainerService.HintSize="416,125.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign sap2010:Annotation.AnnotationText="Remover los espacios extremos de ambos datos con la función trim()&#xA;&#xA;Ejemplo:  Convertir '  RFC  ' a 'RFC'" DisplayName="Remove Spaces" sap:VirtualizedContainerService.HintSize="416,125.6" sap2010:WorkflowViewState.IdRef="Assign_1">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[out_RFC]</OutArgument>
           </Assign.To>

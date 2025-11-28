@@ -1,12 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ReadCURP" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadCURP" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="out_Name" Type="OutArgument(x:String)" />
-    <x:Property Name="out_CURP" Type="OutArgument(x:String)" />
-    <x:Property Name="in_FileCURP" Type="InArgument(x:String)">
+    <x:Property Name="in_File" Type="InArgument(ugdm:GDriveRemoteItem)">
       <x:Property.Attributes>
         <RequiredArgumentAttribute />
       </x:Property.Attributes>
     </x:Property>
+    <x:Property Name="out_Name" Type="OutArgument(x:String)" />
+    <x:Property Name="out_CURP" Type="OutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -58,6 +58,8 @@
       <x:String>UiPath.Platform</x:String>
       <x:String>System.Text.RegularExpressions</x:String>
       <x:String>UiPath.Activities.System.Text</x:String>
+      <x:String>UiPath.GSuite.Drive.Models</x:String>
+      <x:String>UiPath.GSuite</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -114,9 +116,12 @@
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadCURP" sap:VirtualizedContainerService.HintSize="847.6,790.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadCURP" sap:VirtualizedContainerService.HintSize="855.6,790.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextCURP" />
     </Sequence.Variables>
@@ -133,7 +138,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Extracción del formato CURP de los datos:&#xD;&#xA;- CURP&#xD;&#xA;- NOMBRE COMPLETO" DisplayName="GetNameAndCURP" sap:VirtualizedContainerService.HintSize="483.2,710.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence sap2010:Annotation.AnnotationText="Extracción del formato CURP de los datos:&#xA;- CURP&#xA;- NOMBRE COMPLETO" DisplayName="GetNameAndCURP" sap:VirtualizedContainerService.HintSize="483.2,710.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -141,7 +146,7 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" sap2010:Annotation.AnnotationText="Extracción de todo el texto contenido por la CURP" ApplyOcr="False" DisplayName="Extract PDF Text CURP" sap:VirtualizedContainerService.HintSize="449.6,88" sap2010:WorkflowViewState.IdRef="ExtractPDFText_2" PdfFile="[LocalResource.FromPath(in_FileCURP)]" Text="[TextCURP]">
+      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" sap2010:Annotation.AnnotationText="Extracción de todo el texto contenido por la CURP" ApplyOcr="False" DisplayName="Extract PDF Text CURP" sap:VirtualizedContainerService.HintSize="449.6,88" sap2010:WorkflowViewState.IdRef="ExtractPDFText_2" PdfFile="[in_File]" Text="[TextCURP]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -150,7 +155,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uisape:ExtractPDFText>
-      <Sequence sap2010:Annotation.AnnotationText="Extracción del CURP y NOMBRE COMPLETO con la actividad extract text, tomando como referencia los textos que están antes y después&#xD;&#xA;&#xD;&#xA;Ejemplo: La CURP está antes del texto 'Clave:' y 'Nombre' " DisplayName="Extract CURP and Name" sap:VirtualizedContainerService.HintSize="449.6,478.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence sap2010:Annotation.AnnotationText="Extracción del CURP y NOMBRE COMPLETO con la actividad extract text, tomando como referencia los textos que están antes y después&#xA;&#xA;Ejemplo: La CURP está antes del texto 'Clave:' y 'Nombre' " DisplayName="Extract CURP and Name" sap:VirtualizedContainerService.HintSize="449.6,478.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -176,7 +181,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </uast:ExtractText>
-        <ui:MultipleAssign sap2010:Annotation.AnnotationText="Remover los espacios extremos de ambos datos con la función trim()&#xD;&#xA;&#xD;&#xA;Ejemplo:  Convertir '  NOMBRE COMPLETO  ' a 'NOMBRE COMPLETO'" DisplayName="Remove Spaces" sap:VirtualizedContainerService.HintSize="416,141.6" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+        <ui:MultipleAssign sap2010:Annotation.AnnotationText="Remover los espacios extremos de ambos datos con la función trim()&#xA;&#xA;Ejemplo:  Convertir '  NOMBRE COMPLETO  ' a 'NOMBRE COMPLETO'" DisplayName="Remove Spaces" sap:VirtualizedContainerService.HintSize="416,141.6" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
           <ui:MultipleAssign.AssignOperations>
             <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
