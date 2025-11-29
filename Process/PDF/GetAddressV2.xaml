@@ -1,7 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ReadDomicilio" this:ReadDomicilio.in_FileRFC="C:\Users\karla\Documents\TecNM\DOCUMENTOS BEECKER\05. RFC - Karla Itzel Castelán Salgado..pdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadDomicilio" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_Address" Type="OutArgument(x:String)" />
-    <x:Property Name="in_FileRFC" Type="InArgument(x:String)" />
+    <x:Property Name="in_File" Type="InArgument(ugdm:GDriveLocalItem)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -64,6 +68,8 @@
       <x:String>UiPath.OCR.Contracts.Activities</x:String>
       <x:String>UiPath.Core.Activities.OCR.Engines</x:String>
       <x:String>UiPath.Platform</x:String>
+      <x:String>UiPath.GSuite.Drive.Models</x:String>
+      <x:String>UiPath.GSuite</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -134,9 +140,11 @@
       <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadDomicilio" sap:VirtualizedContainerService.HintSize="854.8000000000001,1697.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetAddressV2" sap:VirtualizedContainerService.HintSize="1315,647.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Estado" />
       <Variable x:TypeArguments="x:String" Name="Municipio" />
@@ -148,15 +156,15 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Reading RFC" sap:VirtualizedContainerService.HintSize="484.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading RFC&quot;]" />
-    <Sequence DisplayName="Extract postal code" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <ui:LogMessage DisplayName="Log Message Reading RFC" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading RFC&quot;]" />
+    <Sequence DisplayName="Extract postal code" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text RFC" sap:VirtualizedContainerService.HintSize="416,123" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(in_FileRFC)]" Text="[TextRFC]">
+      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text RFC" sap:VirtualizedContainerService.HintSize="416,123" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[in_File]" Text="[TextRFC]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -174,9 +182,9 @@
       </Assign>
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[CodigoPostal]" />
     </Sequence>
-    <ui:IfElseIfV2 Condition="[String.IsNullOrEmpty(CodigoPostal)]" DisplayName="If - checking for an empty variable" sap:VirtualizedContainerService.HintSize="484.8,319.2" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
+    <ui:IfElseIfV2 Condition="[String.IsNullOrEmpty(CodigoPostal)]" DisplayName="If - checking for an empty variable" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
       <ui:IfElseIfV2.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="483.2,24.8" sap2010:WorkflowViewState.IdRef="Sequence_8">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484,25" sap2010:WorkflowViewState.IdRef="Sequence_8">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -190,25 +198,25 @@
       </ui:IfElseIfV2.ElseIfs>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:IfElseIfV2.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="483.2,108" sap2010:WorkflowViewState.IdRef="Sequence_9">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,108" sap2010:WorkflowViewState.IdRef="Sequence_9">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="Extract postal code with OCR" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="Extract postal code with OCR" sap:VirtualizedContainerService.HintSize="450,48" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ReadPDFWithOCR DegreeOfParallelism="-1" DisplayName="Read PDF With OCR" FileName="D:\Usuarios\Ricar\Downloads\05. RFC - Samuel Villanueva Aguero.pdf" sap:VirtualizedContainerService.HintSize="416,190" sap2010:WorkflowViewState.IdRef="ReadPDFWithOCR_1" ImageDpi="150" Range="All" Text="[TextRFC]">
+            <ui:ReadPDFWithOCR DegreeOfParallelism="-1" DisplayName="Read PDF With OCR" FileName="[in_File.LocalPath]" sap:VirtualizedContainerService.HintSize="416,190" sap2010:WorkflowViewState.IdRef="ReadPDFWithOCR_1" ImageDpi="150" Range="All" Text="[TextRFC]">
               <ui:ReadPDFWithOCR.OCREngine>
                 <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
                   <ActivityFunc.Argument>
@@ -231,19 +239,19 @@
         </Sequence>
       </ui:IfElseIfV2.Then>
     </ui:IfElseIfV2>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Postal code search" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="484.8,1124" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Postal code search" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="450,48" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Hacer" sap:VirtualizedContainerService.HintSize="449.6,930.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Hacer" sap:VirtualizedContainerService.HintSize="450,933" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'combo box Busca en Goog…'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Text="[&quot;&quot;+CodigoPostal+&quot;[k(Enter)]&quot;]" Version="V5">
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Postal code write" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Text="[&quot;&quot;+CodigoPostal+&quot;[k(Enter)]&quot;]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="b0249186-4a80-471d-bd9f-e986a1f84aa9" ContentHash="OD5yjldRakC-ADZ_VsHRHQ" CvElementArea="487, 540, 63, 29" CvType="InputBox" DesignTimeRectangle="489, 541, 60, 26" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='tbGrids' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='txtcp' type='text' tag='INPUT' class='txt' aaname='Ingrese el Código Postal que desea validar' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="fcdb3389-28cb-4cec-ab6b-76a0f7dcdaa4" InformativeScreenshot="132a7af7bd8b875732d0d7d9853d05c4.png" IsResponsive="True" Reference="7HbH4yVOgUalDzgTt0afDw/xNRe-uUxjE2yECG-jJKDfQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -260,7 +268,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NTypeInto>
-            <uix:NGetText DisplayName="Get Text '32'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,142.4" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" TextString="[Municipio]" Version="V5">
+            <uix:NGetText DisplayName="Get Text 'Estado'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,143" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" TextString="[Municipio]" Version="V5">
               <uix:NGetText.Target>
                 <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="ea33f38e-3a23-4213-8006-98b87650f2f1" CvType="AnyWordGroup" DesignTimeRectangle="909, 749, 103, 16" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='dgCP' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableCol='4' tableRow='3' tag='TD' /&gt;" Guid="209cc2b3-dcd3-4d58-9703-0adf643cf38e" InformativeScreenshot="b1b69816c799478a9eccc5f360b434f5.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -271,7 +279,7 @@
                 </uix:TargetAnchorable>
               </uix:NGetText.Target>
             </uix:NGetText>
-            <uix:NGetText DisplayName="Get Text 'Municipio'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,142.4" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" TextString="[Estado]" Version="V5">
+            <uix:NGetText DisplayName="Get Text 'Municipio'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,143" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" TextString="[Estado]" Version="V5">
               <uix:NGetText.Target>
                 <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="ea33f38e-3a23-4213-8006-98b87650f2f1" ContentHash="gvyANlCBIk2mWadlDLJkgg" CvType="AnyWordGroup" DesignTimeRectangle="1012, 749, 60, 16" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='dgCP' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableCol='5' tableRow='3' tag='TD' /&gt;" Guid="4c42cded-fe46-428d-ab58-3c6c0ec2d994" InformativeScreenshot="6ad5a47c750f2d7d962d45d95b3037c8.png" Reference="7HbH4yVOgUalDzgTt0afDw/MnhGrQ0l90CBDkXMnWD-wg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -282,8 +290,8 @@
                 </uix:TargetAnchorable>
               </uix:NGetText.Target>
             </uix:NGetText>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[Estado+&quot;, &quot;+Municipio]" />
-            <Assign DisplayName="Set Variable Value" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="Assign_4">
+            <ui:LogMessage DisplayName="Log Message Address" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[Estado+&quot;, &quot;+Municipio]" />
+            <Assign DisplayName="Set Variable Address" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_4">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[out_Address]</OutArgument>
               </Assign.To>
@@ -302,11 +310,18 @@
         </ActivityFunc>
       </uix:NApplicationCard.OCREngine>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-1928, -8, 1936, 1048" BrowserType="Chrome" ContentHash="61TnqYitN0-C331dwk9QIg" IconBase64="iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABuklEQVRoQ9WaMUvDQBSA73+6ubh08w+4OLsogg46OugoChJwSt0EXdRNQZcuKtJaKzz5AhfSd01JTJPcGz5o75L3vpb07t1dnYi4Jnx/vcvrQyr3yZHcnG5LcjiQy911Od9Zy+A1bfRxDddyj45Tl6ChCr8/E3m+SyQ92coF68K9xCCWjl+FoGEZs+lYnoZncrW/EYj8F2IRk9g63zKChjLeHoeSHAyCxKuC2OTQecsIGjSz6URuL/aCRG1BLnJqD03QUGT8MZLr480geNuQk9zap5L45+glGw100K4gNw7aa6k4n7ZPaQ8OZd980MDz1cfjUQYui575QLzLH2JVcNKec28YjvRNsaCHyvwFE0Cb43RTcCtOUrk4s5e+ODZwnBOnXljlNN4WOPraJhOn2NEXxQquuXjaoMrrGlwzcWpj3Rk7ODsKe90ROzg7ViW6I3ZwdiypdEfs4OxiKKbqgrMrLmytgLPTjVawK272UTH74zQ7HJqdgMxO+WaLLLNlremFhNmlm9nFMpjdngCTG0Iek1twYHbTE0xuM3tMbux7TB6leEweXhUxd1xYxOQBbRFzR+KL6OtPCH90Y5RLk9sqnAAAAABJRU5ErkJggg==" InformativeScreenshot="763aa25c7d106041835c3f2cfc94bef6.jpg" Reference="7HbH4yVOgUalDzgTt0afDw/dcgDBXpjXUuN8AiZLRaq-Q" Selector="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" Url="https://www.correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" Version="V2" />
+        <uix:TargetApp Area="-1928, -8, 1936, 1048" BrowserType="Chrome" ContentHash="61TnqYitN0-C331dwk9QIg" IconBase64="iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABuklEQVRoQ9WaMUvDQBSA73+6ubh08w+4OLsogg46OugoChJwSt0EXdRNQZcuKtJaKzz5AhfSd01JTJPcGz5o75L3vpb07t1dnYi4Jnx/vcvrQyr3yZHcnG5LcjiQy911Od9Zy+A1bfRxDddyj45Tl6ChCr8/E3m+SyQ92coF68K9xCCWjl+FoGEZs+lYnoZncrW/EYj8F2IRk9g63zKChjLeHoeSHAyCxKuC2OTQecsIGjSz6URuL/aCRG1BLnJqD03QUGT8MZLr480geNuQk9zap5L45+glGw100K4gNw7aa6k4n7ZPaQ8OZd980MDz1cfjUQYui575QLzLH2JVcNKec28YjvRNsaCHyvwFE0Cb43RTcCtOUrk4s5e+ODZwnBOnXljlNN4WOPraJhOn2NEXxQquuXjaoMrrGlwzcWpj3Rk7ODsKe90ROzg7ViW6I3ZwdiypdEfs4OxiKKbqgrMrLmytgLPTjVawK272UTH74zQ7HJqdgMxO+WaLLLNlremFhNmlm9nFMpjdngCTG0Iek1twYHbTE0xuM3tMbux7TB6leEweXhUxd1xYxOQBbRFzR+KL6OtPCH90Y5RLk9sqnAAAAABJRU5ErkJggg==" InformativeScreenshot="763aa25c7d106041835c3f2cfc94bef6.jpg" Reference="7HbH4yVOgUalDzgTt0afDw/dcgDBXpjXUuN8AiZLRaq-Q" Selector="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" Url="https://www.correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" Version="V2">
+          <uix:TargetApp.Arguments>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Arguments>
+          <uix:TargetApp.WorkingDirectory>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.WorkingDirectory>
+        </uix:TargetApp>
       </uix:NApplicationCard.TargetApp>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
