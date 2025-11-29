@@ -105,7 +105,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadCV" sap:VirtualizedContainerService.HintSize="854.8000000000001,2218.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadCV" sap:VirtualizedContainerService.HintSize="854.8000000000001,1685.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -120,7 +120,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch sap2010:Annotation.AnnotationText="Para saber qué hacer si algo falla (ej. el PDF del CV está corrupto o no se encuentra)." DisplayName="Try Catch Error Obteniendo PDF" sap:VirtualizedContainerService.HintSize="486.4,2000.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch sap2010:Annotation.AnnotationText="Para saber qué hacer si algo falla (ej. el PDF del CV está corrupto o no se encuentra)." DisplayName="Try Catch Error Obteniendo PDF" sap:VirtualizedContainerService.HintSize="486.4,1468" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -129,7 +129,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Extract PHONE NUMBER" sap:VirtualizedContainerService.HintSize="484.8,1369.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Extract PHONE NUMBER" sap:VirtualizedContainerService.HintSize="484.8,836.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="TextCV" />
             <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsPhoneNumber" />
@@ -140,7 +140,7 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[in_File]" Text="[TextCV]" />
+          <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text CV" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[in_File]" Text="[TextCV]" />
           <Assign sap2010:Annotation.AnnotationText="Sirve para los casos en los que el código de área queda en un renglón y el número en otro" DisplayName="Assign RegEx para evitar saltos de línea" sap:VirtualizedContainerService.HintSize="451.2,101.6" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TextCV]</OutArgument>
@@ -156,12 +156,12 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </Assign>
-          <ui:Matches FirstMatch="{x:Null}" BuilderPattern="&quot;(\+?\d{1,3}\s?)?\(?\d{2,3}\)?[- ]?\d{3}[- ]?(\d{4}|\d{2}[- ]?\d{2})&quot;" DisplayName="Find Matching Patterns" sap:VirtualizedContainerService.HintSize="451.2,92" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[TextCV]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;\&quot;(\\+?\\d{1,3}\\s?)?\\(?\\d{2,3}\\)?[- ]?\\d{3}[- ]?(\\d{4}|\\d{2}[- ]?\\d{2})\&quot;&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="&quot;(\+?\d{1,3}\s?)?\(?\d{2,3}\)?[- ]?\d{3}[- ]?(\d{4}|\d{2}[- ]?\d{2})&quot;" RegexOption="IgnoreCase, Compiled" Result="[ResultsPhoneNumber]" />
-          <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga nada de la lectura del Acta de Nacimiento." Condition="[ResultsPhoneNumber.Count &gt; 0]" DisplayName="If para validar si se obtuvo el género" sap:VirtualizedContainerService.HintSize="451.2,634.4" sap2010:WorkflowViewState.IdRef="If_2">
+          <ui:Matches FirstMatch="{x:Null}" BuilderPattern="&quot;(\+?\d{1,3}\s?)?\(?\d{2,3}\)?[- ]?\d{3}[- ]?(\d{4}|\d{2}[- ]?\d{2})&quot;" DisplayName="Find Matching Patterns For Phone Number" sap:VirtualizedContainerService.HintSize="451.2,92" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[TextCV]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;\&quot;(\\+?\\d{1,3}\\s?)?\\(?\\d{2,3}\\)?[- ]?\\d{3}[- ]?(\\d{4}|\\d{2}[- ]?\\d{2})\&quot;&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="&quot;(\+?\d{1,3}\s?)?\(?\d{2,3}\)?[- ]?\d{3}[- ]?(\d{4}|\d{2}[- ]?\d{2})&quot;" RegexOption="IgnoreCase, Compiled" Result="[ResultsPhoneNumber]" />
+          <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga nada de la lectura del CV." Condition="[ResultsPhoneNumber.Count &gt; 0]" DisplayName="If para validar si se obtuvo el número de celular" sap:VirtualizedContainerService.HintSize="451.2,101.6" sap2010:WorkflowViewState.IdRef="If_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
