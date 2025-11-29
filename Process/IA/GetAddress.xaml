@@ -75,6 +75,7 @@
       <x:String>UiPath.Platform.ObjectLibrary</x:String>
       <x:String>UiPath.Platform.SyncObjects</x:String>
       <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -145,9 +146,10 @@
       <AssemblyReference>UiPath.Python</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DireccionV2" sap:VirtualizedContainerService.HintSize="847.6,571.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DireccionV2" sap:VirtualizedContainerService.HintSize="858,571.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Result" />
     </Sequence.Variables>
@@ -164,7 +166,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Extracción por medio de IA (deepseek):&#xD;&#xA;- Extracción del municipio&#xD;&#xA;- Extracción del estado" DisplayName="GetAddress" sap:VirtualizedContainerService.HintSize="483.2,491.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="Extracción por medio de IA (deepseek):&#xA;- Extracción del municipio&#xA;- Extracción del estado" DisplayName="GetAddress" sap:VirtualizedContainerService.HintSize="483.2,491.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="INEText" />
       </Sequence.Variables>
@@ -184,7 +186,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uisape:ExtractPDFText>
-      <isactr:ConnectorActivity sap2010:Annotation.AnnotationText="Extracción del municipio y estado por medio de un prompt. Ejemplo del formato de salida:&#xD;&#xA;{municipio: MUNICIPIO, estado: ESTADO}" Configuration="H4sIAAAAAAAACs1V224aMRD9lZWfCQk0bSOkPIQlaWmTQrmkaqsImd0BHBbb9YWGIKT+Rn+vX9Lx3rJcAulbxQsez4znnJk5uyRXDKJQ+4IbyjgoUluSLlAVTOgwguSS1L7flUiTS2tyw5J8ojMgNSKVmElDSqTBtIzoIjW3czPoQDFpmOBojpN4RnhWgzcSysN3jBegbwTOxVPww4J2gb2FdIm0UYyP8dwVyrRU6EqsxGnZGDMuybWgYX3RgBG1kSE1oyyUSFtolj7ZVmxG1YKsSqSDyZmCMPOK0VyLgKaudRE6vxzbTIQQbUG7yaxryLoQQYDQJuBdNL040oEMY5RjQGrxFT5GgFoKrmE/wqpLHyO6pZF1XiGA1ADTI8cYOl9yOyv2YfN+d1wBXH6hgGrhWr8jKL9b3R3k/JK7kelrUK05KMVC2NONEvGx6ZiaYzzpc22lRPjYmxf3CStqWbNzKD8wM3B4a7Wn0dJbjXyXdAU83w2hn3tu9fapV33WpmZSbnIDY9dQwbug5iyA8kVg2BxRgi53v1xyk/z135w2GvWrs4uzalzQQNvhoFDTwEeGDZTrlocRlPe4lLxducqN+/7pWXX26H/8XAm/jl733obTb5XTkncLSmP4eaV84n4Yjq2yCs45WKNoVPLadhix4CMsemIK/JzbyE11J13A2ohGGrnvZPP6TC+SFmBgi/uUz6nOHJsauxB7J5bC6Bl4MM92I/R66fVaD3q4WEbIbJXQbVM68j3a3Ku9c7s6DDk7+zZ++B+ZKOBOtgmLcnLrJn+Tg07m4BU81mhAXZ3jZmnUkczVCUysN39+/Xb2pFiPSontdSvp9Law5P8ZPXf4RJNrQ3kAbaqQCIOj68pJRxhj4yGONYNzVFmhcGrRbJnEbTzK1Sr7g57pOi5SsFlt+PrwHjOkfO/SiPfGyBswE4FInHI50URmAhqxRwizvIclxKfBBJAAMbUy1lWHaZXZ60r8RKVsGpil9lQZEVn6wW3TYErHUGShWlmnIa2igbi7Ce78qhj2qlzNkb9YAg8S1ZLxNy1+I9GoLfZa3R7anGTi6dglOV7PcU352CJIvAb36A19aOOxi1TjZ/7kBBNSXcfkU7c1E/R2NKaD6HSiHolgGhO2+gsqM+DfzAgAAA==" ConnectionId="da75aae5-28fa-457e-a21b-d064ddbf8a82" DisplayName="Generate Chat Completion INE" sap:VirtualizedContainerService.HintSize="449.6,117.6" sap2010:WorkflowViewState.IdRef="ConnectorActivity_2" UiPathActivityTypeId="f3d0276d-032a-30f7-b0f3-cfbbadda0f68">
+      <isactr:ConnectorActivity sap2010:Annotation.AnnotationText="Extracción del municipio y estado por medio de un prompt. Ejemplo del formato de salida:&#xA;{municipio: MUNICIPIO, estado: ESTADO}" Configuration="H4sIAAAAAAAACs1V224aMRD9lZWfCQk0bSOkPIQlaWmTQrmkaqsImd0BHBbb9YWGIKT+Rn+vX9Lx3rJcAulbxQsez4znnJk5uyRXDKJQ+4IbyjgoUluSLlAVTOgwguSS1L7flUiTS2tyw5J8ojMgNSKVmElDSqTBtIzoIjW3czPoQDFpmOBojpN4RnhWgzcSysN3jBegbwTOxVPww4J2gb2FdIm0UYyP8dwVyrRU6EqsxGnZGDMuybWgYX3RgBG1kSE1oyyUSFtolj7ZVmxG1YKsSqSDyZmCMPOK0VyLgKaudRE6vxzbTIQQbUG7yaxryLoQQYDQJuBdNL040oEMY5RjQGrxFT5GgFoKrmE/wqpLHyO6pZF1XiGA1ADTI8cYOl9yOyv2YfN+d1wBXH6hgGrhWr8jKL9b3R3k/JK7kelrUK05KMVC2NONEvGx6ZiaYzzpc22lRPjYmxf3CStqWbNzKD8wM3B4a7Wn0dJbjXyXdAU83w2hn3tu9fapV33WpmZSbnIDY9dQwbug5iyA8kVg2BxRgi53v1xyk/z135w2GvWrs4uzalzQQNvhoFDTwEeGDZTrlocRlPe4lLxducqN+/7pWXX26H/8XAm/jl733obTb5XTkncLSmP4eaV84n4Yjq2yCs45WKNoVPLadhix4CMsemIK/JzbyE11J13A2ohGGrnvZPP6TC+SFmBgi/uUz6nOHJsauxB7J5bC6Bl4MM92I/R66fVaD3q4WEbIbJXQbVM68j3a3Ku9c7s6DDk7+zZ++B+ZKOBOtgmLcnLrJn+Tg07m4BU81mhAXZ3jZmnUkczVCUysN39+/Xb2pFiPSontdSvp9Law5P8ZPXf4RJNrQ3kAbaqQCIOj68pJRxhj4yGONYNzVFmhcGrRbJnEbTzK1Sr7g57pOi5SsFlt+PrwHjOkfO/SiPfGyBswE4FInHI50URmAhqxRwizvIclxKfBBJAAMbUy1lWHaZXZ60r8RKVsGpil9lQZEVn6wW3TYErHUGShWlmnIa2igbi7Ce78qhj2qlzNkb9YAg8S1ZLxNy1+I9GoLfZa3R7anGTi6dglOV7PcU352CJIvAb36A19aOOxi1TjZ/7kBBNSXcfkU7c1E/R2NKaD6HSiHolgGhO2+gsqM+DfzAgAAA==" ConnectionId="da75aae5-28fa-457e-a21b-d064ddbf8a82" DisplayName="Generate Chat Completion INE" sap:VirtualizedContainerService.HintSize="449.6,117.6" sap2010:WorkflowViewState.IdRef="ConnectorActivity_2" UiPathActivityTypeId="f3d0276d-032a-30f7-b0f3-cfbbadda0f68">
         <isactr:ConnectorActivity.FieldObjects>
           <isactr:FieldObject Name="prompt" Type="FieldArgument">
             <isactr:FieldObject.Value>
@@ -229,7 +231,7 @@ Texto OCR: " +INEText]</InArgument>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </isactr:ConnectorActivity>
-      <Sequence sap2010:Annotation.AnnotationText="Por medio de las actividades 'Extract text' se realiza la extracción del municipio y del estado, tomando como referencia los textos que están antes y después de estos datos.&#xD;&#xA;&#xD;&#xA;Ejemplo: El municipio está entre el texto 'municipio:' y ','" DisplayName="Extract State and City" sap:VirtualizedContainerService.HintSize="449.6,141.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence sap2010:Annotation.AnnotationText="Por medio de las actividades 'Extract text' se realiza la extracción del municipio y del estado, tomando como referencia los textos que están antes y después de estos datos.&#xA;&#xA;Ejemplo: El municipio está entre el texto 'municipio:' y ','" DisplayName="Extract State and City" sap:VirtualizedContainerService.HintSize="449.6,141.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
