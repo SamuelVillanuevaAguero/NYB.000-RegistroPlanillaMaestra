@@ -1,7 +1,7 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ReadCV" this:ReadCV.in_FileCV="C:\Users\karla\Documents\TecNM\DOCUMENTOS BEECKER\10. CV - Karla Itzel Castelán Salgado..pdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadCV" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_PhoneNumber" Type="OutArgument(x:String)" />
-    <x:Property Name="in_FileCV" Type="InArgument(x:String)" />
+    <x:Property Name="in_File" Type="InArgument(ugdm:GDriveLocalItem)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -41,6 +41,8 @@
       <x:String>System.Reflection</x:String>
       <x:String>UiPath.Platform</x:String>
       <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>UiPath.GSuite.Drive.Models</x:String>
+      <x:String>UiPath.GSuite</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -93,15 +95,17 @@
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadCV" sap:VirtualizedContainerService.HintSize="862.4000000000001,504.4566666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadCV" sap:VirtualizedContainerService.HintSize="854.8000000000001,1331.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Reading CV" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading CV&quot;]">
+    <ui:LogMessage DisplayName="Log Message Reading CV" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading CV&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -109,24 +113,24 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch sap2010:Annotation.AnnotationText="Para saber qué hacer si algo falla (ej. el PDF del CV está corrupto o no se encuentra)." DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="451.2,286.4" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch sap2010:Annotation.AnnotationText="Para saber qué hacer si algo falla (ej. el PDF del CV está corrupto o no se encuentra)." DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="486.4,1203.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Extract PHONE NUMBER" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Extract PHONE NUMBER" sap:VirtualizedContainerService.HintSize="484.8,935.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="TextCV" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(in_FileCV)]" Text="[TextCV]" />
+          <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[in_File]" Text="[TextCV]" />
           <Assign sap2010:Annotation.AnnotationText="Sirve para los casos en los que el código de área queda en un renglón y el número en otro" DisplayName="Assign RegEx para evitar saltos de línea" sap:VirtualizedContainerService.HintSize="451.2,219.2" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TextCV]</OutArgument>
@@ -183,7 +187,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,24.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -209,7 +213,7 @@
         </Catch>
       </TryCatch.Catches>
       <TryCatch.Finally>
-        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="484.8,24.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -219,7 +223,7 @@
         </Sequence>
       </TryCatch.Finally>
     </TryCatch>
-    <ui:LogMessage DisplayName="Log Message Testing RegExs Results" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extracción Número de Celular -&gt; [&quot; + out_PhoneNumber + &quot;]&quot;]">
+    <ui:LogMessage DisplayName="Log Message Testing RegExs Results" sap:VirtualizedContainerService.HintSize="486.4,48" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extracción Número de Celular -&gt; [&quot; + out_PhoneNumber + &quot;]&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>

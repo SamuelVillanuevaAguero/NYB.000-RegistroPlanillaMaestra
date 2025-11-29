@@ -124,6 +124,7 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Parallel</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="GetAddress" sap:VirtualizedContainerService.HintSize="854.8000000000001,1548" sap2010:WorkflowViewState.IdRef="Sequence_1">
