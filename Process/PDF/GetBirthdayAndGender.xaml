@@ -1,8 +1,8 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ReadActaDeNacimiento" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadActaDeNacimiento" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_Gender" Type="OutArgument(x:String)" />
     <x:Property Name="out_Birthday" Type="OutArgument(x:String)" />
-    <x:Property Name="in_FileActaDeNacimiento" Type="InArgument(x:String)">
+    <x:Property Name="in_File" Type="InArgument(ugdm:GDriveRemoteItem)">
       <x:Property.Attributes>
         <RequiredArgumentAttribute />
       </x:Property.Attributes>
@@ -47,6 +47,9 @@
       <x:String>UiPath.Activities.System.Text</x:String>
       <x:String>System.Text.RegularExpressions</x:String>
       <x:String>UiPath.Platform</x:String>
+      <x:String>UiPath.GSuite.Drive.Models</x:String>
+      <x:String>UiPath.GSuite</x:String>
+      <x:String>System.Numerics</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -96,9 +99,16 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadActaDeNacimiento" sap:VirtualizedContainerService.HintSize="847.6,420.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadActaDeNacimiento" sap:VirtualizedContainerService.HintSize="864,434.05666666666673" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextActaDeNacimiento" />
     </Sequence.Variables>
@@ -107,61 +117,140 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Reading Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading Acta de Nacimiento&quot;]">
+    <ui:LogMessage sap2010:Annotation.AnnotationText="Indica que inicia el proceso de lectura del documento correspondente, en este caso, el Acta de nacimiento." DisplayName="Log Message Reading Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="449.6,117.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading Acta de Nacimiento&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch sap2010:Annotation.AnnotationText="Para saber qué hacer si algo falla (ej. el PDF del Acta De Nacimiento está corrupto o no se encuentra)." DisplayName="Try Catch Error Obteniendo PDF" sap:VirtualizedContainerService.HintSize="451.2,292.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch sap2010:Annotation.AnnotationText="Para saber qué hacer si algo falla (ej. el PDF del Acta De Nacimiento está corrupto o no se encuentra)." DisplayName="Try Catch Error Obteniendo PDF" sap:VirtualizedContainerService.HintSize="449.6,117.6" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Extract BIRTHDAY and GENDER" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Extract BIRTHDAY and GENDER" sap:VirtualizedContainerService.HintSize="518.4,1492" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsGender" />
+            <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsBirthday" />
+          </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(in_FileActaDeNacimiento)]" Text="[TextActaDeNacimiento]" />
-          <Assign DisplayName="RegEx for GENDER" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[out_Gender]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(TextActaDeNacimiento, "\b(HOMBRE|MUJER)\b").Value.Trim]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign DisplayName="RegEx for BIRTHDAY" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[out_Birthday]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(TextActaDeNacimiento, "(?&lt;=(HOMBRE|MUJER)\s+)\d{2}/\d{2}/\d{4}").Value.Trim]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <If sap2010:Annotation.AnnotationText="Por si el PDF está bien pero blanco." Condition="[String.IsNullOrEmpty(out_Birthday) OR String.IsNullOrEmpty(out_Gender)]" DisplayName="If Captura Business Exception" sap:VirtualizedContainerService.HintSize="451.2,359.2" sap2010:WorkflowViewState.IdRef="If_1">
+          <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="484.8,126.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[in_File]" Text="[TextActaDeNacimiento]" />
+          <ui:Matches FirstMatch="{x:Null}" BuilderPattern="&quot;\b(HOMBRE|MUJER)\b&quot;" DisplayName="Find Matching Pattern For Gender" sap:VirtualizedContainerService.HintSize="484.8,96" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[TextActaDeNacimiento]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;\&quot;\\b(HOMBRE|MUJER)\\b\&quot;&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="&quot;\b(HOMBRE|MUJER)\b&quot;" RegexOption="IgnoreCase, Compiled" Result="[ResultsGender]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:Matches>
+          <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga nada de la lectura del Acta de Nacimiento." Condition="[ResultsGender.Count &gt; 0]" DisplayName="If para validar si se obtuvo el género del Acta de Nacimiento" sap:VirtualizedContainerService.HintSize="484.8,105.6" sap2010:WorkflowViewState.IdRef="If_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,173.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Throw Exception="[New BusinessRuleException(&quot;El acta no contiene fecha o género legible.&quot;)]" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                <Assign DisplayName="Assign género al argumento de salida" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_Gender]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[ResultsGender(0).Value.Trim]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;NO se obtuvo género. Fallo en la lectura de Acta de Nacimiento&quot;]" />
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:Matches FirstMatch="{x:Null}" BuilderPattern="&quot;(?&lt;=(HOMBRE|MUJER)\s+)\d{2}/\d{2}/\d{4}&quot;" DisplayName="Find Matching Patterns For Birthday" sap:VirtualizedContainerService.HintSize="484.8,60.8" sap2010:WorkflowViewState.IdRef="Matches_2" Input="[TextActaDeNacimiento]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\&quot;(?&lt;=(HOMBRE|MUJER)\\s+)\\d{2}\/\\d{2}\/\\d{4}\&quot;&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="&quot;(?&lt;=(HOMBRE|MUJER)\s+)\d{2}/\d{2}/\d{4}&quot;" RegexOption="IgnoreCase, Compiled" Result="[ResultsBirthday]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:Matches>
+          <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga nada de la lectura del Acta de Nacimiento." Condition="[ResultsBirthday.Count &gt; 0]" DisplayName="If para validar si se obtuvo la fecha de nacimiento del Acta de Nacimiento" sap:VirtualizedContainerService.HintSize="484.8,654.4" sap2010:WorkflowViewState.IdRef="If_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,233.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="416,169.6" sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_Birthday]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[ResultsBirthday(0).Value.Trim]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,233.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,169.6" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;NO se obtuvo fecha de nacimiento. Fallo en la lectura de Acta de Nacimiento&quot;]" />
+              </Sequence>
+            </If.Else>
+          </If>
+          <If sap2010:Annotation.AnnotationText="Por si el PDF está bien pero blanco. Marcará el ítem de la cola como Failed con el error de negocio y no se reintentará." Condition="[String.IsNullOrEmpty(out_Birthday) OR String.IsNullOrEmpty(out_Gender)]" DisplayName="If Captura Business Exception" sap:VirtualizedContainerService.HintSize="484.8,384.8" sap2010:WorkflowViewState.IdRef="If_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw Exception="[New BusinessRuleException(&quot;El acta no contiene fecha de nacimiento o género legible.&quot;)]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
               </Sequence>
             </If.Then>
             <If.Else>
@@ -183,47 +272,59 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="518.4,561.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage sap2010:Annotation.AnnotationText="Para que en los logs de Orchestrator se resalte rojo cuando falle." DisplayName="Log Message Error Lectura PDF" sap:VirtualizedContainerService.HintSize="416,219.2" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[&quot;Error leyendo el Acta De Nacimiento: &quot; + exception.Message + &quot; en: &quot; + exception.Source]">
+              <ui:LogMessage sap2010:Annotation.AnnotationText="Para que en los logs de Orchestrator se resalte rojo cuando falle." DisplayName="Log Message Error Lectura PDF" sap:VirtualizedContainerService.HintSize="484.8,223.2" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[&quot;Error leyendo el Acta De Nacimiento: &quot; + exception.Message + &quot; en: &quot; + exception.Source]">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:LogMessage>
-              <Rethrow sap2010:Annotation.AnnotationText="Hará que el error &quot;suba&quot; hasta el Main.xaml para que el REFramework sepa que debe Reintentar la transacción." sap:VirtualizedContainerService.HintSize="416,108.8" sap2010:WorkflowViewState.IdRef="Rethrow_1">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </Rethrow>
+              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,274.4" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,168.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Rethrow sap2010:Annotation.AnnotationText="Hará que el error &quot;suba&quot; hasta el Main.xaml para que el REFramework sepa que debe Reintentar la transacción." sap:VirtualizedContainerService.HintSize="416,108.8" sap2010:WorkflowViewState.IdRef="Rethrow_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Rethrow>
+                  </Sequence>
+                </ui:CommentOut.Body>
+              </ui:CommentOut>
             </Sequence>
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>
       <TryCatch.Finally>
-        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="518.4,94.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </Sequence>
       </TryCatch.Finally>
     </TryCatch>
-    <ui:LogMessage DisplayName="Log Message Testing RegExs Results" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extracción Acta -&gt; Fecha: [&quot; + out_Birthday + &quot;] | Género: [&quot; + out_Gender + &quot;]&quot;]">
+    <ui:LogMessage sap2010:Annotation.AnnotationText="Permite visualizar en Output los resultados de las RegEx empleadas." DisplayName="Log Message Testing RegExs Results" sap:VirtualizedContainerService.HintSize="449.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extracción Acta -&gt; Fecha: [&quot; + out_Birthday + &quot;] | Género: [&quot; + out_Gender + &quot;]&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
