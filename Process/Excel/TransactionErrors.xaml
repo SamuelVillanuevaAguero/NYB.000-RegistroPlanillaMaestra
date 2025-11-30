@@ -1,5 +1,7 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="TransactionErrors" this:TransactionErrors.in_ErrorMessage="Faltan documentos por cargar" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugase="clr-namespace:UiPath.GSuite.Activities.Sheets.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugm="clr-namespace:UiPath.GSuite.Models;assembly=UiPath.GSuite" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="TransactionErrors" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugase="clr-namespace:UiPath.GSuite.Activities.Sheets.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ugm="clr-namespace:UiPath.GSuite.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="in_SheetName" Type="InArgument(x:String)" />
+    <x:Property Name="in_SpreadsheetID" Type="InArgument(x:String)" />
     <x:Property Name="in_ErrorMessage" Type="InArgument(x:String)" />
     <x:Property Name="in_Status" Type="InArgument(x:String)" />
     <x:Property Name="in_EmailID" Type="InArgument(x:String)" />
@@ -51,6 +53,7 @@
       <x:String>UiPath.GSuite.Activities.Models</x:String>
       <x:String>UiPath.GSuite.Activities.Sheets.Enums</x:String>
       <x:String>UiPath.GSuite.Sheets.Contracts</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -105,16 +108,31 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="TransactionErrors" sap:VirtualizedContainerService.HintSize="853.2,736" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="TransactionErrors" sap:VirtualizedContainerService.HintSize="853.2,2485.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="bool_SheetExists">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Boolean" />
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap2010:Annotation.AnnotationText="Workflow que puede invocarse al cargar la cola o en el proceso, en caso de que algún aspirante no haya adjuntado los archivos obligatorios." DisplayName="TransactionErrors" sap:VirtualizedContainerService.HintSize="449.6,712.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Error subiendo adjuntos de correo&quot;]" />
+    <Sequence sap2010:Annotation.AnnotationText="Workflow que puede invocarse al cargar la cola o en el proceso, en caso de que algún aspirante no haya adjuntado los archivos obligatorios." DisplayName="TransactionErrors" sap:VirtualizedContainerService.HintSize="520,2288" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
+        <Variable x:TypeArguments="s:String[]" Name="Headers">
+          <Variable.Default>
+            <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="{}{&quot;Fecha&quot;, &quot;Remitente&quot;, &quot;Estatus&quot;, &quot;Detalle&quot;}" />
+          </Variable.Default>
+        </Variable>
         <Variable x:TypeArguments="ugm:GmailMessage" Name="recoveredEmail" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
@@ -123,12 +141,182 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uga:GetEmailByIdConnections ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" AuthScopesInvalid="False" ConnectionId="c2b22e96-f4ae-4167-8cbf-2743c47dc116" DisplayName="Get Email by ID" EmailId="[in_EmailID]" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="GetEmailByIdConnections_1" Result="[recoveredEmail]" UseConnectionService="True" />
-      <uga:WriteRowConnections AllFields="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" DataRow="{x:Null}" ManualEntrySpreadsheetId="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" ArrayRow="[{ DateTime.Now.ToString, recoveredEmail.FromAddress, in_Status, in_ErrorMessage }]" AuthScopesInvalid="False" BrowserItemFriendlyName="Correos con adjuntos faltantes " BrowserItemId="https://docs.google.com/spreadsheets/d/1_TfHfmdi8sIeVn898niTT1UXqNoF1Val2D1BdNI2jDs/edit?usp=drivesdk" ConnectionId="d54ed8ce-a6cd-41f4-8e3d-82b849c7e081" DataType="ArrayRow" DisplayName="Write Row" HasHeaders="False" sap:VirtualizedContainerService.HintSize="416,384" sap2010:WorkflowViewState.IdRef="WriteRowConnections_1" ItemSelectionMode="Browse" Range="'Aspirantes con adjuntos incompletos'" RowPosition="0" UseConnectionService="True" WorkingWithTemplateSpreadsheet="False" WriteMode="Append">
-        <uga:WriteRowConnections.FileIdBackup>
-          <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID0" StoredValue="Browse">
+      <uga:GetEmailByIdConnections ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" AuthScopesInvalid="False" ConnectionId="c2b22e96-f4ae-4167-8cbf-2743c47dc116" DisplayName="Get Email by ID Current Transaction" EmailId="[in_EmailID]" sap:VirtualizedContainerService.HintSize="486.4,184.8" sap2010:WorkflowViewState.IdRef="GetEmailByIdConnections_1" Result="[recoveredEmail]" UseConnectionService="True" />
+      <uga:ForEachSheetConnections BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" Length="{x:Null}" Spreadsheet="{x:Null}" AuthScopesInvalid="False" ConnectionId="d54ed8ce-a6cd-41f4-8e3d-82b849c7e081" CurrentItemVariableName="CurrentSheet" DisplayName="For Each Sheet in Spreadsheet" sap:VirtualizedContainerService.HintSize="486.4,689.6" sap2010:WorkflowViewState.IdRef="ForEachSheetConnections_1" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="[in_SpreadsheetID]" UseConnectionService="True">
+        <uga:ForEachSheetConnections.Body>
+          <ActivityAction x:TypeArguments="x:String, x:Int32">
+            <ActivityAction.Argument1>
+              <DelegateInArgument x:TypeArguments="x:String" Name="CurrentSheet" />
+            </ActivityAction.Argument1>
+            <ActivityAction.Argument2>
+              <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentItemIndex" />
+            </ActivityAction.Argument2>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,496.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If Condition="[CurrentSheet = in_SheetName]" sap:VirtualizedContainerService.HintSize="451.2,436.8" sap2010:WorkflowViewState.IdRef="If_1">
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,282.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Boolean">[bool_SheetExists]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:Break sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Break_1" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </uga:ForEachSheetConnections.Body>
+        <uga:ForEachSheetConnections.FileIdBackup>
+          <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID0" StoredValue="UrlOrId">
             <usau:BackupSlot.BackupValues>
-              <scg:Dictionary x:TypeArguments="ugade:EDriveItemMode, scg:List(x:Object)" />
+              <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="2">
+                <x:Null />
+                <x:Null />
+              </scg:List>
+            </usau:BackupSlot.BackupValues>
+          </usau:BackupSlot>
+        </uga:ForEachSheetConnections.FileIdBackup>
+        <uga:ForEachSheetConnections.Item>
+          <ugam:DriveItemArgument Backup="{x:Reference __ReferenceID0}" BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" ConnectionKey="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" IdOrUrl="[in_SpreadsheetID]" InputMode="UrlOrId">
+            <ugam:DriveItemArgument.FullPathHint>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </ugam:DriveItemArgument.FullPathHint>
+            <ugam:DriveItemArgument.ParentIdFullPathHint>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </ugam:DriveItemArgument.ParentIdFullPathHint>
+          </ugam:DriveItemArgument>
+        </uga:ForEachSheetConnections.Item>
+      </uga:ForEachSheetConnections>
+      <If Condition="[bool_SheetExists = False]" sap:VirtualizedContainerService.HintSize="486.4,870.4" sap2010:WorkflowViewState.IdRef="If_2">
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,288" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uga:AddSheetConnections BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" NewSheetName="{x:Null}" PositionIndex="{x:Null}" Spreadsheet="{x:Null}" AuthScopesInvalid="False" ConflictResolution="Fail" ConnectionId="d54ed8ce-a6cd-41f4-8e3d-82b849c7e081" DisplayName="Add Sheet" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="AddSheetConnections_1" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="[in_SpreadsheetID]" SheetName="[in_SheetName]" UseConnectionService="True">
+              <uga:AddSheetConnections.FileIdBackup>
+                <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID1" StoredValue="UrlOrId">
+                  <usau:BackupSlot.BackupValues>
+                    <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="2">
+                      <x:Null />
+                      <x:Null />
+                    </scg:List>
+                  </usau:BackupSlot.BackupValues>
+                </usau:BackupSlot>
+              </uga:AddSheetConnections.FileIdBackup>
+              <uga:AddSheetConnections.Item>
+                <ugam:DriveItemArgument Backup="{x:Reference __ReferenceID1}" BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" ConnectionKey="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" IdOrUrl="[in_SpreadsheetID]" InputMode="UrlOrId">
+                  <ugam:DriveItemArgument.FullPathHint>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ugam:DriveItemArgument.FullPathHint>
+                  <ugam:DriveItemArgument.ParentIdFullPathHint>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ugam:DriveItemArgument.ParentIdFullPathHint>
+                </ugam:DriveItemArgument>
+              </uga:AddSheetConnections.Item>
+            </uga:AddSheetConnections>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,444" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uga:WriteRowConnections AllFields="{x:Null}" BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" DataRow="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" ArrayRow="[Headers]" AuthScopesInvalid="False" ConnectionId="d54ed8ce-a6cd-41f4-8e3d-82b849c7e081" DataType="ArrayRow" DisplayName="Write Row" HasHeaders="False" sap:VirtualizedContainerService.HintSize="416,384" sap2010:WorkflowViewState.IdRef="WriteRowConnections_2" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="[in_SpreadsheetID]" Range="[in_SheetName]" RowPosition="0" UseConnectionService="True" WorkingWithTemplateSpreadsheet="False" WriteMode="Append">
+              <uga:WriteRowConnections.FileIdBackup>
+                <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID2" StoredValue="UrlOrId">
+                  <usau:BackupSlot.BackupValues>
+                    <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="2">
+                      <x:Null />
+                      <x:Null />
+                    </scg:List>
+                  </usau:BackupSlot.BackupValues>
+                </usau:BackupSlot>
+              </uga:WriteRowConnections.FileIdBackup>
+              <uga:WriteRowConnections.InputDataTypeBackup>
+                <usau:BackupSlot x:TypeArguments="ugase:InputDataType" StoredValue="ArrayRow">
+                  <usau:BackupSlot.BackupValues>
+                    <scg:List x:TypeArguments="x:Object" x:Key="DataRow" Capacity="1">
+                      <InArgument x:TypeArguments="sd:DataRow">[Headers]</InArgument>
+                    </scg:List>
+                  </usau:BackupSlot.BackupValues>
+                </usau:BackupSlot>
+              </uga:WriteRowConnections.InputDataTypeBackup>
+              <uga:WriteRowConnections.Item>
+                <ugam:DriveItemArgument Backup="{x:Reference __ReferenceID2}" BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" ConnectionKey="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" IdOrUrl="[in_SpreadsheetID]" InputMode="UrlOrId">
+                  <ugam:DriveItemArgument.FullPathHint>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ugam:DriveItemArgument.FullPathHint>
+                  <ugam:DriveItemArgument.ParentIdFullPathHint>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ugam:DriveItemArgument.ParentIdFullPathHint>
+                </ugam:DriveItemArgument>
+              </uga:WriteRowConnections.Item>
+              <uga:WriteRowConnections.RangeWriteModeBackup>
+                <usau:BackupSlot x:TypeArguments="ugase:RangeWriteMode" StoredValue="Append">
+                  <usau:BackupSlot.BackupValues>
+                    <scg:Dictionary x:TypeArguments="ugase:RangeWriteMode, scg:List(x:Object)" />
+                  </usau:BackupSlot.BackupValues>
+                </usau:BackupSlot>
+              </uga:WriteRowConnections.RangeWriteModeBackup>
+              <uga:WriteRowConnections.State>
+                <uga:ActivityState />
+              </uga:WriteRowConnections.State>
+            </uga:WriteRowConnections>
+          </Sequence>
+        </If.Else>
+      </If>
+      <uga:WriteRowConnections AllFields="{x:Null}" BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" DataRow="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" sap2010:Annotation.AnnotationText="Faltaría mapear en Config.xlsx" ArrayRow="[{ DateTime.Now.ToString(&quot;dd/MM/yyyy HH:mm:ss&quot;), recoveredEmail.FromAddress, in_Status, in_ErrorMessage }]" AuthScopesInvalid="False" ConnectionId="d54ed8ce-a6cd-41f4-8e3d-82b849c7e081" DataType="ArrayRow" DisplayName="Write Row Nuevo Error" HasHeaders="False" sap:VirtualizedContainerService.HintSize="486.4,415.2" sap2010:WorkflowViewState.IdRef="WriteRowConnections_1" ItemSelectionMode="UrlOrId" ManualEntrySpreadsheetId="[in_SpreadsheetID]" Range="[in_SheetName]" RowPosition="0" UseConnectionService="True" WorkingWithTemplateSpreadsheet="False" WriteMode="Append">
+        <uga:WriteRowConnections.FileIdBackup>
+          <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID3" StoredValue="UrlOrId">
+            <usau:BackupSlot.BackupValues>
+              <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="2">
+                <InArgument x:TypeArguments="x:String" />
+                <InArgument x:TypeArguments="x:String" />
+              </scg:List>
+              <scg:List x:TypeArguments="x:Object" x:Key="UseExisting" Capacity="1">
+                <InArgument x:TypeArguments="ugdm:GDriveRemoteItem">[in_SpreadsheetID]</InArgument>
+              </scg:List>
             </usau:BackupSlot.BackupValues>
           </usau:BackupSlot>
         </uga:WriteRowConnections.FileIdBackup>
@@ -142,7 +330,7 @@
           </usau:BackupSlot>
         </uga:WriteRowConnections.InputDataTypeBackup>
         <uga:WriteRowConnections.Item>
-          <ugam:DriveItemArgument Backup="{x:Reference __ReferenceID0}" ConnectionDescriptor="{x:Null}" Existing="{x:Null}" FullPath="{x:Null}" IdOrUrl="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" BrowserId="https://docs.google.com/spreadsheets/d/1_TfHfmdi8sIeVn898niTT1UXqNoF1Val2D1BdNI2jDs/edit?usp=drivesdk" ConnectionKey="d54ed8ce-a6cd-41f4-8e3d-82b849c7e081" FriendlyName="Correos con adjuntos faltantes " FullPathHint="Registros/Correos Incompletos/Correos con adjuntos faltantes " InputMode="Browse">
+          <ugam:DriveItemArgument Backup="{x:Reference __ReferenceID3}" BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" ConnectionKey="d54ed8ce-a6cd-41f4-8e3d-82b849c7e081" FullPathHint="[Nothing]" IdOrUrl="[in_SpreadsheetID]" InputMode="UrlOrId">
             <ugam:DriveItemArgument.ParentIdFullPathHint>
               <InArgument x:TypeArguments="x:String">
                 <Literal x:TypeArguments="x:String" Value="" />
@@ -160,6 +348,11 @@
         <uga:WriteRowConnections.State>
           <uga:ActivityState />
         </uga:WriteRowConnections.State>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </uga:WriteRowConnections>
     </Sequence>
   </Sequence>
