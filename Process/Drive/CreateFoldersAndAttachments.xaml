@@ -118,7 +118,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateFoldersAnd_Attachments" sap:VirtualizedContainerService.HintSize="847.6,883.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CreateFoldersAnd_Attachments" sap:VirtualizedContainerService.HintSize="830,883.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="uggm:GmailAttachmentLocalItem[]" Name="Attachments" />
       <Variable x:TypeArguments="ugm:GmailMessage" Name="Email" />
@@ -146,7 +146,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uga:GetEmailByIdConnections>
-      <uga:DownloadAttachmentsConnections ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" Filter="{x:Null}" Result="{x:Null}" sap2010:Annotation.AnnotationText="Se descargan los adjuntos del correo obtenido en la actividad anterior" AuthScopesInvalid="False" ConflictResolution="Replace" ConnectionId="5ecab23d-1d73-4695-b65e-886022401754" DestinationPath="C:\Users\Samue\Documents\UiPath\NYB.000-RegistroPlanillaMaestra\Data\Input\TestData\Andrea\" DisplayName="Download Email Attachments to Drive" Email="[Email]" ExcludeInlineAttachments="False" FilterByFileNames="*.pdf" sap:VirtualizedContainerService.HintSize="416,92.8" sap2010:WorkflowViewState.IdRef="DownloadAttachmentsConnections_3" NewResult="[Attachments]" SearchMode="UseSimple" UseConnectionService="True">
+      <uga:DownloadAttachmentsConnections ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" DestinationPath="{x:Null}" Filter="{x:Null}" Result="{x:Null}" sap2010:Annotation.AnnotationText="Se descargan los adjuntos del correo obtenido en la actividad anterior" AuthScopesInvalid="False" ConflictResolution="Replace" ConnectionId="5ecab23d-1d73-4695-b65e-886022401754" DisplayName="Download Email Attachments to Drive" Email="[Email]" ExcludeInlineAttachments="False" FilterByFileNames="*.pdf" sap:VirtualizedContainerService.HintSize="416,92.8" sap2010:WorkflowViewState.IdRef="DownloadAttachmentsConnections_3" NewResult="[Attachments]" SearchMode="UseSimple" UseConnectionService="True">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>

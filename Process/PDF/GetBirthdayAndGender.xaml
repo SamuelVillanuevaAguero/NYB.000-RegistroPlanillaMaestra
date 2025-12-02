@@ -108,7 +108,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadActaDeNacimiento" sap:VirtualizedContainerService.HintSize="864,434.05666666666673" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadActaDeNacimiento" sap:VirtualizedContainerService.HintSize="449.6,357.65666666666664" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextActaDeNacimiento" />
     </Sequence.Variables>
@@ -126,7 +126,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch sap2010:Annotation.AnnotationText="Para saber qué hacer si algo falla (ej. el PDF del Acta De Nacimiento está corrupto o no se encuentra)." DisplayName="Try Catch Error Obteniendo PDF" sap:VirtualizedContainerService.HintSize="449.6,117.6" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch sap2010:Annotation.AnnotationText="Para saber qué hacer si algo falla (ej. el PDF del Acta De Nacimiento está corrupto o no se encuentra)." DisplayName="Try Catch Error Obteniendo PDF" sap:VirtualizedContainerService.HintSize="520,1824.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -135,7 +135,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Extract BIRTHDAY and GENDER" sap:VirtualizedContainerService.HintSize="518.4,1492" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Extract BIRTHDAY and GENDER" sap:VirtualizedContainerService.HintSize="518.4,978.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsGender" />
             <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsBirthday" />
@@ -147,7 +147,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="484.8,126.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[in_File]" Text="[TextActaDeNacimiento]" />
-          <ui:Matches FirstMatch="{x:Null}" BuilderPattern="&quot;\b(HOMBRE|MUJER)\b&quot;" DisplayName="Find Matching Pattern For Gender" sap:VirtualizedContainerService.HintSize="484.8,96" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[TextActaDeNacimiento]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;\&quot;\\b(HOMBRE|MUJER)\\b\&quot;&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="&quot;\b(HOMBRE|MUJER)\b&quot;" RegexOption="IgnoreCase, Compiled" Result="[ResultsGender]">
+          <ui:Matches FirstMatch="{x:Null}" BuilderPattern="(HOMBRE|MUJER)" DisplayName="Find Matching Pattern For Gender" sap:VirtualizedContainerService.HintSize="484.8,96" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[TextActaDeNacimiento]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;(HOMBRE|MUJER)&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="(HOMBRE|MUJER)" RegexOption="IgnoreCase, Compiled" Result="[ResultsGender]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -164,13 +164,13 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,233.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign DisplayName="Assign género al argumento de salida" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+                <Assign DisplayName="Assign género al argumento de salida" sap:VirtualizedContainerService.HintSize="416,169.6" sap2010:WorkflowViewState.IdRef="Assign_3">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[out_Gender]</OutArgument>
                   </Assign.To>
@@ -181,7 +181,7 @@
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,229.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -191,47 +191,47 @@
               </Sequence>
             </If.Else>
           </If>
-          <ui:Matches FirstMatch="{x:Null}" BuilderPattern="&quot;(?&lt;=(HOMBRE|MUJER)\s+)\d{2}/\d{2}/\d{4}&quot;" DisplayName="Find Matching Patterns For Birthday" sap:VirtualizedContainerService.HintSize="484.8,60.8" sap2010:WorkflowViewState.IdRef="Matches_2" Input="[TextActaDeNacimiento]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\&quot;(?&lt;=(HOMBRE|MUJER)\\s+)\\d{2}\/\\d{2}\/\\d{4}\&quot;&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="&quot;(?&lt;=(HOMBRE|MUJER)\s+)\d{2}/\d{2}/\d{4}&quot;" RegexOption="IgnoreCase, Compiled" Result="[ResultsBirthday]">
+          <ui:Matches FirstMatch="{x:Null}" BuilderPattern="(\d){1,2}/(\d){1,2}/(\d){4}" DisplayName="Find Matching Patterns For Birthday" sap:VirtualizedContainerService.HintSize="484.8,96" sap2010:WorkflowViewState.IdRef="Matches_2" Input="[TextActaDeNacimiento]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;(\\d){1,2}\/(\\d){1,2}\/(\\d){4}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="(\d){1,2}/(\d){1,2}/(\d){4}" RegexOption="IgnoreCase, Compiled" Result="[ResultsBirthday]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:Matches>
-          <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga nada de la lectura del Acta de Nacimiento." Condition="[ResultsBirthday.Count &gt; 0]" DisplayName="If para validar si se obtuvo la fecha de nacimiento del Acta de Nacimiento" sap:VirtualizedContainerService.HintSize="484.8,654.4" sap2010:WorkflowViewState.IdRef="If_3">
+          <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga nada de la lectura del Acta de Nacimiento." Condition="[ResultsBirthday.Count &gt; 0]" DisplayName="If para validar si se obtuvo la fecha de nacimiento del Acta de Nacimiento" sap:VirtualizedContainerService.HintSize="484.8,105.6" sap2010:WorkflowViewState.IdRef="If_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,233.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="451.2,233.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign sap:VirtualizedContainerService.HintSize="416,169.6" sap2010:WorkflowViewState.IdRef="Assign_4">
+                <Assign sap:VirtualizedContainerService.HintSize="417.6,169.6" sap2010:WorkflowViewState.IdRef="Assign_4">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[out_Birthday]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[ResultsBirthday(0).Value.Trim]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[ResultsBirthday(1).Value.Trim]</InArgument>
                   </Assign.Value>
                 </Assign>
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,233.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="451.2,233.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,169.6" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;NO se obtuvo fecha de nacimiento. Fallo en la lectura de Acta de Nacimiento&quot;]" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="417.6,169.6" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;NO se obtuvo fecha de nacimiento. Fallo en la lectura de Acta de Nacimiento&quot;]" />
               </Sequence>
             </If.Else>
           </If>
