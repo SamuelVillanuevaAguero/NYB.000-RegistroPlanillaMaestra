@@ -1,7 +1,7 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="ExtraccionCV" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="out_Universidad" Type="OutArgument(x:String)" />
-    <x:Property Name="out_Carrera" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Argumento de salida de Universidad" Name="out_Universidad" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Argumento de salida de Carrera" Name="out_Carrera" Type="OutArgument(x:String)" />
     <x:Property Name="in_File" Type="InArgument(ugdm:GDriveLocalItem)">
       <x:Property.Attributes>
         <RequiredArgumentAttribute />
@@ -103,7 +103,7 @@
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtraccionCV" sap:VirtualizedContainerService.HintSize="768,1514" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExtraccionCV" sap:VirtualizedContainerService.HintSize="536,1606" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextCV" />
     </Sequence.Variables>
@@ -120,11 +120,11 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap:VirtualizedContainerService.HintSize="450,1434" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence sap:VirtualizedContainerService.HintSize="450,1526" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="TextCV" />
-        <Variable x:TypeArguments="x:String" Name="Universidad" />
-        <Variable x:TypeArguments="x:String" Name="Carrera" />
+        <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Variable con Valor Extraido de Universidad" Name="Universidad" />
+        <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Variable con valor extraido de Carrera" Name="Carrera" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -132,8 +132,8 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="416,124" sap2010:WorkflowViewState.IdRef="ExtractPDFText_4" PdfFile="[in_File]" Text="[TextCV]" />
-      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_23">
+      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text CV" sap:VirtualizedContainerService.HintSize="416,124" sap2010:WorkflowViewState.IdRef="ExtractPDFText_4" PdfFile="[in_File]" Text="[TextCV]" />
+      <Assign sap2010:Annotation.AnnotationText="Limpia Espacios Multiples" sap:VirtualizedContainerService.HintSize="416,207.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_23">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[TextCV]</OutArgument>
         </Assign.To>
@@ -144,6 +144,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
@@ -161,23 +162,33 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_25">
+      <Assign sap2010:Annotation.AnnotationText="Extracción de Universidad" DisplayName="Assign Universidad" sap:VirtualizedContainerService.HintSize="416,207.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_25">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[Universidad]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">[If(System.Text.RegularExpressions.Regex.IsMatch(TextCV, "(?i)(universidad|university|instituto|college|escuela|politécnico|tecnológico)\s+([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(\s+[A-ZÁÉÍÓÚÑa-záéíóúñ]+){0,8})"), System.Text.RegularExpressions.Regex.Match(TextCV, "(?i)(universidad|university|instituto|college|escuela|politécnico|tecnológico)\s+([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(\s+[A-ZÁÉÍÓÚÑa-záéíóúñ]+){0,8})").Value.Replace("Técnico en Diseño Asistido ", "").Replace(" de Estado de México", "").Replace(" México de Portafolio Web About Me utilizando", " México Campus Iguala").Split(New String() {" Jojutla", " Servicio", " Agosto", " Septiembre", " SEPTIEMBRE", " Enero", " ENERO", " Febrero", " FEBRERO", " Marzo", " Abril", " Mayo", " Junio", " Julio", " Carrera", " En ", " 2018", " 2019", " 2020", " 2021", " 2022", " 2023", " 2024", " 2025", " 2026", " –", " |", " curso", " Titulación", " Proyecto"}, StringSplitOptions.None)(0).Trim(), "No encontrada")]</InArgument>
         </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_26">
+      <Assign sap2010:Annotation.AnnotationText="Extraer Carrera" DisplayName="Assign Carrera" sap:VirtualizedContainerService.HintSize="416,207.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_26">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[Carrera]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">[If(System.Text.RegularExpressions.Regex.IsMatch(TextCV, "(?i)E\s+s\s+t\s+u\s+d\s+i\s+a\s+n\s+t\s+e\s+d\s+e\s+I\s+n\s+g\s+e\s+n\s+i\s+e\s+r\s+í\s+a\s+e\s+n\s+S\s+i\s+s\s+t\s+e\s+m\s+a\s+s\s+C\s+o\s+m\s+p\s+u\s+t\s+a\s+c\s+i\s+o\s+n\s+a\s+l\s+e\s+s"), "Ingeniería en Sistemas Computacionales", If(System.Text.RegularExpressions.Regex.IsMatch(TextCV, "(?i)(licenciatura|ingeniería|maestría|doctorado|bachelor|master|carrera:?)\s+(en|de)?\s+([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(\s+[a-záéíóúñ]+){0,5})"), System.Text.RegularExpressions.Regex.Match(TextCV, "(?i)(licenciatura|ingeniería|maestría|doctorado|bachelor|master|carrera:?)\s+(en|de)?\s+([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(\s+[a-záéíóúñ]+){0,5})").Value.Replace("carrera en ingeniería en sistemas computacionales", "Ingeniería en Sistemas Computacionales").Split(New String() {" especialidad", " Especialidad", " con ", " EXPERIENCIA", " Estado", " Promedio", " 2018", " 2019", " 2020", " 2021", " 2022", " 2023", " 2024", " 2025", " 2026", " en el", " y al", ", ", " –", " |", " (", ":"}, StringSplitOptions.None)(0).Trim(), "No encontrada"))]</InArgument>
         </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_27">
+      <Assign DisplayName="Assign" sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_27">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[out_Universidad]</OutArgument>
         </Assign.To>
