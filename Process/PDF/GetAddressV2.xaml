@@ -253,7 +253,7 @@
             </sap:WorkflowViewStateService.ViewState>
             <uix:NCheckState DisplayName="Comprobar el estado de la aplicación 'Código Postal'" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,583" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Timeout="20" Version="V5">
               <uix:NCheckState.IfExists>
-                <Sequence DisplayName="El objetivo aparece." sap:VirtualizedContainerService.HintSize="450,297" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <Sequence DisplayName="El objetivo aparece 'Codigo Postal'." sap:VirtualizedContainerService.HintSize="450,297" sap2010:WorkflowViewState.IdRef="Sequence_10">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -290,7 +290,7 @@
               <uix:NCheckState.Target>
                 <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="b648f05d-fe7a-46be-a251-7df61da2c98d" ContentHash="qyNg7Kb13keei_7vvVZplA" CvElementArea="487, 640, 63, 29" CvType="InputBox" DesignTimeRectangle="489, 641, 60, 26" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='tbGrids' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='txtcp' type='text' tag='INPUT' class='txt' aaname='Ingrese el Código Postal que desea validar' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="cddfed38-328b-43b7-8d6c-c7b37e727482" InformativeScreenshot="2d70e679d82deea6149592599016a6fe.png" IsResponsive="True" Reference="hFGESaY85EKq0jA2OTA8zQ/pOHpPvI59EqVstej2XbtKQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                       <uix:Target CVScreenId="b648f05d-fe7a-46be-a251-7df61da2c98d" CvTextArea="389, 649, 88, 17" CvTextArgument="Código Postal" CvType="Text" DesignTimeRectangle="391, 647, 86, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='tbGrids' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='lblcp' type='' tag='SPAN' class='lbl' aaname='Código Postal' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Código Postal' /&gt;" Guid="760d2cd5-08a1-446a-8e57-09023390bb99" SearchSteps="FuzzySelector, CV" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
@@ -299,7 +299,7 @@
             </uix:NCheckState>
             <uix:NCheckState DisplayName="Comprobar el estado de la aplicación 'Estado'" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,623" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Timeout="20" Version="V5">
               <uix:NCheckState.IfExists>
-                <Sequence DisplayName="El objetivo aparece." sap:VirtualizedContainerService.HintSize="450,337" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                <Sequence DisplayName="El objetivo aparece 'Estado'." sap:VirtualizedContainerService.HintSize="450,337" sap2010:WorkflowViewState.IdRef="Sequence_12">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -341,7 +341,7 @@
               <uix:NCheckState.Target>
                 <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="c600149f-0eef-47eb-90e0-c0376f8d9fc4" ContentHash="wIQ3WpBDTE-h9l7BbUtlkA" CvTextArea="1056, 751, 40, 11" CvTextArgument="Morelos" CvType="Text" DesignTimeRectangle="1056, 749, 86, 16" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='dgCP' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableCol='5' tableRow='3' tag='TD' /&gt;" Guid="a1da7cd5-6586-4e8c-a5b5-56884b290a9d" InformativeScreenshot="53995312dd29b4c2ac13e915f5b1528e.png" Reference="hFGESaY85EKq0jA2OTA8zQ/RatqP9roEEORDrktCO_wWg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                       <uix:Target CVScreenId="c600149f-0eef-47eb-90e0-c0376f8d9fc4" CvTextArea="1055, 734, 35, 11" CvTextArgument="Estado" CvType="Text" DesignTimeRectangle="1056, 733, 86, 16" FuzzySelectorArgument="&lt;webctrl id='dgCP' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl type='' class='' tag='TD' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Estado' /&gt;" Guid="488008e2-bdc8-4bb5-8825-dbea074fe76f" SearchSteps="FuzzySelector, CV" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
@@ -349,7 +349,7 @@
               </uix:NCheckState.Target>
             </uix:NCheckState>
             <ui:LogMessage DisplayName="Log Message Address" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[Estado+&quot;, &quot;+Municipio]" />
-            <Assign DisplayName="Set Variable Address" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_4">
+            <Assign DisplayName="Set Variable Address" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="Assign_4">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[out_Address]</OutArgument>
               </Assign.To>
