@@ -144,7 +144,7 @@
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetAddressV2" sap:VirtualizedContainerService.HintSize="1309,1439" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetAddressV2" sap:VirtualizedContainerService.HintSize="1309,2113" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Estado" />
       <Variable x:TypeArguments="x:String" Name="Municipio" />
@@ -156,8 +156,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Reading File RFC" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading RFC&quot;]" />
-    <Sequence DisplayName="Extract postal code" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <ui:LogMessage DisplayName="Log Message Reading File RFC" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading RFC&quot;]" />
+    <Sequence DisplayName="Extract postal code" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -182,7 +182,7 @@
       </Assign>
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[CodigoPostal]" />
     </Sequence>
-    <ui:IfElseIfV2 Condition="[String.IsNullOrEmpty(CodigoPostal)]" DisplayName="If - checking for an empty variable" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
+    <ui:IfElseIfV2 Condition="[String.IsNullOrEmpty(CodigoPostal)]" DisplayName="If - checking for an empty variable" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
       <ui:IfElseIfV2.Else>
         <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484,25" sap2010:WorkflowViewState.IdRef="Sequence_8">
           <sap:WorkflowViewStateService.ViewState>
@@ -239,58 +239,116 @@
         </Sequence>
       </ui:IfElseIfV2.Then>
     </ui:IfElseIfV2>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Postal code search" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,1127" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Postal code search" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,1801" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Hacer" sap:VirtualizedContainerService.HintSize="450,933" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Hacer" sap:VirtualizedContainerService.HintSize="486,1607" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Postal code write" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Text="[&quot;&quot;+CodigoPostal+&quot;[k(Enter)]&quot;]" Version="V5">
-              <uix:NTypeInto.Target>
-                <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="b0249186-4a80-471d-bd9f-e986a1f84aa9" ContentHash="OD5yjldRakC-ADZ_VsHRHQ" CvElementArea="487, 540, 63, 29" CvType="InputBox" DesignTimeRectangle="489, 541, 60, 26" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='tbGrids' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='txtcp' type='text' tag='INPUT' class='txt' aaname='Ingrese el Código Postal que desea validar' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="fcdb3389-28cb-4cec-ab6b-76a0f7dcdaa4" InformativeScreenshot="132a7af7bd8b875732d0d7d9853d05c4.png" IsResponsive="True" Reference="7HbH4yVOgUalDzgTt0afDw/xNRe-uUxjE2yECG-jJKDfQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+            <uix:NCheckState DisplayName="Comprobar el estado de la aplicación 'Código Postal'" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,583" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Timeout="20" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="El objetivo aparece." sap:VirtualizedContainerService.HintSize="450,297" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Postal code write" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,237" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Text="[&quot;&quot;+CodigoPostal+&quot;[k(Enter)]&quot;]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="b0249186-4a80-471d-bd9f-e986a1f84aa9" ContentHash="OD5yjldRakC-ADZ_VsHRHQ" CvElementArea="487, 540, 63, 29" CvType="InputBox" DesignTimeRectangle="489, 541, 60, 26" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='tbGrids' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='txtcp' type='text' tag='INPUT' class='txt' aaname='Ingrese el Código Postal que desea validar' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="fcdb3389-28cb-4cec-ab6b-76a0f7dcdaa4" InformativeScreenshot="132a7af7bd8b875732d0d7d9853d05c4.png" IsResponsive="True" Reference="7HbH4yVOgUalDzgTt0afDw/xNRe-uUxjE2yECG-jJKDfQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target CVScreenId="b0249186-4a80-471d-bd9f-e986a1f84aa9" CvTextArea="389, 550, 88, 16" CvTextArgument="Código Postal" CvType="Text" DesignTimeRectangle="391, 547, 86, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='tbGrids' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='lblcp' type='' tag='SPAN' class='lbl' aaname='Código Postal' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Código Postal' /&gt;" Guid="b1b05f1d-48b8-47b5-ad45-5757fe89ca74" SearchSteps="FuzzySelector, CV" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NTypeInto>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="El objetivo no aparece." sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="b648f05d-fe7a-46be-a251-7df61da2c98d" ContentHash="qyNg7Kb13keei_7vvVZplA" CvElementArea="487, 640, 63, 29" CvType="InputBox" DesignTimeRectangle="489, 641, 60, 26" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='tbGrids' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='txtcp' type='text' tag='INPUT' class='txt' aaname='Ingrese el Código Postal que desea validar' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="cddfed38-328b-43b7-8d6c-c7b37e727482" InformativeScreenshot="2d70e679d82deea6149592599016a6fe.png" IsResponsive="True" Reference="hFGESaY85EKq0jA2OTA8zQ/pOHpPvI59EqVstej2XbtKQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target CVScreenId="b0249186-4a80-471d-bd9f-e986a1f84aa9" CvTextArea="389, 550, 88, 16" CvTextArgument="Código Postal" CvType="Text" DesignTimeRectangle="391, 547, 86, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='tbGrids' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='lblcp' type='' tag='SPAN' class='lbl' aaname='Código Postal' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Código Postal' /&gt;" Guid="b1b05f1d-48b8-47b5-ad45-5757fe89ca74" SearchSteps="FuzzySelector, CV" />
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CVScreenId="b648f05d-fe7a-46be-a251-7df61da2c98d" CvTextArea="389, 649, 88, 17" CvTextArgument="Código Postal" CvType="Text" DesignTimeRectangle="391, 647, 86, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='tbGrids' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='lblcp' type='' tag='SPAN' class='lbl' aaname='Código Postal' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Código Postal' /&gt;" Guid="760d2cd5-08a1-446a-8e57-09023390bb99" SearchSteps="FuzzySelector, CV" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
                 </uix:TargetAnchorable>
-              </uix:NTypeInto.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NTypeInto>
-            <uix:NGetText DisplayName="Get Text 'Estado'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,143" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" TextString="[Municipio]" Version="V5">
-              <uix:NGetText.Target>
-                <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="ea33f38e-3a23-4213-8006-98b87650f2f1" CvType="AnyWordGroup" DesignTimeRectangle="909, 749, 103, 16" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='dgCP' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableCol='4' tableRow='3' tag='TD' /&gt;" Guid="209cc2b3-dcd3-4d58-9703-0adf643cf38e" InformativeScreenshot="b1b69816c799478a9eccc5f360b434f5.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
+            <uix:NCheckState DisplayName="Comprobar el estado de la aplicación 'Estado'" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,623" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Timeout="20" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="El objetivo aparece." sap:VirtualizedContainerService.HintSize="450,337" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NGetText DisplayName="Get Text 'Estado'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,143" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" TextString="[Municipio]" Version="V5">
+                    <uix:NGetText.Target>
+                      <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="ea33f38e-3a23-4213-8006-98b87650f2f1" CvType="AnyWordGroup" DesignTimeRectangle="909, 749, 103, 16" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='dgCP' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableCol='4' tableRow='3' tag='TD' /&gt;" Guid="209cc2b3-dcd3-4d58-9703-0adf643cf38e" InformativeScreenshot="b1b69816c799478a9eccc5f360b434f5.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target CVScreenId="ea33f38e-3a23-4213-8006-98b87650f2f1" CvTextArea="909, 734, 51, 13" CvTextArgument="Municipio" CvType="Text" DesignTimeRectangle="910, 733, 49, 14" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='dgCP' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl aaname='Municipio' type='' tag='A' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Municipio' /&gt;" Guid="17c6f95b-22cd-41a7-b6f1-9c1e0a722292" SearchSteps="FuzzySelector, CV" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NGetText.Target>
+                  </uix:NGetText>
+                  <uix:NGetText DisplayName="Get Text 'Municipio'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,134" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" TextString="[Estado]" Version="V5">
+                    <uix:NGetText.Target>
+                      <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="ea33f38e-3a23-4213-8006-98b87650f2f1" ContentHash="gvyANlCBIk2mWadlDLJkgg" CvType="AnyWordGroup" DesignTimeRectangle="1012, 749, 60, 16" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='dgCP' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableCol='5' tableRow='3' tag='TD' /&gt;" Guid="4c42cded-fe46-428d-ab58-3c6c0ec2d994" InformativeScreenshot="6ad5a47c750f2d7d962d45d95b3037c8.png" Reference="7HbH4yVOgUalDzgTt0afDw/MnhGrQ0l90CBDkXMnWD-wg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target CVScreenId="ea33f38e-3a23-4213-8006-98b87650f2f1" CvTextArea="1012, 734, 36, 11" CvTextArgument="Estado" CvType="Text" DesignTimeRectangle="1013, 733, 34, 14" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='dgCP' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl aaname='Estado' type='' tag='A' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Estado' /&gt;" Guid="399104d9-eae4-4b9b-848e-eeac84314aec" SearchSteps="FuzzySelector, CV" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NGetText.Target>
+                  </uix:NGetText>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="El objetivo no aparece." sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="c600149f-0eef-47eb-90e0-c0376f8d9fc4" ContentHash="wIQ3WpBDTE-h9l7BbUtlkA" CvTextArea="1056, 751, 40, 11" CvTextArgument="Morelos" CvType="Text" DesignTimeRectangle="1056, 749, 86, 16" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='dgCP' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableCol='5' tableRow='3' tag='TD' /&gt;" Guid="a1da7cd5-6586-4e8c-a5b5-56884b290a9d" InformativeScreenshot="53995312dd29b4c2ac13e915f5b1528e.png" Reference="hFGESaY85EKq0jA2OTA8zQ/RatqP9roEEORDrktCO_wWg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target CVScreenId="ea33f38e-3a23-4213-8006-98b87650f2f1" CvTextArea="909, 734, 51, 13" CvTextArgument="Municipio" CvType="Text" DesignTimeRectangle="910, 733, 49, 14" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='dgCP' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl aaname='Municipio' type='' tag='A' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Municipio' /&gt;" Guid="17c6f95b-22cd-41a7-b6f1-9c1e0a722292" SearchSteps="FuzzySelector, CV" />
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CVScreenId="c600149f-0eef-47eb-90e0-c0376f8d9fc4" CvTextArea="1055, 734, 35, 11" CvTextArgument="Estado" CvType="Text" DesignTimeRectangle="1056, 733, 86, 16" FuzzySelectorArgument="&lt;webctrl id='dgCP' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl type='' class='' tag='TD' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Estado' /&gt;" Guid="488008e2-bdc8-4bb5-8825-dbea074fe76f" SearchSteps="FuzzySelector, CV" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
                 </uix:TargetAnchorable>
-              </uix:NGetText.Target>
-            </uix:NGetText>
-            <uix:NGetText DisplayName="Get Text 'Municipio'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,143" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" TextString="[Estado]" Version="V5">
-              <uix:NGetText.Target>
-                <uix:TargetAnchorable BrowserURL="correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" CVScreenId="ea33f38e-3a23-4213-8006-98b87650f2f1" ContentHash="gvyANlCBIk2mWadlDLJkgg" CvType="AnyWordGroup" DesignTimeRectangle="1012, 749, 60, 16" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='dgCP' tableRow='2' tag='TABLE' /&gt;&lt;webctrl tableCol='5' tableRow='3' tag='TD' /&gt;" Guid="4c42cded-fe46-428d-ab58-3c6c0ec2d994" InformativeScreenshot="6ad5a47c750f2d7d962d45d95b3037c8.png" Reference="7HbH4yVOgUalDzgTt0afDw/MnhGrQ0l90CBDkXMnWD-wg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target CVScreenId="ea33f38e-3a23-4213-8006-98b87650f2f1" CvTextArea="1012, 734, 36, 11" CvTextArgument="Estado" CvType="Text" DesignTimeRectangle="1013, 733, 34, 14" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='dgCP' tag='TABLE' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl aaname='Estado' type='' tag='A' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Estado' /&gt;" Guid="399104d9-eae4-4b9b-848e-eeac84314aec" SearchSteps="FuzzySelector, CV" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NGetText.Target>
-            </uix:NGetText>
-            <ui:LogMessage DisplayName="Log Message Address" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[Estado+&quot;, &quot;+Municipio]" />
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
+            <ui:LogMessage DisplayName="Log Message Address" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[Estado+&quot;, &quot;+Municipio]" />
             <Assign DisplayName="Set Variable Address" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_4">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[out_Address]</OutArgument>
@@ -310,7 +368,7 @@
         </ActivityFunc>
       </uix:NApplicationCard.OCREngine>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-1928, -8, 1936, 1048" BrowserType="Chrome" ContentHash="61TnqYitN0-C331dwk9QIg" IconBase64="iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABuklEQVRoQ9WaMUvDQBSA73+6ubh08w+4OLsogg46OugoChJwSt0EXdRNQZcuKtJaKzz5AhfSd01JTJPcGz5o75L3vpb07t1dnYi4Jnx/vcvrQyr3yZHcnG5LcjiQy911Od9Zy+A1bfRxDddyj45Tl6ChCr8/E3m+SyQ92coF68K9xCCWjl+FoGEZs+lYnoZncrW/EYj8F2IRk9g63zKChjLeHoeSHAyCxKuC2OTQecsIGjSz6URuL/aCRG1BLnJqD03QUGT8MZLr480geNuQk9zap5L45+glGw100K4gNw7aa6k4n7ZPaQ8OZd980MDz1cfjUQYui575QLzLH2JVcNKec28YjvRNsaCHyvwFE0Cb43RTcCtOUrk4s5e+ODZwnBOnXljlNN4WOPraJhOn2NEXxQquuXjaoMrrGlwzcWpj3Rk7ODsKe90ROzg7ViW6I3ZwdiypdEfs4OxiKKbqgrMrLmytgLPTjVawK272UTH74zQ7HJqdgMxO+WaLLLNlremFhNmlm9nFMpjdngCTG0Iek1twYHbTE0xuM3tMbux7TB6leEweXhUxd1xYxOQBbRFzR+KL6OtPCH90Y5RLk9sqnAAAAABJRU5ErkJggg==" InformativeScreenshot="763aa25c7d106041835c3f2cfc94bef6.jpg" Reference="7HbH4yVOgUalDzgTt0afDw/dcgDBXpjXUuN8AiZLRaq-Q" Selector="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" Url="https://www.correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" Version="V2">
+        <uix:TargetApp Area="-1928, -8, 1936, 1048" BrowserType="Chrome" ContentHash="CKLJh9r3RkSFAN-lbJyQiQ" IconBase64="iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABuklEQVRoQ9WaMUvDQBSA73+6ubh08w+4OLsogg46OugoChJwSt0EXdRNQZcuKtJaKzz5AhfSd01JTJPcGz5o75L3vpb07t1dnYi4Jnx/vcvrQyr3yZHcnG5LcjiQy911Od9Zy+A1bfRxDddyj45Tl6ChCr8/E3m+SyQ92coF68K9xCCWjl+FoGEZs+lYnoZncrW/EYj8F2IRk9g63zKChjLeHoeSHAyCxKuC2OTQecsIGjSz6URuL/aCRG1BLnJqD03QUGT8MZLr480geNuQk9zap5L45+glGw100K4gNw7aa6k4n7ZPaQ8OZd980MDz1cfjUQYui575QLzLH2JVcNKec28YjvRNsaCHyvwFE0Cb43RTcCtOUrk4s5e+ODZwnBOnXljlNN4WOPraJhOn2NEXxQquuXjaoMrrGlwzcWpj3Rk7ODsKe90ROzg7ViW6I3ZwdiypdEfs4OxiKKbqgrMrLmytgLPTjVawK272UTH74zQ7HJqdgMxO+WaLLLNlremFhNmlm9nFMpjdngCTG0Iek1twYHbTE0xuM3tMbux7TB6leEweXhUxd1xYxOQBbRFzR+KL6OtPCH90Y5RLk9sqnAAAAABJRU5ErkJggg==" InformativeScreenshot="763aa25c7d106041835c3f2cfc94bef6.jpg" Reference="hFGESaY85EKq0jA2OTA8zQ/x7dHcaLGqEaRFUpZ3I9M2w" Selector="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" Url="https://www.correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" Version="V2">
           <uix:TargetApp.Arguments>
             <InArgument x:TypeArguments="x:String" />
           </uix:TargetApp.Arguments>
