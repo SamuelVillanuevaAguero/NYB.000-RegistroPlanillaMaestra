@@ -60,6 +60,7 @@
       <x:String>UiPath.Activities.System.Text</x:String>
       <x:String>UiPath.GSuite.Drive.Models</x:String>
       <x:String>UiPath.GSuite</x:String>
+      <x:String>System.Numerics</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -119,9 +120,11 @@
       <AssemblyReference>UiPath.GSuite</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadCURP" sap:VirtualizedContainerService.HintSize="855.6,790.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadCURP" sap:VirtualizedContainerService.HintSize="853.2,1354.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextCURP" />
     </Sequence.Variables>
@@ -138,7 +141,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Extracción del formato CURP de los datos:&#xA;- CURP&#xA;- NOMBRE COMPLETO" DisplayName="GetNameAndCURP" sap:VirtualizedContainerService.HintSize="483.2,710.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence sap2010:Annotation.AnnotationText="Extracción del formato CURP de los datos:&#xA;- CURP&#xA;- NOMBRE COMPLETO" DisplayName="GetNameAndCURP" sap:VirtualizedContainerService.HintSize="483.2,1274.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -155,7 +158,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uisape:ExtractPDFText>
-      <Sequence sap2010:Annotation.AnnotationText="Extracción del CURP y NOMBRE COMPLETO con la actividad extract text, tomando como referencia los textos que están antes y después&#xA;&#xA;Ejemplo: La CURP está antes del texto 'Clave:' y 'Nombre' " DisplayName="Extract CURP and Name" sap:VirtualizedContainerService.HintSize="449.6,478.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence sap2010:Annotation.AnnotationText="Extracción del CURP y NOMBRE COMPLETO con la actividad extract text, tomando como referencia los textos que están antes y después&#xA;&#xA;Ejemplo: La CURP está antes del texto 'Clave:' y 'Nombre' " DisplayName="Extract CURP and Name" sap:VirtualizedContainerService.HintSize="449.6,937.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -163,53 +166,165 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <uast:ExtractText FirstMatch="{x:Null}" Results="{x:Null}" sap2010:Annotation.AnnotationText="Extracción del dato CURP" DisplayName="Extract Text CURP" EndingText="Nombre" ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" sap:VirtualizedContainerService.HintSize="416,88" sap2010:WorkflowViewState.IdRef="ExtractText_1" IgnoreDuplicates="False" MatchCase="False" Result="[out_CURP]" Source="[TextCURP]" StartingText="Clave:">
+        <uast:ExtractText FirstMatch="{x:Null}" Results="{x:Null}" sap2010:Annotation.AnnotationText="Extracción del dato CURP" DisplayName="Extract Text CURP" EndingText="Nombre" ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" sap:VirtualizedContainerService.HintSize="416,360" sap2010:WorkflowViewState.IdRef="ExtractText_1" IgnoreDuplicates="False" MatchCase="False" Result="[out_CURP]" Source="[TextCURP]" StartingText="Clave:">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </uast:ExtractText>
-        <uast:ExtractText FirstMatch="{x:Null}" Results="{x:Null}" sap2010:Annotation.AnnotationText="Extracción del dato NOMBRE COMPLETO" DisplayName="Extract Text Name" EndingText="Entidad" ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" sap:VirtualizedContainerService.HintSize="416,88" sap2010:WorkflowViewState.IdRef="ExtractText_2" IgnoreDuplicates="False" MatchCase="False" Result="[out_Name]" Source="[TextCURP]" StartingText="Nombre">
+        <uast:ExtractText FirstMatch="{x:Null}" Results="{x:Null}" sap2010:Annotation.AnnotationText="Extracción del dato NOMBRE COMPLETO" DisplayName="Extract Text Name" EndingText="Entidad" ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" sap:VirtualizedContainerService.HintSize="416,360" sap2010:WorkflowViewState.IdRef="ExtractText_2" IgnoreDuplicates="False" MatchCase="False" Result="[out_Name]" Source="[TextCURP]" StartingText="Nombre">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </uast:ExtractText>
-        <ui:MultipleAssign sap2010:Annotation.AnnotationText="Remover los espacios extremos de ambos datos con la función trim()&#xA;&#xA;Ejemplo:  Convertir '  NOMBRE COMPLETO  ' a 'NOMBRE COMPLETO'" DisplayName="Remove Spaces" sap:VirtualizedContainerService.HintSize="416,141.6" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
-          <ui:MultipleAssign.AssignOperations>
-            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
-                <ui:AssignOperation.To>
-                  <OutArgument x:TypeArguments="x:String">[out_CURP]</OutArgument>
-                </ui:AssignOperation.To>
-                <ui:AssignOperation.Value>
-                  <InArgument x:TypeArguments="x:String">[out_CURP.Trim()]</InArgument>
-                </ui:AssignOperation.Value>
-              </ui:AssignOperation>
-              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
-                <ui:AssignOperation.To>
-                  <OutArgument x:TypeArguments="x:String">[out_Name]</OutArgument>
-                </ui:AssignOperation.To>
-                <ui:AssignOperation.Value>
-                  <InArgument x:TypeArguments="x:String">[out_Name.Trim()]</InArgument>
-                </ui:AssignOperation.Value>
-              </ui:AssignOperation>
-            </scg:List>
-          </ui:MultipleAssign.AssignOperations>
+        <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+          <ui:CommentOut.Body>
+            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="512,292" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:MultipleAssign sap2010:Annotation.AnnotationText="Remover los espacios extremos de ambos datos con la función trim()&#xA;&#xA;Ejemplo:  Convertir '  NOMBRE COMPLETO  ' a 'NOMBRE COMPLETO'" DisplayName="Remove Spaces" sap:VirtualizedContainerService.HintSize="478.4,232" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                <ui:MultipleAssign.AssignOperations>
+                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[out_CURP]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[out_CURP.Trim()]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[out_Name]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[out_Name.Trim()]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                  </scg:List>
+                </ui:MultipleAssign.AssignOperations>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:MultipleAssign>
+            </Sequence>
+          </ui:CommentOut.Body>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:CommentOut>
+      </Sequence>
+      <Sequence DisplayName="Validate Name" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign sap2010:Annotation.AnnotationText="Convierte cualquier salto de línea o doble espacio en un solo espacio limpio" DisplayName="Assign para limpiar argumento" sap:VirtualizedContainerService.HintSize="451.2,219.2" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[out_Name]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(out_Name, "\s+", " ").Trim()]</InArgument>
+          </Assign.Value>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-        </ui:MultipleAssign>
+        </Assign>
+        <If sap2010:Annotation.AnnotationText="Valida si realmente es un nombre:&#xD;&#xA;- Que tenga al menos 3 letras.&#xD;&#xA;- Que SOLO tenga letras, espacios o puntos (para abreviaturas como &quot;MA.&quot;). Rechaza números." Condition="[out_Name.Length &gt; 2 AndAlso System.Text.RegularExpressions.Regex.IsMatch(out_Name, &quot;^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s\.]+$&quot;)]" DisplayName="If para validar que realmente se trate de un nombre legal" sap:VirtualizedContainerService.HintSize="451.2,483.2" sap2010:WorkflowViewState.IdRef="If_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,94.4" sap2010:WorkflowViewState.IdRef="Sequence_11">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Throw DisplayName="Throw Excepción de Negocio" Exception="[New BusinessRuleException(&quot;El nombre extraído no es válido o contiene números: &quot; + out_Name)]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            </Sequence>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="Validate CURP" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign sap2010:Annotation.AnnotationText="Borra todos los espacios, tabuladores o enters y asegura mayúsculas" DisplayName="Assign para eliminar espacios en blanco" sap:VirtualizedContainerService.HintSize="451.2,219.2" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[out_CURP]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(out_CURP, "\s", "").ToUpper()]</InArgument>
+          </Assign.Value>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Assign>
+        <If sap2010:Annotation.AnnotationText="- ^[A-Z]{4}: Empieza con 4 letras (Apellidos y Nombre).&#xA;- \d{6}: Siguen 6 números (Año, Mes, Día).&#xA;- [HM]: Sigue una H o una M (Sexo).&#xA;- [A-Z]{2}: Siguen 2 letras (Entidad Federativa).&#xA;- [A-Z]{3}: Siguen 3 letras (Consonantes internas).&#xA;- [A-Z0-9]\d$: Termina con un alfanumérico y un número (Homoclave)." Condition="[System.Text.RegularExpressions.Regex.IsMatch(out_CURP, &quot;^[A-Z]{4}\d{6}[HM][A-Z]{2}[A-Z]{3}[A-Z0-9]\d$&quot;)]" DisplayName="If para validar formato de CURP" sap:VirtualizedContainerService.HintSize="451.2,446.4" sap2010:WorkflowViewState.IdRef="If_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Throw DisplayName="Throw BE" Exception="[new BusinessRuleException(&quot;El dato extraído (&quot; + out_CURP + &quot;) no cumple con el formato oficial de CURP (18 caracteres).&quot;)]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_2" />
+            </Sequence>
+          </If.Else>
+        </If>
       </Sequence>
     </Sequence>
   </Sequence>
