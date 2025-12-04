@@ -97,7 +97,7 @@
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateSpreadSheet" sap:VirtualizedContainerService.HintSize="629.2,381.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CreateSpreadSheet" sap:VirtualizedContainerService.HintSize="772.8000000000001,434.05666666666673" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -111,7 +111,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <uga:CreateSpreadsheetConnections ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" FolderIdBackup="{x:Reference __ReferenceID0}" ManualEntryParentFolderId="{x:Null}" ParentFolderExisting="{x:Null}" AuthScopesInvalid="False" BrowserParentFolderFriendlyName="Registros" BrowserParentFolderId="https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI" ConflictResolution="Replace" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" DisplayName="Create Spreadsheet" FirstSheetName="Transacciones Fallidas" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="CreateSpreadsheetConnections_1" NewSpreadsheet="[out_SpreadSheet]" ParentFolderInputMode="Browse" SpreadsheetName="LOGS" UseConnectionService="True">
+    <uga:CreateSpreadsheetConnections ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" FolderIdBackup="{x:Reference __ReferenceID0}" ManualEntryParentFolderId="{x:Null}" ParentFolderExisting="{x:Null}" AuthScopesInvalid="False" BrowserParentFolderFriendlyName="Registros" BrowserParentFolderId="https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI" ConflictResolution="Rename" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" DisplayName="Create Spreadsheet" FirstSheetName="Transacciones Fallidas" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="CreateSpreadsheetConnections_1" NewSpreadsheet="[out_SpreadSheet]" ParentFolderInputMode="Browse" SpreadsheetName="LOGS" UseConnectionService="True">
       <uga:CreateSpreadsheetConnections.Item>
         <ugam:DriveItemArgument ConnectionDescriptor="{x:Null}" Existing="{x:Null}" FullPath="{x:Null}" IdOrUrl="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" BrowserId="https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI" ConnectionKey="2bd701f5-af16-4308-b164-afbf90d4df78" FriendlyName="Registros" FullPathHint="My Drive/Registros" InputMode="Browse">
           <ugam:DriveItemArgument.Backup>
