@@ -47,6 +47,7 @@
       <x:String>UiPath.Activities.System.Text</x:String>
       <x:String>UiPath.GSuite.Drive.Models</x:String>
       <x:String>UiPath.GSuite</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -95,15 +96,18 @@
       <AssemblyReference>UiPath.GSuite</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadNSS" sap:VirtualizedContainerService.HintSize="855.6,421.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadNSS" sap:VirtualizedContainerService.HintSize="772.8000000000001,434.05666666666673" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message NSS" sap:VirtualizedContainerService.HintSize="483.2,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Reading NSS&quot;]">
+    <ui:LogMessage DisplayName="Log Message NSS" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Reading NSS&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -111,14 +115,15 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Extracción del formato NSS:&#xA;- Extracción del NSS (Número de Seguro Social)" DisplayName="GetNSS" sap:VirtualizedContainerService.HintSize="483.2,341.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="Extracción del formato NSS:&#xA;- Extracción del NSS (Número de Seguro Social)" DisplayName="GetNSS" sap:VirtualizedContainerService.HintSize="449.6,101.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="NSS" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" sap2010:Annotation.AnnotationText="Extracción de todo el texto contenido por el NSS" ApplyOcr="False" DisplayName="Extract PDF Text NSS" sap:VirtualizedContainerService.HintSize="449.6,88" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[in_File]" Text="[NSS]">
@@ -163,6 +168,18 @@
           </sap:WorkflowViewStateService.ViewState>
         </Assign>
       </Sequence>
+    </Sequence>
+    <Sequence DisplayName="Validate NSS" sap:VirtualizedContainerService.HintSize="449.6,166.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Boolean" Name="IsValid" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:IsMatch BuilderPattern="^\d{11}$" DisplayName="Is Text Matching" sap:VirtualizedContainerService.HintSize="416,83.2" sap2010:WorkflowViewState.IdRef="IsMatch_1" Input="[out_NSS]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;^\\d{11}$&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="^\d{11}$" RegexOption="IgnoreCase, Compiled" Result="[IsValid]" />
     </Sequence>
   </Sequence>
 </Activity>

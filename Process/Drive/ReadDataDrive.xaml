@@ -1,5 +1,10 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="ReadDataDrive" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugae="clr-namespace:UiPath.GSuite.Activities.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ugm="clr-namespace:UiPath.GSuite.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="in_SpreadSheet" Type="InArgument(ugdm:GDriveRemoteItem)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
     <x:Property Name="out_City" Type="OutArgument(x:String)" />
     <x:Property Name="out_State" Type="OutArgument(x:String)" />
     <x:Property Name="out_PhoneNumber" Type="OutArgument(x:String)" />
@@ -130,7 +135,7 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="779.6,1771.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="766.8000000000001,1363.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ugm:GmailMessage" Name="Email" />
     </Sequence.Variables>
@@ -139,7 +144,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Read All Data" sap:VirtualizedContainerService.HintSize="566.4,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Reading All Data Transaction&quot;]">
+    <ui:LogMessage DisplayName="Log Message Read All Data" sap:VirtualizedContainerService.HintSize="520,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Reading All Data Transaction&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -147,14 +152,14 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Recupera la dirección de correo (nombre de la carpeta) y hace un recorrido de los archivos del aspirante para su lectura" DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="566.4,1691.2" sap2010:WorkflowViewState.IdRef="Sequence_16">
+    <Sequence sap2010:Annotation.AnnotationText="Recupera la dirección de correo (nombre de la carpeta) y hace un recorrido de los archivos del aspirante para su lectura" DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="520,1169.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uga:GetEmailByIdConnections ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Recupera el Correo por el ID" AuthScopesInvalid="False" ConnectionId="5ecab23d-1d73-4695-b65e-886022401754" DisplayName="Get Email by ID from Queue" EmailId="[in_EmailID]" sap:VirtualizedContainerService.HintSize="532.8,88" sap2010:WorkflowViewState.IdRef="GetEmailByIdConnections_1" Result="[Email]" UseConnectionService="True">
+      <uga:GetEmailByIdConnections ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Recupera el Correo por el ID" AuthScopesInvalid="False" ConnectionId="5ecab23d-1d73-4695-b65e-886022401754" DisplayName="Get Email by ID from Queue" EmailId="[in_EmailID]" sap:VirtualizedContainerService.HintSize="486.4,88" sap2010:WorkflowViewState.IdRef="GetEmailByIdConnections_1" Result="[Email]" UseConnectionService="True">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -163,7 +168,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uga:GetEmailByIdConnections>
-      <uga:ForEachFileFolderConnections BrowserLocation="{x:Null}" ConnectionAccountName="{x:Null}" ExistingLocation="{x:Null}" Filter="{x:Null}" FolderIdBackup="{x:Null}" Length="{x:Null}" LocationFriendlyName="{x:Null}" ManualEntryLocation="{x:Null}" QueryFilter="{x:Null}" AllLabels="W10=" sap2010:Annotation.AnnotationText="Recorrido de los archivos del aspirante" AuthScopesInvalid="False" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" CurrentItemVariableName="CurrentFile" DisplayName="For Each File PDF" FilterSelectionMode="ConditionBuilder" sap:VirtualizedContainerService.HintSize="532.8,1475.2" sap2010:WorkflowViewState.IdRef="ForEachFileFolderConnections_1" LocationInputMode="RelativePath" MaxResults="200" StarredOnly="False" UseConnectionService="True" WhatToReturn="[UiPath.GSuite.Activities.Drive.Enums.LocationType.Files]">
+      <uga:ForEachFileFolderConnections BrowserLocation="{x:Null}" ConnectionAccountName="{x:Null}" ExistingLocation="{x:Null}" Filter="{x:Null}" FolderIdBackup="{x:Null}" Length="{x:Null}" LocationFriendlyName="{x:Null}" ManualEntryLocation="{x:Null}" QueryFilter="{x:Null}" AllLabels="W10=" sap2010:Annotation.AnnotationText="Recorrido de los archivos del aspirante" AuthScopesInvalid="False" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" CurrentItemVariableName="CurrentFile" DisplayName="For Each File PDF" FilterSelectionMode="ConditionBuilder" sap:VirtualizedContainerService.HintSize="486.4,944.8" sap2010:WorkflowViewState.IdRef="ForEachFileFolderConnections_1" LocationInputMode="RelativePath" MaxResults="200" StarredOnly="False" UseConnectionService="True" WhatToReturn="[UiPath.GSuite.Activities.Drive.Enums.LocationType.Files]">
         <uga:ForEachFileFolderConnections.Body>
           <ActivityAction x:TypeArguments="ugdm:GDriveRemoteItem, x:Int32">
             <ActivityAction.Argument1>
@@ -172,157 +177,222 @@
             <ActivityAction.Argument2>
               <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentItemIndex" />
             </ActivityAction.Argument2>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="531.2,1207.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,676.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:IfElseIfV2 sap2010:Annotation.AnnotationText="Caminos&#xA;- CURP&#xA;- Acta de nacimiento&#xA;- NSS&#xA;- RFC&#xA;- CV&#xD;&#xA;- INE" Condition="[CurrentFile.Name.ToLower().Contains(&quot;curp&quot;)]" DisplayName="Select Attachment" sap:VirtualizedContainerService.HintSize="497.6,1143.2" sap2010:WorkflowViewState.IdRef="IfElseIfV2_2">
-                <ui:IfElseIfV2.Else>
-                  <Sequence DisplayName="No Way" sap:VirtualizedContainerService.HintSize="496,94.4" sap2010:WorkflowViewState.IdRef="Sequence_11">
+              <TryCatch DisplayName="Try Catch BE" sap:VirtualizedContainerService.HintSize="451.2,612.8" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <TryCatch.Try>
+                  <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="449.6,242.4" sap2010:WorkflowViewState.IdRef="Sequence_21">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
+                    <ui:IfElseIfV2 sap2010:Annotation.AnnotationText="Caminos&#xA;- CURP&#xA;- Acta de nacimiento&#xA;- NSS&#xA;- RFC&#xA;- CV&#xA;- INE" Condition="[CurrentFile.Name.ToLower().Contains(&quot;curp&quot;)]" DisplayName="Select Attachment" sap:VirtualizedContainerService.HintSize="416,178.4" sap2010:WorkflowViewState.IdRef="IfElseIfV2_2">
+                      <ui:IfElseIfV2.Else>
+                        <Sequence DisplayName="No Way" sap:VirtualizedContainerService.HintSize="496,24.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </ui:IfElseIfV2.Else>
+                      <ui:IfElseIfV2.ElseIfs>
+                        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CurrentFile.Name.ToLower().Contains(&quot;acta de nacimiento&quot;)]" DisplayName="If else if block" sap:VirtualizedContainerService.HintSize="334.4,24.799999999999997" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_2">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence sap2010:Annotation.AnnotationText="ACTA DE NACIMIENTO" DisplayName="ACTA DE NACIMIENTO" sap:VirtualizedContainerService.HintSize="496,56" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetBirthdayAndGender - Invoke Workflow File (Process\PDF\GetBirthdayAndGender.xaml)" sap:VirtualizedContainerService.HintSize="462.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Process\PDF\GetBirthdayAndGender.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_Gender">[out_Gender]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_Birthday">[out_Birthday]</OutArgument>
+                                    <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CurrentFile.Name.ToLower().Contains(&quot;nss&quot;)]" DisplayName="If else if" sap:VirtualizedContainerService.HintSize="334.4,24.799999999999997" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_5">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence sap2010:Annotation.AnnotationText="NSS" DisplayName="NSS" sap:VirtualizedContainerService.HintSize="496,56" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetNSS - Invoke Workflow File (Process\PDF\GetNSS.xaml)" sap:VirtualizedContainerService.HintSize="462.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\PDF\GetNSS.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_NSS">[out_NSS]</OutArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CurrentFile.Name.ToLower().Contains(&quot;rfc&quot;)]" DisplayName="If else if block" sap:VirtualizedContainerService.HintSize="334.4,24.799999999999997" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_6">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence sap2010:Annotation.AnnotationText="RFC" DisplayName="RFC" sap:VirtualizedContainerService.HintSize="496,56" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetRFC - Invoke Workflow File (Process\PDF\GetRFC.xaml)" sap:VirtualizedContainerService.HintSize="462.4,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Process\PDF\GetRFC.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_RFC">[out_RFC]</OutArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CurrentFile.Name.ToLower().Contains(&quot;cv&quot;)]" DisplayName="If else if block" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_7">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence sap2010:Annotation.AnnotationText="CV" DisplayName="CV" sap:VirtualizedContainerService.HintSize="496,56" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetPhoneNumber - Invoke Workflow File (Process\PDF\GetPhoneNumber.xaml)" sap:VirtualizedContainerService.HintSize="462.4,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Process\PDF\GetPhoneNumber.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_PhoneNumber">[out_PhoneNumber]</OutArgument>
+                                    <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetCareerAndUniversity - Invoke Workflow File (Process\PDF\GetCareerAndUniversity.xaml)" sap:VirtualizedContainerService.HintSize="462.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Process\PDF\GetCareerAndUniversity.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_University">[out_University]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_Career">[out_Career]</OutArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CurrentFile.Name.ToLower().Contains(&quot;identificación&quot;) Or&#xA;CurrentFile.Name.ToLower().Contains(&quot;identificacion&quot;)]" DisplayName="If else if block" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_9">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence sap2010:Annotation.AnnotationText="INE" DisplayName="INE" sap:VirtualizedContainerService.HintSize="496,56" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetAddress - Invoke Workflow File (Process\PDF\GetAddress.xaml)" sap:VirtualizedContainerService.HintSize="462.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Process\PDF\GetAddress.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_City">[out_City]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_State">[out_State]</OutArgument>
+                                    <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                        </sc:BindingList>
+                      </ui:IfElseIfV2.ElseIfs>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:IfElseIfV2.Then>
+                        <Sequence sap2010:Annotation.AnnotationText="CURP" DisplayName="CURP" sap:VirtualizedContainerService.HintSize="496,56" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetNameAndCURP - Invoke Workflow File (Process\PDF\GetNameAndCURP.xaml)" sap:VirtualizedContainerService.HintSize="462.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\PDF\GetNameAndCURP.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
+                              <OutArgument x:TypeArguments="x:String" x:Key="out_Name">[out_Name]</OutArgument>
+                              <OutArgument x:TypeArguments="x:String" x:Key="out_CURP">[out_CURP]</OutArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                          </ui:InvokeWorkflowFile>
+                        </Sequence>
+                      </ui:IfElseIfV2.Then>
+                    </ui:IfElseIfV2>
                   </Sequence>
-                </ui:IfElseIfV2.Else>
-                <ui:IfElseIfV2.ElseIfs>
-                  <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-                    <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CurrentFile.Name.ToLower().Contains(&quot;acta de nacimiento&quot;)]" DisplayName="If else if block" sap:VirtualizedContainerService.HintSize="334.4,24.799999999999997" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_2">
-                      <ui:IfElseIfBlock.Then>
-                        <Sequence sap2010:Annotation.AnnotationText="ACTA DE NACIMIENTO" DisplayName="ACTA DE NACIMIENTO" sap:VirtualizedContainerService.HintSize="496,56" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="ui:BusinessRuleException" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                    <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,176.8" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Logs - Invoke Workflow File (Process\GoogleSheets\Logs.xaml)" sap:VirtualizedContainerService.HintSize="416,60.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Process\GoogleSheets\Logs.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_SpreadSheet">[in_SpreadSheet]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Message">["Falló en la lectura del documento: " + CurrentFile.Name]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_EmailID">[in_EmailID]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetBirthdayAndGender - Invoke Workflow File (Process\PDF\GetBirthdayAndGender.xaml)" sap:VirtualizedContainerService.HintSize="462.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Process\PDF\GetBirthdayAndGender.xaml">
-                            <ui:InvokeWorkflowFile.Arguments>
-                              <OutArgument x:TypeArguments="x:String" x:Key="out_Gender">[out_Gender]</OutArgument>
-                              <OutArgument x:TypeArguments="x:String" x:Key="out_Birthday">[out_Birthday]</OutArgument>
-                              <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
-                            </ui:InvokeWorkflowFile.Arguments>
-                          </ui:InvokeWorkflowFile>
-                        </Sequence>
-                      </ui:IfElseIfBlock.Then>
-                    </ui:IfElseIfBlock>
-                    <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CurrentFile.Name.ToLower().Contains(&quot;nss&quot;)]" DisplayName="If else if" sap:VirtualizedContainerService.HintSize="334.4,24.799999999999997" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_5">
-                      <ui:IfElseIfBlock.Then>
-                        <Sequence sap2010:Annotation.AnnotationText="NSS" DisplayName="NSS" sap:VirtualizedContainerService.HintSize="496,56" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetNSS - Invoke Workflow File (Process\PDF\GetNSS.xaml)" sap:VirtualizedContainerService.HintSize="462.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\PDF\GetNSS.xaml">
-                            <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
-                              <OutArgument x:TypeArguments="x:String" x:Key="out_NSS">[out_NSS]</OutArgument>
-                            </ui:InvokeWorkflowFile.Arguments>
-                          </ui:InvokeWorkflowFile>
-                        </Sequence>
-                      </ui:IfElseIfBlock.Then>
-                    </ui:IfElseIfBlock>
-                    <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CurrentFile.Name.ToLower().Contains(&quot;rfc&quot;)]" DisplayName="If else if block" sap:VirtualizedContainerService.HintSize="334.4,24.799999999999997" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_6">
-                      <ui:IfElseIfBlock.Then>
-                        <Sequence sap2010:Annotation.AnnotationText="RFC" DisplayName="RFC" sap:VirtualizedContainerService.HintSize="496,56" sap2010:WorkflowViewState.IdRef="Sequence_13">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetRFC - Invoke Workflow File (Process\PDF\GetRFC.xaml)" sap:VirtualizedContainerService.HintSize="462.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Process\PDF\GetRFC.xaml">
-                            <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
-                              <OutArgument x:TypeArguments="x:String" x:Key="out_RFC">[out_RFC]</OutArgument>
-                            </ui:InvokeWorkflowFile.Arguments>
-                          </ui:InvokeWorkflowFile>
-                        </Sequence>
-                      </ui:IfElseIfBlock.Then>
-                    </ui:IfElseIfBlock>
-                    <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CurrentFile.Name.ToLower().Contains(&quot;cv&quot;)]" DisplayName="If else if block" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_7">
-                      <ui:IfElseIfBlock.Then>
-                        <Sequence sap2010:Annotation.AnnotationText="CV" DisplayName="CV" sap:VirtualizedContainerService.HintSize="496,56" sap2010:WorkflowViewState.IdRef="Sequence_14">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetPhoneNumber - Invoke Workflow File (Process\PDF\GetPhoneNumber.xaml)" sap:VirtualizedContainerService.HintSize="462.4,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Process\PDF\GetPhoneNumber.xaml">
-                            <ui:InvokeWorkflowFile.Arguments>
-                              <OutArgument x:TypeArguments="x:String" x:Key="out_PhoneNumber">[out_PhoneNumber]</OutArgument>
-                              <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
-                            </ui:InvokeWorkflowFile.Arguments>
-                          </ui:InvokeWorkflowFile>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetCareerAndUniversity - Invoke Workflow File (Process\PDF\GetCareerAndUniversity.xaml)" sap:VirtualizedContainerService.HintSize="462.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Process\PDF\GetCareerAndUniversity.xaml">
-                            <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
-                              <OutArgument x:TypeArguments="x:String" x:Key="out_University">[out_University]</OutArgument>
-                              <OutArgument x:TypeArguments="x:String" x:Key="out_Career">[out_Career]</OutArgument>
-                            </ui:InvokeWorkflowFile.Arguments>
-                          </ui:InvokeWorkflowFile>
-                        </Sequence>
-                      </ui:IfElseIfBlock.Then>
-                    </ui:IfElseIfBlock>
-                    <ui:IfElseIfBlock BlockType="ElseIf" Condition="[CurrentFile.Name.ToLower().Contains(&quot;identificación&quot;) Or&#xD;&#xA;CurrentFile.Name.ToLower().Contains(&quot;identificacion&quot;)]" DisplayName="If else if block" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_9">
-                      <ui:IfElseIfBlock.Then>
-                        <Sequence sap2010:Annotation.AnnotationText="INE" DisplayName="INE" sap:VirtualizedContainerService.HintSize="496,271.2" sap2010:WorkflowViewState.IdRef="Sequence_17">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetAddress - Invoke Workflow File (Process\PDF\GetAddress.xaml)" sap:VirtualizedContainerService.HintSize="462.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Process\PDF\GetAddress.xaml">
-                            <ui:InvokeWorkflowFile.Arguments>
-                              <OutArgument x:TypeArguments="x:String" x:Key="out_City">[out_City]</OutArgument>
-                              <OutArgument x:TypeArguments="x:String" x:Key="out_State">[out_State]</OutArgument>
-                              <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
-                            </ui:InvokeWorkflowFile.Arguments>
-                          </ui:InvokeWorkflowFile>
-                        </Sequence>
-                      </ui:IfElseIfBlock.Then>
-                    </ui:IfElseIfBlock>
-                  </sc:BindingList>
-                </ui:IfElseIfV2.ElseIfs>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:IfElseIfV2.Then>
-                  <Sequence sap2010:Annotation.AnnotationText="CURP" DisplayName="CURP" sap:VirtualizedContainerService.HintSize="496,56" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                        </ui:InvokeWorkflowFile>
+                        <Rethrow DisplayName="Rethrow BE" sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+                      </Sequence>
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+                <TryCatch.Finally>
+                  <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_23">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetNameAndCURP - Invoke Workflow File (Process\PDF\GetNameAndCURP.xaml)" sap:VirtualizedContainerService.HintSize="462.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\PDF\GetNameAndCURP.xaml">
-                      <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_File">[CurrentFile]</InArgument>
-                        <OutArgument x:TypeArguments="x:String" x:Key="out_Name">[out_Name]</OutArgument>
-                        <OutArgument x:TypeArguments="x:String" x:Key="out_CURP">[out_CURP]</OutArgument>
-                      </ui:InvokeWorkflowFile.Arguments>
-                    </ui:InvokeWorkflowFile>
                   </Sequence>
-                </ui:IfElseIfV2.Then>
-              </ui:IfElseIfV2>
+                </TryCatch.Finally>
+              </TryCatch>
             </Sequence>
           </ActivityAction>
         </uga:ForEachFileFolderConnections.Body>
@@ -367,5 +437,6 @@
         </sap:WorkflowViewStateService.ViewState>
       </uga:ForEachFileFolderConnections>
     </Sequence>
+    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="520,113.6" sap2010:WorkflowViewState.IdRef="Delay_1" />
   </Sequence>
 </Activity>

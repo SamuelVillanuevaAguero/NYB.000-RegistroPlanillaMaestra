@@ -118,7 +118,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateFoldersAnd_Attachments" sap:VirtualizedContainerService.HintSize="830,883.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CreateFoldersAnd_Attachments" sap:VirtualizedContainerService.HintSize="766.8000000000001,883.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="uggm:GmailAttachmentLocalItem[]" Name="Attachments" />
       <Variable x:TypeArguments="ugm:GmailMessage" Name="Email" />

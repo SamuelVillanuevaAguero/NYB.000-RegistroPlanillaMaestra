@@ -108,7 +108,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadActaDeNacimiento" sap:VirtualizedContainerService.HintSize="449.6,357.65666666666664" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadActaDeNacimiento" sap:VirtualizedContainerService.HintSize="766.8000000000001,1988.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextActaDeNacimiento" />
     </Sequence.Variables>
@@ -117,7 +117,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage sap2010:Annotation.AnnotationText="Indica que inicia el proceso de lectura del documento correspondente, en este caso, el Acta de nacimiento." DisplayName="Log Message Reading Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="449.6,117.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading Acta de Nacimiento&quot;]">
+    <ui:LogMessage sap2010:Annotation.AnnotationText="Indica que inicia el proceso de lectura del documento correspondente, en este caso, el Acta de nacimiento." DisplayName="Log Message Reading Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="520,117.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading Acta de Nacimiento&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -126,11 +126,11 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch sap2010:Annotation.AnnotationText="Para saber qué hacer si algo falla (ej. el PDF del Acta De Nacimiento está corrupto o no se encuentra)." DisplayName="Try Catch Error Obteniendo PDF" sap:VirtualizedContainerService.HintSize="520,1824.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch sap2010:Annotation.AnnotationText="Para saber qué hacer si algo falla (ej. el PDF del Acta De Nacimiento está corrupto o no se encuentra)." DisplayName="Try Catch Error Obteniendo PDF" sap:VirtualizedContainerService.HintSize="520,1848" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -146,7 +146,7 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="484.8,126.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[in_File]" Text="[TextActaDeNacimiento]" />
+          <uisape:ExtractPDFText FilePassword="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="484.8,126.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" OcrEngine="UIPATH_DOCUMENT_OCR" PdfFile="[in_File]" Text="[TextActaDeNacimiento]" />
           <ui:Matches FirstMatch="{x:Null}" BuilderPattern="(HOMBRE|MUJER)" DisplayName="Find Matching Pattern For Gender" sap:VirtualizedContainerService.HintSize="484.8,96" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[TextActaDeNacimiento]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;(HOMBRE|MUJER)&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="(HOMBRE|MUJER)" RegexOption="IgnoreCase, Compiled" Result="[ResultsGender]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -319,14 +319,5 @@
         </Sequence>
       </TryCatch.Finally>
     </TryCatch>
-    <ui:LogMessage sap2010:Annotation.AnnotationText="Permite visualizar en Output los resultados de las RegEx empleadas." DisplayName="Log Message Testing RegExs Results" sap:VirtualizedContainerService.HintSize="449.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extracción Acta -&gt; Fecha: [&quot; + out_Birthday + &quot;] | Género: [&quot; + out_Gender + &quot;]&quot;]">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:LogMessage>
   </Sequence>
 </Activity>
