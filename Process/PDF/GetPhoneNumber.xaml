@@ -109,7 +109,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadCV" sap:VirtualizedContainerService.HintSize="853.2,945.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadCV" sap:VirtualizedContainerService.HintSize="853.2,2157.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextCV" />
       <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsPhoneNumber" />
@@ -119,7 +119,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage sap2010:Annotation.AnnotationText="Indica que inicia el proceso de lectura del documento correspondiente, en este caso, el CV." DisplayName="Log Message Reading CV" sap:VirtualizedContainerService.HintSize="449.6,101.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading CV&quot;]">
+    <ui:LogMessage sap2010:Annotation.AnnotationText="Indica que inicia el proceso de lectura del documento correspondiente, en este caso, el CV." DisplayName="Log Message Reading CV" sap:VirtualizedContainerService.HintSize="520,101.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading CV&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -128,7 +128,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Extracción del número de celular. Se usa el CV para rescatar el dato." DisplayName="Get PhoneNumber" sap:VirtualizedContainerService.HintSize="449.6,640" sap2010:WorkflowViewState.IdRef="Sequence_12">
+    <Sequence sap2010:Annotation.AnnotationText="Extracción del número de celular. Se usa el CV para rescatar el dato." DisplayName="Get PhoneNumber" sap:VirtualizedContainerService.HintSize="520,640" sap2010:WorkflowViewState.IdRef="Sequence_12">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -170,10 +170,10 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:Matches>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="Valida la extracción de datos realizada para el número de celular." DisplayName="Validate Phone Number" sap:VirtualizedContainerService.HintSize="449.6,88" sap2010:WorkflowViewState.IdRef="Sequence_11">
+    <Sequence sap2010:Annotation.AnnotationText="Valida la extracción de datos realizada para el número de celular." DisplayName="Validate Phone Number" sap:VirtualizedContainerService.HintSize="520,1025.6" sap2010:WorkflowViewState.IdRef="Sequence_11">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
@@ -301,11 +301,11 @@
         </If.Else>
       </If>
     </Sequence>
-    <If sap2010:Annotation.AnnotationText="Por si el PDF no contiene número de célular o es ilegible." Condition="[String.IsNullOrEmpty(out_PhoneNumber)]" DisplayName="If Captura Business Exception" sap:VirtualizedContainerService.HintSize="449.6,92.8" sap2010:WorkflowViewState.IdRef="If_4">
+    <If sap2010:Annotation.AnnotationText="Por si el PDF no contiene número de célular o es ilegible." Condition="[String.IsNullOrEmpty(out_PhoneNumber)]" DisplayName="If Captura Business Exception" sap:VirtualizedContainerService.HintSize="520,367.2" sap2010:WorkflowViewState.IdRef="If_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
