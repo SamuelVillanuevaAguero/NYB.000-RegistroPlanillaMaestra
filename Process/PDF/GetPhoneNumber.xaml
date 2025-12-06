@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ReadCV" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadCV" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_PhoneNumber" Type="OutArgument(x:String)" />
     <x:Property Name="in_File" Type="InArgument(ugdm:GDriveRemoteItem)" />
@@ -105,13 +105,17 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadCV" sap:VirtualizedContainerService.HintSize="772.8000000000001,434.05666666666673" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadCV" sap:VirtualizedContainerService.HintSize="853.2,498.4566666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="TextCV" />
+      <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsPhoneNumber" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage sap2010:Annotation.AnnotationText="Indica que inicia el proceso de lectura del documento correspondente, en este caso, el CV." DisplayName="Log Message Reading CV" sap:VirtualizedContainerService.HintSize="449.6,101.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading CV&quot;]">
+    <ui:LogMessage sap2010:Annotation.AnnotationText="Indica que inicia el proceso de lectura del documento correspondiente, en este caso, el CV." DisplayName="Log Message Reading CV" sap:VirtualizedContainerService.HintSize="449.6,101.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading CV&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -120,7 +124,180 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch sap2010:Annotation.AnnotationText="Para saber qué hacer si algo falla (ej. el PDF del CV está corrupto o no se encuentra)." DisplayName="Try Catch Error Obteniendo PDF" sap:VirtualizedContainerService.HintSize="449.6,92.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <Sequence sap2010:Annotation.AnnotationText="Extracción del número de celular. Se usa el CV para rescatar el dato." DisplayName="Get PhoneNumber" sap:VirtualizedContainerService.HintSize="449.6,88" sap2010:WorkflowViewState.IdRef="Sequence_12">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" sap2010:Annotation.AnnotationText="Obtiene el texto de un PDF nativo para CV." ApplyOcr="False" DisplayName="Extract PDF Text CV" sap:VirtualizedContainerService.HintSize="416,88" sap2010:WorkflowViewState.IdRef="ExtractPDFText_3" PdfFile="[in_File]" Text="[TextCV]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </uisape:ExtractPDFText>
+      <Assign sap2010:Annotation.AnnotationText="Sirve para los casos en los que el código de área queda en un renglón y el número en otro." DisplayName="Assign RegEx para evitar saltos de línea" sap:VirtualizedContainerService.HintSize="416,101.6" sap2010:WorkflowViewState.IdRef="Assign_8">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[TextCV]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[TextCV.Replace(vbCr, " ").Replace(vbLf, " ")]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <ui:Matches FirstMatch="{x:Null}" sap2010:Annotation.AnnotationText="Expresión regular para validar las distintas maneras en las que podría encontrarse escrito el número de celular." BuilderPattern="(\+?\d{1,3}\s?)?\(?\d{2,3}\)?[- ]?\d{3}[- ]?(\d{4}|\d{2}[- ]?\d{2})" DisplayName="Find Matching Patterns For Phone Number" sap:VirtualizedContainerService.HintSize="416,108.8" sap2010:WorkflowViewState.IdRef="Matches_3" Input="[TextCV]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;(\\+?\\d{1,3}\\s?)?\\(?\\d{2,3}\\)?[- ]?\\d{3}[- ]?(\\d{4}|\\d{2}[- ]?\\d{2})&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="(\+?\d{1,3}\s?)?\(?\d{2,3}\)?[- ]?\d{3}[- ]?(\d{4}|\d{2}[- ]?\d{2})" RegexOption="IgnoreCase, Compiled" Result="[ResultsPhoneNumber]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:Matches>
+    </Sequence>
+    <Sequence sap2010:Annotation.AnnotationText="Valida la extracción de datos realizada para el número de celular." DisplayName="Validate Phone Number" sap:VirtualizedContainerService.HintSize="449.6,88" sap2010:WorkflowViewState.IdRef="Sequence_11">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga nada de la lectura del CV." Condition="[ResultsPhoneNumber.Count &gt; 0]" DisplayName="If para validar si se obtuvo el número de celular" sap:VirtualizedContainerService.HintSize="486.4,902.4" sap2010:WorkflowViewState.IdRef="If_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,716.8" sap2010:WorkflowViewState.IdRef="Sequence_14">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="str_DigitsOnly" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="451.2,60.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+              <ui:CommentOut.Body>
+                <Sequence sap2010:Annotation.AnnotationText="Primera opción de salida sin validación. Simplemente se quitaban los espacios que pudieran obtenerse de más." DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,270.4" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign DisplayName="Assign género al argumento de salida" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="Assign_6">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[out_PhoneNumber]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[ResultsPhoneNumber(0).Value.Trim]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <Assign sap2010:Annotation.AnnotationText="Toma el resultado, busca todo lo que NO sea un dígito ([^\d]) y lo reemplaza por nada (&quot;&quot;)" DisplayName="Assign RegEx for digits only" sap:VirtualizedContainerService.HintSize="451.2,105.6" sap2010:WorkflowViewState.IdRef="Assign_7">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[str_DigitsOnly]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(ResultsPhoneNumber(0).Value, "[^\d]", "")]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <If sap2010:Annotation.AnnotationText="Valida la cantidad de dígitos que puede contener un número de celular. En este caso mayor o igual a 10 y menor o igual a 13." Condition="[str_DigitsOnly.Length &gt;= 10 AndAlso str_DigitsOnly.Length &lt;= 13]" DisplayName="If para validar la longitud de la cadena" sap:VirtualizedContainerService.HintSize="451.2,486.4" sap2010:WorkflowViewState.IdRef="If_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,160.8" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap2010:Annotation.AnnotationText="El número de celular validado se pasa al argumento final de salida." DisplayName="Assign final result to out_PhoneNumber" sap:VirtualizedContainerService.HintSize="416,96.8" sap2010:WorkflowViewState.IdRef="Assign_9">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[out_PhoneNumber]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[str_DigitsOnly]</InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,147.2" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage sap2010:Annotation.AnnotationText="Mensaje de que la cadena obtenida no es válida" DisplayName="Log Message Invalid Length" sap:VirtualizedContainerService.HintSize="416,83.2" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;El patrón encontrado (&quot; + ResultsPhoneNumber(0).Value + &quot;) no parece un celular válido por su longitud.&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:LogMessage>
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,24.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <If sap2010:Annotation.AnnotationText="Por si el PDF no contiene número de célular o es ilegible." Condition="[String.IsNullOrEmpty(out_PhoneNumber)]" DisplayName="If Captura Business Exception" sap:VirtualizedContainerService.HintSize="449.6,92.8" sap2010:WorkflowViewState.IdRef="If_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -128,127 +305,18 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <TryCatch.Try>
-        <Sequence DisplayName="Extract PHONE NUMBER" sap:VirtualizedContainerService.HintSize="484.8,1094.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="x:String" Name="TextCV" />
-            <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsPhoneNumber" />
-          </Sequence.Variables>
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text CV" sap:VirtualizedContainerService.HintSize="451.2,126.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[in_File]" Text="[TextCV]" />
-          <Assign sap2010:Annotation.AnnotationText="Sirve para los casos en los que el código de área queda en un renglón y el número en otro" DisplayName="Assign RegEx para evitar saltos de línea" sap:VirtualizedContainerService.HintSize="451.2,223.2" sap2010:WorkflowViewState.IdRef="Assign_1">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[TextCV]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[TextCV.Replace(vbCr, " ").Replace(vbLf, " ")]</InArgument>
-            </Assign.Value>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </Assign>
-          <ui:Matches FirstMatch="{x:Null}" BuilderPattern="(\+?\d{1,3}\s?)?\(?\d{2,3}\)?[- ]?\d{3}[- ]?(\d{4}|\d{2}[- ]?\d{2})" DisplayName="Find Matching Patterns For Phone Number" sap:VirtualizedContainerService.HintSize="451.2,96" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[TextCV]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;(\\+?\\d{1,3}\\s?)?\\(?\\d{2,3}\\)?[- ]?\\d{3}[- ]?(\\d{4}|\\d{2}[- ]?\\d{2})&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="(\+?\d{1,3}\s?)?\(?\d{2,3}\)?[- ]?\d{3}[- ]?(\d{4}|\d{2}[- ]?\d{2})" RegexOption="IgnoreCase, Compiled" Result="[ResultsPhoneNumber]" />
-          <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga nada de la lectura del CV." Condition="[ResultsPhoneNumber.Count &gt; 0]" DisplayName="If para validar si se obtuvo el número de celular" sap:VirtualizedContainerService.HintSize="451.2,501.6" sap2010:WorkflowViewState.IdRef="If_2">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,233.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <Assign DisplayName="Assign género al argumento de salida" sap:VirtualizedContainerService.HintSize="416,169.6" sap2010:WorkflowViewState.IdRef="Assign_3">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_PhoneNumber]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[ResultsPhoneNumber(0).Value.Trim]</InArgument>
-                  </Assign.Value>
-                </Assign>
-              </Sequence>
-            </If.Then>
-            <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,94.4" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </Sequence>
-            </If.Else>
-          </If>
-          <If sap2010:Annotation.AnnotationText="Por si el PDF está bien pero blanco." Condition="[String.IsNullOrEmpty(out_PhoneNumber)]" DisplayName="If Captura Business Exception" sap:VirtualizedContainerService.HintSize="451.2,83.2" sap2010:WorkflowViewState.IdRef="If_1">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <Throw Exception="[New BusinessRuleException(&quot;El CV no contiene número de celular o no es legible.&quot;)]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
-              </Sequence>
-            </If.Then>
-            <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </Sequence>
-            </If.Else>
-          </If>
+          <Throw Exception="[New BusinessRuleException(&quot;El CV no contiene número de celular o no es legible.&quot;)]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_2" />
         </Sequence>
-      </TryCatch.Try>
-      <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
-          <ActivityAction x:TypeArguments="s:Exception">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,278.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage sap2010:Annotation.AnnotationText="Para que en los logs de Orchestrator se resalte rojo cuando falle." DisplayName="Log Message Error Lectura PDF" sap:VirtualizedContainerService.HintSize="451.2,214.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[&quot;Error leyendo el CV: &quot; + exception.Message + &quot; en: &quot; + exception.Source]">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </ui:LogMessage>
-            </Sequence>
-          </ActivityAction>
-        </Catch>
-      </TryCatch.Catches>
-      <TryCatch.Finally>
-        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="484.8,24.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_19">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -256,7 +324,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </Sequence>
-      </TryCatch.Finally>
-    </TryCatch>
+      </If.Else>
+    </If>
   </Sequence>
 </Activity>
