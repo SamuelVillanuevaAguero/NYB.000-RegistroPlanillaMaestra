@@ -146,13 +146,13 @@
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetAddressV2" sap:VirtualizedContainerService.HintSize="772.8000000000001,434.05666666666673" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetAddressV2" sap:VirtualizedContainerService.HintSize="766.8000000000001,912" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Reading RFC" sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading INE&quot;]">
+    <ui:LogMessage DisplayName="Log Message Reading RFC" sap:VirtualizedContainerService.HintSize="483.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading INE&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -160,21 +160,22 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence DisplayName="GetAddress" sap:VirtualizedContainerService.HintSize="449.6,121.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+    <Sequence DisplayName="GetAddress" sap:VirtualizedContainerService.HintSize="483.2,56.8" sap2010:WorkflowViewState.IdRef="Sequence_10">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Sequence>
-    <Sequence DisplayName="GetAddress OCR" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="Sequence_8">
+    <Sequence DisplayName="GetAddress OCR" sap:VirtualizedContainerService.HintSize="483.2,657.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="INEText" />
         <Variable x:TypeArguments="x:String" Name="Result" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -186,7 +187,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uisape:ExtractPDFText>
-      <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACs1V224aMRD9lZWfCQkkbSOkPIQlaWmSQrmkaqsIObsDOCy26wsNQUj9jf5ev6TjvWW5BNK3ihc8nhnPOTNzdkEuGUSh9gU3lHFQpLYgXaAqGNP7CJJLUvt+VyJNLq3JDQvyiU6B1IhUYioNKZEG0zKi89Tczs2gA8WkYYKjOU7iGeFZDd5QKA/fMV6AvhE4F0/BDwvaBfbm0iXSRjE+wnNXKNNSoSuxEqdlI8y4INeChvV5A4bURobUjLJQIm2hWfpkW7EpVXOyLJEOJmcKwswrRnMtApq61kXo/HJsUxFCtAHtJrOuIOtCBAFCG4N33vTiSAcyjFGOAKnFV/gIAWopuIbdCKsufYzolkbWeYUAUgNMDhxj6HzB7bTYh/X77XEFcPmFAqqFa/2WoPxuebeX8wvuRqavQbVmoBQLYUc3SsTHpmNqjvGkz7WVEuFjb17dJ6yoZc3WofzIzMDhrdWeR0tvNPJ90hXwfDeEfu650dvnXvVZm5pxuckNjFxDBe+CmrEAyueBYTNECbrc/XLBTfLXf3vSaNQvT89Pq3FBA23vB4WaBj4ybKBctzyMoLzDpeRty1VuPPRPTqvTJ//qcyX8OnzTexdOvlVOSt4tKI3hZ5XykfthOLbKKjjjYI2iUclr2/uIBVcw74kJ8DNuIzfVnXQBa0MaaeS+k83rC71IWoCBLe5TPqM6c2xq7ELsnVgKo2fg0bzYjdDrpdcrPejhYhkhs1VCt3XpyPdofa92zu1yP+Ts7Nv44X9kooA72SYsysmtm/x1DjqZg1fwWKEBdXWGm6VRRzJXJzCx3vz59dvZk2I9KiW2162k09vCkv9n9NzhE02uDeUBtKlCIgyOrisnHWGMjYc41gzOUWWFwqlFs2USt/EgV6vsD3qm6zhPwWa14ev3D5gh5XubRnwwRt6AGQtE4pTLiSYyE9CIPUGY5d0vIT4NxoAEiImVsa46TMvMXlfiJypl08A0tafKiMjSD26bBhM6giIL1coqDWkVDcTdTXDnV8Ww4/JxjvzVEriXqJaMv2nxG4lGbbDX6vbQ5iQTT4cuyeFqjmvKRxZB4jW4R2/oYxuPXaQaP/NHR5iQ6jomn7itGaO3ozEdRKcT9UgEk5iw5V+er5NQzAgAAA==" ConnectionId="da75aae5-28fa-457e-a21b-d064ddbf8a82" DisplayName="Generate Chat Completion" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="f3d0276d-032a-30f7-b0f3-cfbbadda0f68">
+      <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACs1V224aMRD9lZWfCQkkbSOkPIQlaWmSQrmkaqsIObsDOCy26wsNQUj9jf5ev6TjvWW5BNK3ihc8nhnPOTNzdkEuGUSh9gU3lHFQpLYgXaAqGNP7CJJLUvt+VyJNLq3JDQvyiU6B1IhUYioNKZEG0zKi89Tczs2gA8WkYYKjOU7iGeFZDd5QKA/fMV6AvhE4F0/BDwvaBfbm0iXSRjE+wnNXKNNSoSuxEqdlI8y4INeChvV5A4bURobUjLJQIm2hWfpkW7EpVXOyLJEOJmcKwswrRnMtApq61kXo/HJsUxFCtAHtJrOuIOtCBAFCG4N33vTiSAcyjFGOAKnFV/gIAWopuIbdCKsufYzolkbWeYUAUgNMDhxj6HzB7bTYh/X77XEFcPmFAqqFa/2WoPxuebeX8wvuRqavQbVmoBQLYUc3SsTHpmNqjvGkz7WVEuFjb17dJ6yoZc3WofzIzMDhrdWeR0tvNPJ90hXwfDeEfu650dvnXvVZm5pxuckNjFxDBe+CmrEAyueBYTNECbrc/XLBTfLXf3vSaNQvT89Pq3FBA23vB4WaBj4ybKBctzyMoLzDpeRty1VuPPRPTqvTJ//qcyX8OnzTexdOvlVOSt4tKI3hZ5XykfthOLbKKjjjYI2iUclr2/uIBVcw74kJ8DNuIzfVnXQBa0MaaeS+k83rC71IWoCBLe5TPqM6c2xq7ELsnVgKo2fg0bzYjdDrpdcrPejhYhkhs1VCt3XpyPdofa92zu1yP+Ts7Nv44X9kooA72SYsysmtm/x1DjqZg1fwWKEBdXWGm6VRRzJXJzCx3vz59dvZk2I9KiW2162k09vCkv9n9NzhE02uDeUBtKlCIgyOrisnHWGMjYc41gzOUWWFwqlFs2USt/EgV6vsD3qm6zhPwWa14ev3D5gh5XubRnwwRt6AGQtE4pTLiSYyE9CIPUGY5d0vIT4NxoAEiImVsa46TMvMXlfiJypl08A0tafKiMjSD26bBhM6giIL1coqDWkVDcTdTXDnV8Ww4/JxjvzVEriXqJaMv2nxG4lGbbDX6vbQ5iQTT4cuyeFqjmvKRxZB4jW4R2/oYxuPXaQaP/NHR5iQ6jomn7itGaO3ozEdRKcT9UgEk5iw5V+er5NQzAgAAA==" ConnectionId="da75aae5-28fa-457e-a21b-d064ddbf8a82" DisplayName="Generate Chat Completion" sap:VirtualizedContainerService.HintSize="449.6,272.8" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="f3d0276d-032a-30f7-b0f3-cfbbadda0f68">
         <isactr:ConnectorActivity.FieldObjects>
           <isactr:FieldObject Name="prompt" Type="FieldArgument">
             <isactr:FieldObject.Value>
@@ -221,7 +222,7 @@ Texto OCR: " + INEText]</InArgument>
         </isactr:ConnectorActivity.FieldObjects>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
