@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ReadDomicilio" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.C64DDBF8A82_chat_sub_completions_Create.Bundle;assembly=C64DDBF8A82_chat_sub.DjU482mzCKQ1dYf5T7dkZ14" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadDomicilio" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_City" Type="OutArgument(x:String)" />
     <x:Property Name="out_State" Type="OutArgument(x:String)" />
@@ -146,7 +146,7 @@
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetAddressV2" sap:VirtualizedContainerService.HintSize="766.8000000000001,1067.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetAddressV2" sap:VirtualizedContainerService.HintSize="766.8000000000001,1348.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -160,7 +160,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence DisplayName="GetAddress OCR" sap:VirtualizedContainerService.HintSize="484.8,450.4" sap2010:WorkflowViewState.IdRef="Sequence_8">
+    <Sequence DisplayName="GetAddress OCR" sap:VirtualizedContainerService.HintSize="484.8,732" sap2010:WorkflowViewState.IdRef="Sequence_8">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="INEText" />
         <Variable x:TypeArguments="x:String" Name="Result" />
@@ -171,23 +171,34 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uisape:ExtractPDFText FilePassword="{x:Null}" ApplyOcr="True" DisplayName="Extract PDF Text INE" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="ExtractPDFText_2" OcrEngine="UIPATH_DOCUMENT_OCR" PdfFile="[in_File]" Text="[INEText]">
+      <uisape:ExtractPDFText FilePassword="{x:Null}" ApplyOcr="True" DisplayName="Extract PDF Text INE" sap:VirtualizedContainerService.HintSize="449.6,122.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_2" OcrEngine="UIPATH_DOCUMENT_OCR" PdfFile="[LocalResource.FromPath(&quot;C:\Users\Samue\Documents\RESIDENCIA\DOCS BEECKER\02. Identificación Oficial - Samuel Villanueva Aguero.pdf&quot;)]" Text="[INEText]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uisape:ExtractPDFText>
-      <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACs1V224aMRD9lZWfCQkkbSOkPIQlaWmSQrmkaqsIObsDOCy26wsNQUj9jf5ev6TjvWW5BNK3ihc8nhnPOTNzdkEuGUSh9gU3lHFQpLYgXaAqGNP7CJJLUvt+VyJNLq3JDQvyiU6B1IhUYioNKZEG0zKi89Tczs2gA8WkYYKjOU7iGeFZDd5QKA/fMV6AvhE4F0/BDwvaBfbm0iXSRjE+wnNXKNNSoSuxEqdlI8y4INeChvV5A4bURobUjLJQIm2hWfpkW7EpVXOyLJEOJmcKwswrRnMtApq61kXo/HJsUxFCtAHtJrOuIOtCBAFCG4N33vTiSAcyjFGOAKnFV/gIAWopuIbdCKsufYzolkbWeYUAUgNMDhxj6HzB7bTYh/X77XEFcPmFAqqFa/2WoPxuebeX8wvuRqavQbVmoBQLYUc3SsTHpmNqjvGkz7WVEuFjb17dJ6yoZc3WofzIzMDhrdWeR0tvNPJ90hXwfDeEfu650dvnXvVZm5pxuckNjFxDBe+CmrEAyueBYTNECbrc/XLBTfLXf3vSaNQvT89Pq3FBA23vB4WaBj4ybKBctzyMoLzDpeRty1VuPPRPTqvTJ//qcyX8OnzTexdOvlVOSt4tKI3hZ5XykfthOLbKKjjjYI2iUclr2/uIBVcw74kJ8DNuIzfVnXQBa0MaaeS+k83rC71IWoCBLe5TPqM6c2xq7ELsnVgKo2fg0bzYjdDrpdcrPejhYhkhs1VCt3XpyPdofa92zu1yP+Ts7Nv44X9kooA72SYsysmtm/x1DjqZg1fwWKEBdXWGm6VRRzJXJzCx3vz59dvZk2I9KiW2162k09vCkv9n9NzhE02uDeUBtKlCIgyOrisnHWGMjYc41gzOUWWFwqlFs2USt/EgV6vsD3qm6zhPwWa14ev3D5gh5XubRnwwRt6AGQtE4pTLiSYyE9CIPUGY5d0vIT4NxoAEiImVsa46TMvMXlfiJypl08A0tafKiMjSD26bBhM6giIL1coqDWkVDcTdTXDnV8Ww4/JxjvzVEriXqJaMv2nxG4lGbbDX6vbQ5iQTT4cuyeFqjmvKRxZB4jW4R2/oYxuPXaQaP/NHR5iQ6jomn7itGaO3ozEdRKcT9UgEk5iw5V+er5NQzAgAAA==" ConnectionId="da75aae5-28fa-457e-a21b-d064ddbf8a82" DisplayName="Generate Chat Completion" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="f3d0276d-032a-30f7-b0f3-cfbbadda0f68">
+      <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACs1V224aMRD9lZWfCQkkbSOkPIQlaWmSQrmkaqsIObsTcFhs1xcagpD6G/29fknH3ku4haRvFS94PDOec2bm7JycM0hiHQpuKOOgSG1OukBVNKK3CaSXpPb9pkSaXFpTGObkE50AqRGpxEQaUiINpmVCZ5m5XZhBR4pJwwRHs08SGBFYDcGdUAG+Y4IIfRNwLoGCHxa0C+zNpEukjWJ8iOeuUKalYldixadlQ8w4J5eCxvVZA+6oTQypGWWhRNpCs+zJtmITqmZkUSIdTM4UxLmXR3MpIpq51kXs/ApsExFDsgHtKreuIOtCAhFCG0Fw2gx8pAMZe5RDQGrxFT5EgFoKrmE3wqpL7xFd08Q6rxhAaoDxnmMMnc+4nSz3Yf1+e9wSuOJCAdXCtX5LUHG3uHmR8zPuRqavQbWmoBSLYUc3SiTEpmNqjvGkz7WVEuFjb17dJ6yoZc3WofzIzMDhrdWeRktvNPJ92hUIQjeEYeG50dunXvVZm5pRuckNDF1DBe+CmrIIyqeRYVNECbrc/XLGTfo3fHvUaNTPj0+Pq76ggba3g6WaBiEybKBctzxOoLzDpRRsy1Vu3PePjquTx/DicyX+evem9y4ef6sclYJrUBrDTyrlA/fDcGyVVXDCwRpFk1LQtrcJiy5g1hNj4CfcJm6qO9kC1u5oopH7Tj6vz/QibQEGtnhI+ZTqIrKpsQ3ePY1dmj0DD+bZdsRBL7teaUIPN8sIme8Suq1rR7FI64u1c3AXL2POz6H1D/8DFWu403XCopzeutFf56CTOwRLHis0oLBOcbU0Cknu6hTGC86fX7+dPS02oFJif91OOsFd2vL/hx6fcHGDbzS5NpRH0KYKmTA4vK6ebIgx2I+xVw3OUWeFwrlFs2US93Gv0Kv8D3pmCznL0ObF4fO395ghI3ybSnwwRl6BGQmE4rTLySZSE9GEPUKc531ZREIajQAZEGMrvbI6TIvcXlfiJ2pl08Aks2faiMiyT26bRmM6hGUWqpVVGrIqGoi7m+IurpbDDsuHBfJXi+CLRLWk/6r5N1KV2mCv1e2hzYkmnvZdkv3VHJeUDy2CxGtwj17RhzYeu0g1fugPDjAh1XVMPnZrM0JvR2M2iU4o6omIxp6wxV8X5p47zggAAA==" ConnectionId="da75aae5-28fa-457e-a21b-d064ddbf8a82" DisplayName="Generate Chat Completion" sap:VirtualizedContainerService.HintSize="449.6,272.8" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="f3d0276d-032a-30f7-b0f3-cfbbadda0f68">
         <isactr:ConnectorActivity.FieldObjects>
           <isactr:FieldObject Name="prompt" Type="FieldArgument">
             <isactr:FieldObject.Value>
-              <InArgument x:TypeArguments="x:String" xml:space="preserve">["Extrae estos datos de una INE Mexicana
-- municipio (Si no se encuentra este dato coloca -)
-- estado (Si no se encuentra este dato coloca -)
-Devuélvelo estrictamente en este formato, sin texto adicional y sin comillas, aunque no sea JSON válido:
-{municipio: MINICIPIO_MAYUSCULAS o -, estado: ESTADO_MAYUSCULAS o -}
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">["Extrae exclusivamente estos datos de una credencial INE mexicana:
+
+- municipio  → Si no aparece o no es un municipio válido de México, responde -
+- estado     → Si no aparece o no es un estado válido de México, responde -
+
+Reglas:
+1. Valida que el municipio exista en la lista oficial de municipios de México.
+2. Valida que el estado sea uno de los 32 estados de México.
+3. Devuelve ambos valores en MAYÚSCULAS.
+4. Si algún dato está incompleto, dudoso o no coincide con la geografía del país, responde N/A.
+5. No agregues explicaciones, texto adicional, comentarios ni comillas.
+6. Valida que se trate de la información de una credencial INE mexicana.
+
+Formato de salida obligatorio (aunque no sea JSON válido):
+{municipio: MUNICIPIO_MAYUSCULAS o -, estado: ESTADO_MAYUSCULAS o -}
+
 Texto OCR: " + INEText]</InArgument>
             </isactr:FieldObject.Value>
           </isactr:FieldObject>
@@ -196,25 +207,15 @@ Texto OCR: " + INEText]</InArgument>
               <InArgument x:TypeArguments="x:String">deepseek-chat</InArgument>
             </isactr:FieldObject.Value>
           </isactr:FieldObject>
-          <isactr:FieldObject Name="Jit_chat_sub_completions" Type="FieldArgument">
-            <isactr:FieldObject.Value>
-              <OutArgument x:TypeArguments="uiascb:chat_sub_completions_Create" />
-            </isactr:FieldObject.Value>
-          </isactr:FieldObject>
           <isactr:FieldObject Name="out_text" Type="FieldArgument">
             <isactr:FieldObject.Value>
               <OutArgument x:TypeArguments="x:String">[Result]</OutArgument>
             </isactr:FieldObject.Value>
           </isactr:FieldObject>
-          <isactr:FieldObject Name="out_reasoningContent" Type="FieldArgument">
-            <isactr:FieldObject.Value>
-              <OutArgument x:TypeArguments="x:String" />
-            </isactr:FieldObject.Value>
-          </isactr:FieldObject>
         </isactr:ConnectorActivity.FieldObjects>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>

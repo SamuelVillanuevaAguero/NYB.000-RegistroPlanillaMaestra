@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ReadRFC" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadRFC" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_File" Type="InArgument(ugdm:GDriveRemoteItem)">
       <x:Property.Attributes>
@@ -113,7 +113,7 @@
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadRFC" sap:VirtualizedContainerService.HintSize="766.8000000000001,1122.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadRFC" sap:VirtualizedContainerService.HintSize="766.8000000000001,1126.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextRFC" />
     </Sequence.Variables>
@@ -130,7 +130,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Extracción del formato RFC:&#xA;- Extracción del RFC (Registro Federal de Contribuyentes)" DisplayName="GetRFC" sap:VirtualizedContainerService.HintSize="518.4,1042.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="Extracción del formato RFC:&#xA;- Extracción del RFC (Registro Federal de Contribuyentes)" DisplayName="GetRFC" sap:VirtualizedContainerService.HintSize="518.4,1046.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -182,7 +182,7 @@
           </Sequence>
         </If.Else>
       </If>
-      <Sequence sap2010:Annotation.AnnotationText="Por medio de las actividades 'Extract text' se realiza la extracción del RFC, tomando como referencia los textos que están antes y después de estos datos.&#xA;&#xA;Ejemplo: La carrera está entre el texto 'RFC:' y 'CURP:'" DisplayName="Extract RFC" sap:VirtualizedContainerService.HintSize="484.8,769.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence sap2010:Annotation.AnnotationText="Por medio de las actividades 'Extract text' se realiza la extracción del RFC, tomando como referencia los textos que están antes y después de estos datos.&#xA;&#xA;Ejemplo: La carrera está entre el texto 'RFC:' y 'CURP:'" DisplayName="Extract RFC" sap:VirtualizedContainerService.HintSize="484.8,773.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -190,15 +190,7 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <uast:ExtractText FirstMatch="{x:Null}" Results="{x:Null}" sap2010:Annotation.AnnotationText="Extracción del dato RFC" DisplayName="Extract Text RFC" EndingText="CURP:" ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" sap:VirtualizedContainerService.HintSize="451.2,88" sap2010:WorkflowViewState.IdRef="ExtractText_1" IgnoreDuplicates="False" MatchCase="False" Result="[out_RFC]" Source="[TextRFC]" StartingText="RFC:">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-        </uast:ExtractText>
+        <ui:Matches BuilderPattern="([A-ZÑ&amp;]{3,4}\d{6}[A-Z0-9]{3})" DisplayName="Find Matching Patterns RFC" FirstMatch="[out_RFC]" sap:VirtualizedContainerService.HintSize="451.2,92" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[TextRFC]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;([A-ZÑ&amp;]{3,4}\\d{6}[A-Z0-9]{3})&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="([A-ZÑ&amp;]{3,4}\d{6}[A-Z0-9]{3})" RegexOption="Compiled" />
         <If Condition="[Not String.IsNullOrWhiteSpace(out_RFC)]" DisplayName="If Is Not Empty" sap:VirtualizedContainerService.HintSize="451.2,504.8" sap2010:WorkflowViewState.IdRef="If_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">

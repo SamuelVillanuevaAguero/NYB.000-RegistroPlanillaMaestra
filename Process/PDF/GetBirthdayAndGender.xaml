@@ -109,7 +109,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadActaDeNacimiento" sap:VirtualizedContainerService.HintSize="859.2,504.4566666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadActaDeNacimiento" sap:VirtualizedContainerService.HintSize="772.8000000000001,434.05666666666673" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextActaDeNacimiento" />
       <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsGender" />
@@ -161,16 +161,16 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga una cadena con el formato pero que en realidad no es fecha de nacimiento válida." Condition="[ResultsBirthday.Count &gt; 0]" DisplayName="If para validar si se obtuvo la fecha de nacimiento del Acta de Nacimiento" sap:VirtualizedContainerService.HintSize="488,1349.6" sap2010:WorkflowViewState.IdRef="If_8">
+      <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga una cadena con el formato pero que en realidad no es fecha de nacimiento válida." Condition="[ResultsBirthday.Count &gt; 1]" DisplayName="If para validar si se obtuvo la fecha de nacimiento del Acta de Nacimiento" sap:VirtualizedContainerService.HintSize="416,108.8" sap2010:WorkflowViewState.IdRef="If_8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486.4,941.6" sap2010:WorkflowViewState.IdRef="Sequence_15">
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486.4,824" sap2010:WorkflowViewState.IdRef="Sequence_15">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="TextDate" />
             </Sequence.Variables>
@@ -179,16 +179,18 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap2010:Annotation.AnnotationText="Se usa como variable temporal TextDate para limpiar el valor recuperado y validar el mismo." DisplayName="Assign para limpiar fecha obtenida" sap:VirtualizedContainerService.HintSize="452.8,223.2" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <Assign sap2010:Annotation.AnnotationText="Se usa como variable temporal TextDate para limpiar el valor recuperado y validar el mismo." DisplayName="Assign para limpiar fecha obtenida" sap:VirtualizedContainerService.HintSize="452.8,105.6" sap2010:WorkflowViewState.IdRef="Assign_5">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[TextDate]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[ResultsBirthday(0).Value.Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String">[ResultsBirthday(1).Value.Trim]</InArgument>
               </Assign.Value>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Assign>
