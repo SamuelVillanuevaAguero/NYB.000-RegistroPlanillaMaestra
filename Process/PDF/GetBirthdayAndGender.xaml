@@ -1,8 +1,8 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ReadActaDeNacimiento" this:ReadActaDeNacimiento.in_File="C:\Users\karla\Documents\TecNM\DOCUMENTOS BEECKER\01. Acta de nacimiento - Karla Itzel Castelán Salgado..pdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadActaDeNacimiento" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_Gender" Type="OutArgument(x:String)" />
     <x:Property Name="out_Birthday" Type="OutArgument(x:String)" />
-    <x:Property Name="in_File" Type="InArgument(x:String)">
+    <x:Property Name="in_File" Type="InArgument(ugdm:GDriveRemoteItem)">
       <x:Property.Attributes>
         <RequiredArgumentAttribute />
       </x:Property.Attributes>
@@ -110,7 +110,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadActaDeNacimiento" sap:VirtualizedContainerService.HintSize="853.2,2389.6000000000004" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadActaDeNacimiento" sap:VirtualizedContainerService.HintSize="859.2,504.4566666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TextActaDeNacimiento" />
       <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsGender" />
@@ -121,7 +121,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage sap2010:Annotation.AnnotationText="Indica que inicia el proceso de lectura del documento correspondente, en este caso, el Acta de nacimiento." DisplayName="Log Message Reading Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="552.8,117.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading Acta de Nacimiento&quot;]">
+    <ui:LogMessage sap2010:Annotation.AnnotationText="Indica que inicia el proceso de lectura del documento correspondente, en este caso, el Acta de nacimiento." DisplayName="Log Message Reading Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="449.6,117.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading Acta de Nacimiento&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -130,14 +130,14 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence DisplayName="Extract Birthday And Gender" sap:VirtualizedContainerService.HintSize="552.8,389.6" sap2010:WorkflowViewState.IdRef="Sequence_20">
+    <Sequence DisplayName="Extract Birthday And Gender" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_20">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uisape:ExtractPDFText FilePassword="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_4" OcrEngine="UIPATH_DOCUMENT_OCR" PdfFile="[LocalResource.FromPath(in_File)]" Text="[TextActaDeNacimiento]" />
+      <uisape:ExtractPDFText FilePassword="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_4" OcrEngine="UIPATH_DOCUMENT_OCR" PdfFile="[in_File]" Text="[TextActaDeNacimiento]" />
       <ui:Matches FirstMatch="{x:Null}" BuilderPattern="(\d){1,2}/(\d){1,2}/(\d){4}" DisplayName="Find Matching Patterns For Birthday" sap:VirtualizedContainerService.HintSize="416,92" sap2010:WorkflowViewState.IdRef="Matches_8" Input="[TextActaDeNacimiento]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;(\\d){1,2}\/(\\d){1,2}\/(\\d){4}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="(\d){1,2}/(\d){1,2}/(\d){4}" RegexOption="IgnoreCase, Singleline" Result="[ResultsBirthday]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -155,10 +155,10 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:Matches>
     </Sequence>
-    <Sequence DisplayName="Validate Birthday" sap:VirtualizedContainerService.HintSize="552.8,1421.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+    <Sequence DisplayName="Validate Birthday" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -246,7 +246,7 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence DisplayName="Validate Gender" sap:VirtualizedContainerService.HintSize="552.8,56.8" sap2010:WorkflowViewState.IdRef="Sequence_19">
+    <Sequence DisplayName="Validate Gender" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_19">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -360,11 +360,11 @@
         </If.Else>
       </If>
     </Sequence>
-    <If sap2010:Annotation.AnnotationText="Por si el PDF está bien pero blanco. Marcará el ítem de la cola como Failed con el error de negocio y no se reintentará." Condition="[String.IsNullOrEmpty(out_Birthday) OR String.IsNullOrEmpty(out_Gender)]" DisplayName="If Captura Business Exception" sap:VirtualizedContainerService.HintSize="552.8,380.8" sap2010:WorkflowViewState.IdRef="If_9">
+    <If sap2010:Annotation.AnnotationText="Por si el PDF está bien pero blanco. Marcará el ítem de la cola como Failed con el error de negocio y no se reintentará." Condition="[String.IsNullOrEmpty(out_Birthday) OR String.IsNullOrEmpty(out_Gender)]" DisplayName="If Captura Business Exception" sap:VirtualizedContainerService.HintSize="449.6,108.8" sap2010:WorkflowViewState.IdRef="If_9">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
