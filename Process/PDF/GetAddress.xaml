@@ -1,8 +1,8 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="ReadDomicilio" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="out_City" Type="OutArgument(x:String)" />
-    <x:Property Name="out_State" Type="OutArgument(x:String)" />
-    <x:Property Name="in_File" Type="InArgument(ugdm:GDriveRemoteItem)">
+    <x:Property sap2010:Annotation.AnnotationText="Se utiliza para guardar el nombre del municipio" Name="out_City" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Se utiliza para guardar el nombre del estado" Name="out_State" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Se utiliza para traer el documento a leer" Name="in_File" Type="InArgument(ugdm:GDriveRemoteItem)">
       <x:Property.Attributes>
         <RequiredArgumentAttribute />
       </x:Property.Attributes>
@@ -146,13 +146,13 @@
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetAddressV2" sap:VirtualizedContainerService.HintSize="766.8000000000001,1348.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetAddress" sap:VirtualizedContainerService.HintSize="1315,647.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Reading RFC" sap:VirtualizedContainerService.HintSize="484.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading INE&quot;]">
+    <ui:LogMessage DisplayName="Log Message Reading RFC" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading INE&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -160,18 +160,19 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence DisplayName="GetAddress OCR" sap:VirtualizedContainerService.HintSize="484.8,732" sap2010:WorkflowViewState.IdRef="Sequence_8">
+    <Sequence sap2010:Annotation.AnnotationText="Se va a leer el archivo 'INE' para extraer los datos de municipio y estado para guardarlos en sus respectivos argumentos" DisplayName="GetAddress" sap:VirtualizedContainerService.HintSize="450,102" sap2010:WorkflowViewState.IdRef="Sequence_8">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="INEText" />
         <Variable x:TypeArguments="x:String" Name="Result" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uisape:ExtractPDFText FilePassword="{x:Null}" ApplyOcr="True" DisplayName="Extract PDF Text INE" sap:VirtualizedContainerService.HintSize="449.6,122.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_2" OcrEngine="UIPATH_DOCUMENT_OCR" PdfFile="[LocalResource.FromPath(&quot;C:\Users\Samue\Documents\RESIDENCIA\DOCS BEECKER\02. Identificación Oficial - Samuel Villanueva Aguero.pdf&quot;)]" Text="[INEText]">
+      <uisape:ExtractPDFText FilePassword="{x:Null}" ApplyOcr="True" DisplayName="Extract PDF Text INE" sap:VirtualizedContainerService.HintSize="450,123" sap2010:WorkflowViewState.IdRef="ExtractPDFText_2" OcrEngine="UIPATH_DOCUMENT_OCR" PdfFile="[LocalResource.FromPath(&quot;C:\Users\Samue\Documents\RESIDENCIA\DOCS BEECKER\02. Identificación Oficial - Samuel Villanueva Aguero.pdf&quot;)]" Text="[INEText]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -179,7 +180,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uisape:ExtractPDFText>
-      <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACs1V224aMRD9lZWfCQkkbSOkPIQlaWmSQrmkaqsIObsTcFhs1xcagpD6G/29fknH3ku4haRvFS94PDOec2bm7JycM0hiHQpuKOOgSG1OukBVNKK3CaSXpPb9pkSaXFpTGObkE50AqRGpxEQaUiINpmVCZ5m5XZhBR4pJwwRHs08SGBFYDcGdUAG+Y4IIfRNwLoGCHxa0C+zNpEukjWJ8iOeuUKalYldixadlQ8w4J5eCxvVZA+6oTQypGWWhRNpCs+zJtmITqmZkUSIdTM4UxLmXR3MpIpq51kXs/ApsExFDsgHtKreuIOtCAhFCG0Fw2gx8pAMZe5RDQGrxFT5EgFoKrmE3wqpL7xFd08Q6rxhAaoDxnmMMnc+4nSz3Yf1+e9wSuOJCAdXCtX5LUHG3uHmR8zPuRqavQbWmoBSLYUc3SiTEpmNqjvGkz7WVEuFjb17dJ6yoZc3WofzIzMDhrdWeRktvNPJ92hUIQjeEYeG50dunXvVZm5pRuckNDF1DBe+CmrIIyqeRYVNECbrc/XLGTfo3fHvUaNTPj0+Pq76ggba3g6WaBiEybKBctzxOoLzDpRRsy1Vu3PePjquTx/DicyX+evem9y4ef6sclYJrUBrDTyrlA/fDcGyVVXDCwRpFk1LQtrcJiy5g1hNj4CfcJm6qO9kC1u5oopH7Tj6vz/QibQEGtnhI+ZTqIrKpsQ3ePY1dmj0DD+bZdsRBL7teaUIPN8sIme8Suq1rR7FI64u1c3AXL2POz6H1D/8DFWu403XCopzeutFf56CTOwRLHis0oLBOcbU0Cknu6hTGC86fX7+dPS02oFJif91OOsFd2vL/hx6fcHGDbzS5NpRH0KYKmTA4vK6ebIgx2I+xVw3OUWeFwrlFs2US93Gv0Kv8D3pmCznL0ObF4fO395ghI3ybSnwwRl6BGQmE4rTLySZSE9GEPUKc531ZREIajQAZEGMrvbI6TIvcXlfiJ2pl08Aks2faiMiyT26bRmM6hGUWqpVVGrIqGoi7m+IurpbDDsuHBfJXi+CLRLWk/6r5N1KV2mCv1e2hzYkmnvZdkv3VHJeUDy2CxGtwj17RhzYeu0g1fugPDjAh1XVMPnZrM0JvR2M2iU4o6omIxp6wxV8X5p47zggAAA==" ConnectionId="da75aae5-28fa-457e-a21b-d064ddbf8a82" DisplayName="Generate Chat Completion" sap:VirtualizedContainerService.HintSize="449.6,272.8" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="f3d0276d-032a-30f7-b0f3-cfbbadda0f68">
+      <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACs1V224aMRD9lZWfCQkkbSOkPIQlaWmSQrmkaqsIObsTcFhs1xcagpD6G/29fknH3ku4haRvFS94PDOec2bm7JycM0hiHQpuKOOgSG1OukBVNKK3CaSXpPb9pkSaXFpTGObkE50AqRGpxEQaUiINpmVCZ5m5XZhBR4pJwwRHs08SGBFYDcGdUAG+Y4IIfRNwLoGCHxa0C+zNpEukjWJ8iOeuUKalYldixadlQ8w4J5eCxvVZA+6oTQypGWWhRNpCs+zJtmITqmZkUSIdTM4UxLmXR3MpIpq51kXs/ApsExFDsgHtKreuIOtCAhFCG0Fw2gx8pAMZe5RDQGrxFT5EgFoKrmE3wqpL7xFd08Q6rxhAaoDxnmMMnc+4nSz3Yf1+e9wSuOJCAdXCtX5LUHG3uHmR8zPuRqavQbWmoBSLYUc3SiTEpmNqjvGkz7WVEuFjb17dJ6yoZc3WofzIzMDhrdWeRktvNPJ92hUIQjeEYeG50dunXvVZm5pRuckNDF1DBe+CmrIIyqeRYVNECbrc/XLGTfo3fHvUaNTPj0+Pq76ggba3g6WaBiEybKBctzxOoLzDpRRsy1Vu3PePjquTx/DicyX+evem9y4ef6sclYJrUBrDTyrlA/fDcGyVVXDCwRpFk1LQtrcJiy5g1hNj4CfcJm6qO9kC1u5oopH7Tj6vz/QibQEGtnhI+ZTqIrKpsQ3ePY1dmj0DD+bZdsRBL7teaUIPN8sIme8Suq1rR7FI64u1c3AXL2POz6H1D/8DFWu403XCopzeutFf56CTOwRLHis0oLBOcbU0Cknu6hTGC86fX7+dPS02oFJif91OOsFd2vL/hx6fcHGDbzS5NpRH0KYKmTA4vK6ebIgx2I+xVw3OUWeFwrlFs2US93Gv0Kv8D3pmCznL0ObF4fO395ghI3ybSnwwRl6BGQmE4rTLySZSE9GEPUKc531ZREIajQAZEGMrvbI6TIvcXlfiJ2pl08Aks2faiMiyT26bRmM6hGUWqpVVGrIqGoi7m+IurpbDDsuHBfJXi+CLRLWk/6r5N1KV2mCv1e2hzYkmnvZdkv3VHJeUDy2CxGtwj17RhzYeu0g1fugPDjAh1XVMPnZrM0JvR2M2iU4o6omIxp6wxV8X5p47zggAAA==" ConnectionId="da75aae5-28fa-457e-a21b-d064ddbf8a82" DisplayName="Generate Chat Completion" sap:VirtualizedContainerService.HintSize="450,269" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="f3d0276d-032a-30f7-b0f3-cfbbadda0f68">
         <isactr:ConnectorActivity.FieldObjects>
           <isactr:FieldObject Name="prompt" Type="FieldArgument">
             <isactr:FieldObject.Value>
@@ -220,13 +221,13 @@ Texto OCR: " + INEText]</InArgument>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </isactr:ConnectorActivity>
-      <Sequence DisplayName="Extract City And State" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
+      <Sequence DisplayName="Extract City And State" sap:VirtualizedContainerService.HintSize="450,245" sap2010:WorkflowViewState.IdRef="Sequence_9">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <uast:ExtractText FirstMatch="{x:Null}" Results="{x:Null}" DisplayName="Extract Text City" EndingText="," ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="ExtractText_2" IgnoreDuplicates="False" MatchCase="False" Result="[out_City]" Source="[Result]" StartingText="municipio:">
+        <uast:ExtractText FirstMatch="{x:Null}" Results="{x:Null}" DisplayName="Extract Text City" EndingText="," ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="ExtractText_2" IgnoreDuplicates="False" MatchCase="False" Result="[out_City]" Source="[Result]" StartingText="municipio:">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -234,7 +235,7 @@ Texto OCR: " + INEText]</InArgument>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </uast:ExtractText>
-        <uast:ExtractText FirstMatch="{x:Null}" Results="{x:Null}" DisplayName="Extract Text State" EndingText="}" ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="ExtractText_1" IgnoreDuplicates="False" MatchCase="False" Result="[out_State]" Source="[Result]" StartingText="estado:">
+        <uast:ExtractText FirstMatch="{x:Null}" Results="{x:Null}" DisplayName="Extract Text State" EndingText="}" ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="ExtractText_1" IgnoreDuplicates="False" MatchCase="False" Result="[out_State]" Source="[Result]" StartingText="estado:">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -272,25 +273,26 @@ Texto OCR: " + INEText]</InArgument>
         </ui:MultipleAssign>
       </Sequence>
     </Sequence>
-    <Sequence DisplayName="Validate Address" sap:VirtualizedContainerService.HintSize="484.8,419.2" sap2010:WorkflowViewState.IdRef="Sequence_11">
+    <Sequence DisplayName="Validate Address" sap:VirtualizedContainerService.HintSize="450,48" sap2010:WorkflowViewState.IdRef="Sequence_11">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[out_City = &quot;-&quot; And out_State = &quot;-&quot;]" DisplayName="If Not Is Valid" sap:VirtualizedContainerService.HintSize="451.2,336" sap2010:WorkflowViewState.IdRef="If_1">
+      <If Condition="[out_City = &quot;-&quot; And out_State = &quot;-&quot;]" DisplayName="If Not Is Valid" sap:VirtualizedContainerService.HintSize="452,329" sap2010:WorkflowViewState.IdRef="If_1">
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_13">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Throw DisplayName="Throw BE" Exception="[New BusinessRuleException(&quot;Error en la lectura de la dirección&quot;)]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            <Throw DisplayName="Throw BE" Exception="[New BusinessRuleException(&quot;Error en la lectura de la dirección&quot;)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Throw_1" />
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_12">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
