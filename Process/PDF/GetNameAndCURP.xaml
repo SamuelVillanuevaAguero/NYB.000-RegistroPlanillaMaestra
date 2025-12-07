@@ -130,11 +130,6 @@
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="GetNameAndCURP" sap:VirtualizedContainerService.HintSize="1315,647.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="TextCURP" />
-      <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="ResultsCURP" />
-      <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="ResultsName" />
-    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -149,6 +144,11 @@
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
     <Sequence sap2010:Annotation.AnnotationText="Extracción del formato CURP de los datos:&#xA;- CURP&#xA;- NOMBRE COMPLETO" DisplayName="GetNameAndCURP" sap:VirtualizedContainerService.HintSize="450,109" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="TextCURP" />
+        <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="ResultsCURP" />
+        <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="ResultsName" />
+      </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
