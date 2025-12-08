@@ -110,7 +110,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetBirthdayAndGender" sap:VirtualizedContainerService.HintSize="1315,647.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetBirthdayAndGender" sap:VirtualizedContainerService.HintSize="766.8000000000001,848.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsGender" />
       <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ResultsBirthday" />
@@ -120,7 +120,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Reading Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading Acta de Nacimiento&quot;]">
+    <ui:LogMessage DisplayName="Log Message Reading Acta De Nacimiento" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading Acta de Nacimiento&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -128,7 +128,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Se va a leer el archivo ‘Acta de nacimiento’ para extraer los datos de genero y fecha de cumpleaños para guardarlos en sus respectivos argumentos" DisplayName="GetBirthdayAndGender" sap:VirtualizedContainerService.HintSize="450,118" sap2010:WorkflowViewState.IdRef="Sequence_20">
+    <Sequence sap2010:Annotation.AnnotationText="Se va a leer el archivo ‘Acta de nacimiento’ para extraer los datos de genero y fecha de cumpleaños para guardarlos en sus respectivos argumentos" DisplayName="GetBirthdayAndGender" sap:VirtualizedContainerService.HintSize="451.2,117.6" sap2010:WorkflowViewState.IdRef="Sequence_20">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="TextActaDeNacimiento" />
       </Sequence.Variables>
@@ -157,7 +157,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:Matches>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="Se va a validar la fecha de cumpleaños" DisplayName="Validate Birthday" sap:VirtualizedContainerService.HintSize="450,88" sap2010:WorkflowViewState.IdRef="Sequence_12">
+    <Sequence sap2010:Annotation.AnnotationText="Se va a validar la fecha de cumpleaños" DisplayName="Validate Birthday" sap:VirtualizedContainerService.HintSize="552.8,899.2" sap2010:WorkflowViewState.IdRef="Sequence_12">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -165,7 +165,7 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga una cadena con el formato pero que en realidad no es fecha de nacimiento válida." Condition="[ResultsBirthday.Count &gt; 0]" DisplayName="If para validar si se obtuvo la fecha de nacimiento del Acta de Nacimiento" sap:VirtualizedContainerService.HintSize="519,1317" sap2010:WorkflowViewState.IdRef="If_8">
+      <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga una cadena con el formato pero que en realidad no es fecha de nacimiento válida." Condition="[ResultsBirthday.Count &gt; 0]" DisplayName="If para validar si se obtuvo la fecha de nacimiento del Acta de Nacimiento" sap:VirtualizedContainerService.HintSize="519.2,808" sap2010:WorkflowViewState.IdRef="If_8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -174,7 +174,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="517,916" sap2010:WorkflowViewState.IdRef="Sequence_15">
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="517.6,400" sap2010:WorkflowViewState.IdRef="Sequence_15">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="TextDate" />
             </Sequence.Variables>
@@ -183,7 +183,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap2010:Annotation.AnnotationText="Se usa como variable temporal TextDate para limpiar el valor recuperado y validar el mismo." DisplayName="Assign para limpiar fecha obtenida" sap:VirtualizedContainerService.HintSize="483,220" sap2010:WorkflowViewState.IdRef="Assign_11">
+            <Assign sap2010:Annotation.AnnotationText="Se usa como variable temporal TextDate para limpiar el valor recuperado y validar el mismo." DisplayName="Assign para limpiar fecha obtenida" sap:VirtualizedContainerService.HintSize="484,223.2" sap2010:WorkflowViewState.IdRef="Assign_11">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[TextDate]</OutArgument>
               </Assign.To>
@@ -196,20 +196,22 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Assign>
-            <If sap2010:Annotation.AnnotationText="Intenta leer el texto usando formato de dos dígitos (dd/MM) o de un dígito (d/M). Si logra entenderlo como fecha (ej. no es 30 de febrero), devuelve True" Condition="[DateTime.TryParseExact(TextDate, {&quot;dd/MM/yyyy&quot;, &quot;d/M/yyyy&quot;}, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, Nothing)]" DisplayName="If to validate birthday" sap:VirtualizedContainerService.HintSize="483,636" sap2010:WorkflowViewState.IdRef="If_11">
+            <If sap2010:Annotation.AnnotationText="Intenta leer el texto usando formato de dos dígitos (dd/MM) o de un dígito (d/M). Si logra entenderlo como fecha (ej. no es 30 de febrero), devuelve True" Condition="[DateTime.TryParseExact(TextDate, {&quot;dd/MM/yyyy&quot;, &quot;d/M/yyyy&quot;}, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, Nothing)]" DisplayName="If to validate birthday" sap:VirtualizedContainerService.HintSize="451.2,627.2" sap2010:WorkflowViewState.IdRef="If_11">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,271" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,278.4" sap2010:WorkflowViewState.IdRef="Sequence_23">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap2010:Annotation.AnnotationText="La fecha de nacimiento válida pasa al argumento de salida." DisplayName="Assign Out Argument" sap:VirtualizedContainerService.HintSize="416,211" sap2010:WorkflowViewState.IdRef="Assign_8">
+                  <Assign sap2010:Annotation.AnnotationText="La fecha de nacimiento válida pasa al argumento de salida." DisplayName="Assign Out Argument" sap:VirtualizedContainerService.HintSize="416,214.4" sap2010:WorkflowViewState.IdRef="Assign_8">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[out_Birthday]</OutArgument>
                     </Assign.To>
@@ -225,31 +227,31 @@
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_24">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Throw Exception="[New BusinessRuleException(&quot;El texto extraído (&quot; + TextDate + &quot;) cumple con el patrón visual pero no es una fecha válida del calendario.&quot;)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                  <Throw DisplayName="Throw BE" Exception="[New BusinessRuleException(&quot;El texto extraído (&quot; + TextDate + &quot;) cumple con el patrón visual pero no es una fecha válida del calendario.&quot;)]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_4" />
                 </Sequence>
               </If.Else>
             </If>
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="517,226" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="517.6,233.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="483,166" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;NO se obtuvo fecha de nacimiento. Fallo en la lectura de Acta de Nacimiento&quot;]" />
+            <ui:LogMessage DisplayName="Log Message Birthday" sap:VirtualizedContainerService.HintSize="484,169.6" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;NO se obtuvo fecha de nacimiento. Fallo en la lectura de Acta de Nacimiento&quot;]" />
           </Sequence>
         </If.Else>
       </If>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="Se va a validar el genero" DisplayName="Validate Gender" sap:VirtualizedContainerService.HintSize="450,88" sap2010:WorkflowViewState.IdRef="Sequence_19">
+    <Sequence sap2010:Annotation.AnnotationText="Se va a validar el genero" DisplayName="Validate Gender" sap:VirtualizedContainerService.HintSize="449.6,88" sap2010:WorkflowViewState.IdRef="Sequence_19">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -257,7 +259,7 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga nada de la lectura del Acta de Nacimiento. Recupera la primer coincidencia." Condition="[ResultsGender.Count &gt; 0]" DisplayName="If para validar si se obtuvo el género del Acta de Nacimiento" sap:VirtualizedContainerService.HintSize="524,1688" sap2010:WorkflowViewState.IdRef="If_10">
+      <If sap2010:Annotation.AnnotationText="En caso de que no se obtenga nada de la lectura del Acta de Nacimiento. Recupera la primer coincidencia." Condition="[ResultsGender.Count &gt; 0]" DisplayName="If para validar si se obtuvo el género del Acta de Nacimiento" sap:VirtualizedContainerService.HintSize="521.6,1618.4" sap2010:WorkflowViewState.IdRef="If_10">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -266,7 +268,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="522,1287" sap2010:WorkflowViewState.IdRef="Sequence_21">
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="520,1210.4" sap2010:WorkflowViewState.IdRef="Sequence_21">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="TextGender" />
             </Sequence.Variables>
@@ -275,7 +277,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap2010:Annotation.AnnotationText="Evita que out_Gender tenga basura usando una variable temporal. Quita espacios y convierte a mayúscula." DisplayName="Assign variable temporal para limpieza" sap:VirtualizedContainerService.HintSize="488,236" sap2010:WorkflowViewState.IdRef="Assign_7">
+            <Assign sap2010:Annotation.AnnotationText="Evita que out_Gender tenga basura usando una variable temporal. Quita espacios y convierte a mayúscula." DisplayName="Assign variable temporal para limpieza" sap:VirtualizedContainerService.HintSize="486.4,121.6" sap2010:WorkflowViewState.IdRef="Assign_7">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[TextGender]</OutArgument>
               </Assign.To>
@@ -285,23 +287,27 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Assign>
-            <If sap2010:Annotation.AnnotationText="En la planilla necesitamos &quot;Femenino&quot; o &quot;Masculino&quot;, por lo que se realiza la conversión para almacenar en out_Gender" Condition="[TextGender = &quot;HOMBRE&quot;]" DisplayName="If HOMBRE" sap:VirtualizedContainerService.HintSize="488,991" sap2010:WorkflowViewState.IdRef="If_12">
+            <If sap2010:Annotation.AnnotationText="En la planilla necesitamos &quot;Femenino&quot; o &quot;Masculino&quot;, por lo que se realiza la conversión para almacenar en out_Gender" Condition="[TextGender = &quot;HOMBRE&quot;]" DisplayName="If HOMBRE" sap:VirtualizedContainerService.HintSize="486.4,1024.8" sap2010:WorkflowViewState.IdRef="If_12">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,226" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,233.6" sap2010:WorkflowViewState.IdRef="Sequence_25">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="Assign Masculino" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="Assign_9">
+                  <Assign DisplayName="Assign Masculino" sap:VirtualizedContainerService.HintSize="451.2,169.6" sap2010:WorkflowViewState.IdRef="Assign_9">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[out_Gender]</OutArgument>
                     </Assign.To>
@@ -312,21 +318,21 @@
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,590" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,612.8" sap2010:WorkflowViewState.IdRef="Sequence_26">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[TextGender = &quot;MUJER&quot;]" DisplayName="If MUJER" sap:VirtualizedContainerService.HintSize="452,530" sap2010:WorkflowViewState.IdRef="If_13">
+                  <If Condition="[TextGender = &quot;MUJER&quot;]" DisplayName="If MUJER" sap:VirtualizedContainerService.HintSize="451.2,548.8" sap2010:WorkflowViewState.IdRef="If_13">
                     <If.Then>
-                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,233.6" sap2010:WorkflowViewState.IdRef="Sequence_27">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Assign DisplayName="Assign Femenino" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_10">
+                        <Assign DisplayName="Assign Femenino" sap:VirtualizedContainerService.HintSize="416,169.6" sap2010:WorkflowViewState.IdRef="Assign_10">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[out_Gender]</OutArgument>
                           </Assign.To>
@@ -337,13 +343,13 @@
                       </Sequence>
                     </If.Then>
                     <If.Else>
-                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_28">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Throw Exception="[New BusinessRuleException(&quot;El género extraído (&quot; + TextGender + &quot;) no es válido.&quot;)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Throw_5" />
+                        <Throw DisplayName="Throw BE Gender" Exception="[New BusinessRuleException(&quot;El género extraído (&quot; + TextGender + &quot;) no es válido.&quot;)]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_5" />
                       </Sequence>
                     </If.Else>
                   </If>
@@ -353,18 +359,18 @@
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="522,226" sap2010:WorkflowViewState.IdRef="Sequence_22">
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="520,233.6" sap2010:WorkflowViewState.IdRef="Sequence_22">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,166" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;NO se obtuvo género. Fallo en la lectura de Acta de Nacimiento&quot;]" />
+            <ui:LogMessage DisplayName="Log Message Gender" sap:VirtualizedContainerService.HintSize="486.4,169.6" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;NO se obtuvo género. Fallo en la lectura de Acta de Nacimiento&quot;]" />
           </Sequence>
         </If.Else>
       </If>
     </Sequence>
-    <If sap2010:Annotation.AnnotationText="Por si el PDF está bien pero blanco. Marcará el ítem de la cola como Failed con el error de negocio y no se reintentará." Condition="[String.IsNullOrEmpty(out_Birthday) OR String.IsNullOrEmpty(out_Gender)]" DisplayName="If Captura Business Exception" sap:VirtualizedContainerService.HintSize="450,109" sap2010:WorkflowViewState.IdRef="If_9">
+    <If sap2010:Annotation.AnnotationText="Por si el PDF está bien pero blanco. Marcará el ítem de la cola como Failed con el error de negocio y no se reintentará." Condition="[String.IsNullOrEmpty(out_Birthday) OR String.IsNullOrEmpty(out_Gender)]" DisplayName="If Captura Business Exception" sap:VirtualizedContainerService.HintSize="451.2,357.6" sap2010:WorkflowViewState.IdRef="If_9">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -373,13 +379,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_17">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_17">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Throw Exception="[New BusinessRuleException(&quot;El acta no contiene fecha de nacimiento o género legible.&quot;)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Throw_3" />
+          <Throw DisplayName="Throw BE Birthday" Exception="[New BusinessRuleException(&quot;El acta no contiene fecha de nacimiento o género legible.&quot;)]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_3" />
         </Sequence>
       </If.Then>
       <If.Else>
