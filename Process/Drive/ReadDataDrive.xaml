@@ -468,7 +468,7 @@
         <InArgument x:TypeArguments="s:String[]" x:Key="in_Array" xml:space="preserve">[New String() {
 "", "", "", "",
 out_Name, out_NSS, out_CURP, out_RFC,
-"",
+out_Gender,
 out_Birthday,
 "",
 out_City + ", " + out_State, 
