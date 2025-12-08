@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ReadDataDrive" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugae="clr-namespace:UiPath.GSuite.Activities.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ugm="clr-namespace:UiPath.GSuite.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadDataDrive" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugadf="clr-namespace:UiPath.GSuite.Activities.Drive.Filters;assembly=UiPath.GSuite.Activities" xmlns:ugae="clr-namespace:UiPath.GSuite.Activities.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ugm="clr-namespace:UiPath.GSuite.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_SpreadSheet" Type="InArgument(ugdm:GDriveRemoteItem)">
       <x:Property.Attributes>
@@ -134,11 +134,23 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="766.8000000000001,2033.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="766.8000000000001,2166.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ugm:GmailMessage" Name="Email" />
+      <Variable x:TypeArguments="ugdm:GDriveRemoteItem[]" Name="filesOrFolders">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="SourceIdRef">GetFileListConnections_1</x:String>
+            <x:String x:Key="SourcePropertyName">Result</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Variable>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -153,7 +165,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Recupera la dirección de correo (nombre de la carpeta) y hace un recorrido de los archivos del aspirante para su lectura" DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="601.6,1781.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
+    <Sequence sap2010:Annotation.AnnotationText="Recupera la dirección de correo (nombre de la carpeta) y hace un recorrido de los archivos del aspirante para su lectura" DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="601.6,1914.4" sap2010:WorkflowViewState.IdRef="Sequence_16">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -170,7 +182,39 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uga:GetEmailByIdConnections>
-      <uga:ForEachFileFolderConnections BrowserLocation="{x:Null}" ConnectionAccountName="{x:Null}" ExistingLocation="{x:Null}" Filter="{x:Null}" FolderIdBackup="{x:Null}" Length="{x:Null}" LocationFriendlyName="{x:Null}" ManualEntryLocation="{x:Null}" QueryFilter="{x:Null}" AllLabels="W10=" sap2010:Annotation.AnnotationText="Recorrido de los archivos del aspirante" AuthScopesInvalid="False" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" CurrentItemVariableName="CurrentFile" DisplayName="Root Folder" FilterSelectionMode="ConditionBuilder" sap:VirtualizedContainerService.HintSize="568,1556.8" sap2010:WorkflowViewState.IdRef="ForEachFileFolderConnections_1" LocationInputMode="RelativePath" MaxResults="200" StarredOnly="False" UseConnectionService="True" WhatToReturn="[UiPath.GSuite.Activities.Drive.Enums.LocationType.Files]">
+      <uga:GetFileListConnections ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" FolderIdBackup="{x:Null}" ManualEntryLocation="{x:Null}" QueryFilter="{x:Null}" AllLabels="W10=" AuthScopesInvalid="False" BrowserLocation="https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" DisplayName="Get File or Folder List" FilterSelectionMode="ConditionBuilder" sap:VirtualizedContainerService.HintSize="568,185.6" sap2010:WorkflowViewState.IdRef="GetFileListConnections_1" LocationFriendlyName="Registros" LocationInputMode="Browse" MaxResults="200" Result="[filesOrFolders]" StarredOnly="False" UseConnectionService="True" WhatToReturn="[UiPath.GSuite.Activities.Drive.Enums.LocationType.Folders]">
+        <uga:GetFileListConnections.Filter>
+          <ugadf:FileFilterArgument LogicalOperator="And">
+            <ugadf:FileFilterArgument.Filters>
+              <ugadf:SingleFileFilterArgument DateValue="{x:Null}" Values="{x:Null}" Criteria="Name" DateOperator="NewerThan" FileType="GoogleDocs" OwnerOperator="In" StringOperator="Equals" TextOperator="Contains" TypeOperator="Equals" Value="[Email.FromAddress]" />
+            </ugadf:FileFilterArgument.Filters>
+          </ugadf:FileFilterArgument>
+        </uga:GetFileListConnections.Filter>
+        <uga:GetFileListConnections.FilterSelectionBackup>
+          <usau:BackupSlot x:TypeArguments="ugae:FilterMode" StoredValue="ConditionBuilder">
+            <usau:BackupSlot.BackupValues>
+              <scg:Dictionary x:TypeArguments="ugae:FilterMode, scg:List(x:Object)" />
+            </usau:BackupSlot.BackupValues>
+          </usau:BackupSlot>
+        </uga:GetFileListConnections.FilterSelectionBackup>
+        <uga:GetFileListConnections.Item>
+          <ugam:DriveItemArgument ConnectionDescriptor="{x:Null}" Existing="{x:Null}" FullPath="{x:Null}" IdOrUrl="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" BrowserId="https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI" ConnectionKey="2bd701f5-af16-4308-b164-afbf90d4df78" FriendlyName="Registros" FullPathHint="My Drive/Registros" InputMode="Browse">
+            <ugam:DriveItemArgument.Backup>
+              <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" StoredValue="Browse">
+                <usau:BackupSlot.BackupValues>
+                  <scg:Dictionary x:TypeArguments="ugade:EDriveItemMode, scg:List(x:Object)" />
+                </usau:BackupSlot.BackupValues>
+              </usau:BackupSlot>
+            </ugam:DriveItemArgument.Backup>
+            <ugam:DriveItemArgument.ParentIdFullPathHint>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </ugam:DriveItemArgument.ParentIdFullPathHint>
+          </ugam:DriveItemArgument>
+        </uga:GetFileListConnections.Item>
+      </uga:GetFileListConnections>
+      <uga:ForEachFileFolderConnections BrowserLocation="{x:Null}" ConnectionAccountName="{x:Null}" Filter="{x:Null}" FolderIdBackup="{x:Null}" Length="{x:Null}" LocationFriendlyName="{x:Null}" ManualEntryLocation="{x:Null}" QueryFilter="{x:Null}" AllLabels="W10=" sap2010:Annotation.AnnotationText="Recorrido de los archivos del aspirante" AuthScopesInvalid="False" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" CurrentItemVariableName="CurrentFile" DisplayName="Root Folder" ExistingLocation="[filesOrFolders.First()]" FilterSelectionMode="ConditionBuilder" sap:VirtualizedContainerService.HintSize="568,1504" sap2010:WorkflowViewState.IdRef="ForEachFileFolderConnections_1" LocationInputMode="UseExisting" MaxResults="200" StarredOnly="False" UseConnectionService="True" WhatToReturn="[UiPath.GSuite.Activities.Drive.Enums.LocationType.Files]">
         <uga:ForEachFileFolderConnections.Body>
           <ActivityAction x:TypeArguments="ugdm:GDriveRemoteItem, x:Int32">
             <ActivityAction.Argument1>
@@ -430,9 +474,9 @@
           </usau:BackupSlot>
         </uga:ForEachFileFolderConnections.FilterSelectionBackup>
         <uga:ForEachFileFolderConnections.Item>
-          <ugam:DriveItemArgument BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" IdOrUrl="{x:Null}" ConnectionKey="2bd701f5-af16-4308-b164-afbf90d4df78" FullPathHint="My Drive/Registros/SamuelVillanuevaAguero@hotmail.com" InputMode="RelativePath" ParentId="https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI" ParentIdFriendlyName="Registros" ParentIdFullPathHint="My Drive/Registros" RelativePath="[Email.FromAddress]">
+          <ugam:DriveItemArgument BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" IdOrUrl="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" ConnectionKey="2bd701f5-af16-4308-b164-afbf90d4df78" Existing="[filesOrFolders.First()]" FullPathHint="My Drive/Registros/SamuelVillanuevaAguero@hotmail.com" InputMode="UseExisting" ParentIdFullPathHint="[Nothing]">
             <ugam:DriveItemArgument.Backup>
-              <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" StoredValue="RelativePath">
+              <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" StoredValue="UseExisting">
                 <usau:BackupSlot.BackupValues>
                   <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="2">
                     <InArgument x:TypeArguments="x:String">https://drive.google.com/drive/folders/1QHi23ThK1aeXYP0Ysn2stFB0oTIh76na</InArgument>
@@ -442,12 +486,12 @@
                     <InArgument x:TypeArguments="x:String">https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI/SamuelVillanuevaAguero@hotmail.com</InArgument>
                   </scg:List>
                   <scg:List x:TypeArguments="x:Object" x:Key="RelativePath" Capacity="3">
-                    <x:Null />
-                    <x:Null />
                     <InArgument x:TypeArguments="x:String" />
+                    <InArgument x:TypeArguments="x:String" />
+                    <InArgument x:TypeArguments="x:String">[Email.FromAddress]</InArgument>
                   </scg:List>
                   <scg:List x:TypeArguments="x:Object" x:Key="UrlOrId" Capacity="1">
-                    <InArgument x:TypeArguments="x:String">https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI/SamuelVillanuevaAguero@hotmail.com</InArgument>
+                    <InArgument x:TypeArguments="x:String" />
                   </scg:List>
                 </usau:BackupSlot.BackupValues>
               </usau:BackupSlot>

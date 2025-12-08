@@ -119,7 +119,7 @@
       <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="ID: NYB.000&#xA;Nombre: Bot Registro Datos Personales En Planilla Maestra&#xA;Desarrollador: Samuel Villanueva Aguero&#xA;Aplicaciones: Google Sheets, Gmail, Drive, Chrome" DisplayName="General Business Process" sap:VirtualizedContainerService.HintSize="772.8000000000001,434.4" sap2010:WorkflowViewState.IdRef="StateMachine_1">
+  <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="ID: NYB.000&#xA;Nombre: Bot Registro Datos Personales En Planilla Maestra&#xA;Desarrollador: Samuel Villanueva Aguero&#xA;Aplicaciones: Google Sheets, Gmail, Drive, Chrome" DisplayName="General Business Process" sap:VirtualizedContainerService.HintSize="772.8000000000001,356" sap2010:WorkflowViewState.IdRef="StateMachine_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
