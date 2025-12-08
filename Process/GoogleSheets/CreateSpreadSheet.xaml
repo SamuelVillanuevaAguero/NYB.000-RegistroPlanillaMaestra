@@ -142,7 +142,7 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uga:WriteCellConnections BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ManualEntrySpreadsheetId="{x:Null}" AuthScopesInvalid="False" Cell="A1" ConnectionId="6fb93819-04f4-4cee-8a34-f026674e903a" DisplayName="Write to a cell in Google Sheets" HideCell="False" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteCellConnections_1" ItemSelectionMode="UseExisting" RangeLocation="Transacciones Fallidas" Spreadsheet="[out_SpreadSheet]" UseConnectionService="True" WhatToWrite="[&quot;Correo&quot;]">
+      <uga:WriteCellConnections BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ManualEntrySpreadsheetId="{x:Null}" AuthScopesInvalid="False" Cell="A1" ConnectionId="6fb93819-04f4-4cee-8a34-f026674e903a" DisplayName="Write Email to a cell in Google Sheets" HideCell="False" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteCellConnections_1" ItemSelectionMode="UseExisting" RangeLocation="Transacciones Fallidas" Spreadsheet="[out_SpreadSheet]" UseConnectionService="True" WhatToWrite="[&quot;Correo&quot;]">
         <uga:WriteCellConnections.FileIdBackup>
           <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID1" StoredValue="UseExisting">
             <usau:BackupSlot.BackupValues>
@@ -169,7 +169,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uga:WriteCellConnections>
-      <uga:WriteCellConnections BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ManualEntrySpreadsheetId="{x:Null}" AuthScopesInvalid="False" Cell="B1" ConnectionId="6fb93819-04f4-4cee-8a34-f026674e903a" DisplayName="Write to a cell in Google Sheets" HideCell="False" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteCellConnections_2" ItemSelectionMode="UseExisting" RangeLocation="Transacciones Fallidas" Spreadsheet="[out_SpreadSheet]" UseConnectionService="True" WhatToWrite="[&quot;Mensaje de Error&quot;]">
+      <uga:WriteCellConnections BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ManualEntrySpreadsheetId="{x:Null}" AuthScopesInvalid="False" Cell="B1" ConnectionId="6fb93819-04f4-4cee-8a34-f026674e903a" DisplayName="Write Issue to a cell in Google Sheets" HideCell="False" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteCellConnections_2" ItemSelectionMode="UseExisting" RangeLocation="Transacciones Fallidas" Spreadsheet="[out_SpreadSheet]" UseConnectionService="True" WhatToWrite="[&quot;Mensaje de Error&quot;]">
         <uga:WriteCellConnections.FileIdBackup>
           <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID2" StoredValue="UseExisting">
             <usau:BackupSlot.BackupValues>
@@ -196,7 +196,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uga:WriteCellConnections>
-      <uga:WriteCellConnections BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ManualEntrySpreadsheetId="{x:Null}" AuthScopesInvalid="False" Cell="C1" ConnectionId="6fb93819-04f4-4cee-8a34-f026674e903a" DisplayName="Write to a cell in Google Sheets" HideCell="False" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="WriteCellConnections_3" ItemSelectionMode="UseExisting" RangeLocation="Transacciones Fallidas" Spreadsheet="[out_SpreadSheet]" UseConnectionService="True" WhatToWrite="[&quot;Fecha&quot;]">
+      <uga:WriteCellConnections BrowserItemFriendlyName="{x:Null}" BrowserItemId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ManualEntrySpreadsheetId="{x:Null}" AuthScopesInvalid="False" Cell="C1" ConnectionId="6fb93819-04f4-4cee-8a34-f026674e903a" DisplayName="Write Date to a cell in Google Sheets" HideCell="False" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="WriteCellConnections_3" ItemSelectionMode="UseExisting" RangeLocation="Transacciones Fallidas" Spreadsheet="[out_SpreadSheet]" UseConnectionService="True" WhatToWrite="[&quot;Fecha&quot;]">
         <uga:WriteCellConnections.FileIdBackup>
           <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID3" StoredValue="UseExisting">
             <usau:BackupSlot.BackupValues>
