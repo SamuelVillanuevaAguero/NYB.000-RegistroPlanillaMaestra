@@ -9,15 +9,15 @@
     "UiPath.Excel.Activities": "[3.3.0-preview]",
     "UiPath.GSuite.Activities": "[3.5.10]",
     "UiPath.IntegrationService.Activities": "[1.21.0]",
-    "UiPath.System.Activities": "[25.10.3]",
+    "UiPath.System.Activities.Runtime": "[25.10.3]",
     "UiPath.Testing.Activities": "[25.10.0]",
-    "UiPath.UIAutomation.Activities": "[25.10.19]"
+    "UiPath.UIAutomation.Activities.Runtime": "[25.10.19]"
   },
   "webServices": [],
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "26.0.179.0",
-  "projectVersion": "1.0.12",
+  "projectVersion": "1.0.16",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
@@ -34,7 +34,8 @@
     "readyForPiP": false,
     "startsInPiP": false,
     "mustRestoreAllDependencies": true,
-    "pipType": "ChildSession"
+    "pipType": "ChildSession",
+    "robotVersion": "26.0.181"
   },
   "designOptions": {
     "projectProfile": "Developement",
@@ -45,58 +46,67 @@
     "processOptions": {
       "ignoredFiles": []
     },
-    "fileInfoCollection": [
+    "fileInfoCollection": [],
+    "saveToCloud": false
+  },
+  "arguments": {
+    "input": [
       {
-        "editingStatus": "InProgress",
-        "testCaseId": "d4411da4-8ec8-423c-9af5-22005738b130",
-        "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
-        "fileName": "Tests\\GetTransactionDataTestCase.xaml"
+        "name": "in_OrchestratorQueueName",
+        "displayName": "in_OrchestratorQueueName",
+        "tooltip": "Allows the Orchestrator queue name to be passed as an argument, instead of only being defined in the configuration file.",
+        "type": "System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+        "required": false,
+        "hasDefault": false
       },
       {
-        "editingStatus": "InProgress",
-        "testCaseId": "1b678a1e-b240-419d-978b-723268fdb5b7",
-        "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
-        "fileName": "Tests\\InitAllApplicationsTestCase.xaml"
+        "name": "in_OrchestratorQueueFolder",
+        "displayName": "in_OrchestratorQueueFolder",
+        "tooltip": "Allows the Orchestrator folder name where the queue is created to be passed as an argument, instead of only being defined in the configuration file.",
+        "type": "System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+        "required": false,
+        "hasDefault": false
       },
       {
-        "editingStatus": "InProgress",
-        "testCaseId": "c2dbcd32-d2e4-4dd7-a7f0-48b24f930a99",
-        "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
-        "fileName": "Tests\\InitAllSettingsTestCase.xaml"
-      },
-      {
-        "editingStatus": "InProgress",
-        "testCaseId": "93655ce8-9a58-4665-8409-d7871d5fb3c0",
-        "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
-        "fileName": "Tests\\MainTestCase.xaml"
-      },
-      {
-        "editingStatus": "InProgress",
-        "testCaseId": "3da1c3b8-220d-4f5a-b983-a09406f7ed86",
-        "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
-        "fileName": "Tests\\ProcessTestCase.xaml"
-      },
-      {
-        "editingStatus": "InProgress",
-        "testCaseId": "8dc5603c-ccee-4f1b-8dd9-d14959357543",
-        "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
-        "fileName": "Tests\\WorkflowTestCaseTemplate.xaml"
+        "name": "in_FolderDrive",
+        "displayName": "in_FolderDrive",
+        "type": "UiPath.GSuite.Activities.Gmail.Models.FolderArgument, UiPath.GSuite.Activities, Version=3.5.10.0, Culture=neutral, PublicKeyToken=null",
+        "required": false,
+        "hasDefault": false
       }
     ],
-    "saveToCloud": false
+    "output": []
   },
   "expressionLanguage": "VisualBasic",
   "entryPoints": [
     {
       "filePath": "Main.xaml",
       "uniqueId": "3eeca375-0751-4ae1-9754-c965101d04c6",
-      "input": [],
+      "input": [
+        {
+          "name": "in_OrchestratorQueueName",
+          "displayName": "in_OrchestratorQueueName",
+          "tooltip": "Allows the Orchestrator queue name to be passed as an argument, instead of only being defined in the configuration file.",
+          "type": "System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_OrchestratorQueueFolder",
+          "displayName": "in_OrchestratorQueueFolder",
+          "tooltip": "Allows the Orchestrator folder name where the queue is created to be passed as an argument, instead of only being defined in the configuration file.",
+          "type": "System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_FolderDrive",
+          "displayName": "in_FolderDrive",
+          "type": "UiPath.GSuite.Activities.Gmail.Models.FolderArgument, UiPath.GSuite.Activities, Version=3.5.10.0, Culture=neutral, PublicKeyToken=null",
+          "required": false,
+          "hasDefault": false
+        }
+      ],
       "output": []
     }
   ],
