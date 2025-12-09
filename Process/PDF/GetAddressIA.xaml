@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ReadDomicilio" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.C64DDBF8A82_chat_sub_completions_Create.Bundle;assembly=C64DDBF8A82_chat_sub.DjU482mzCKQ1dYf5T7dkZ14" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadDomicilio" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:this="clr-namespace:" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.C64DDBF8A82_chat_sub_completions_Create.Bundle;assembly=C64DDBF8A82_chat_sub.DjU482mzCKQ1dYf5T7dkZ14" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Se utiliza para guardar el nombre del municipio" Name="out_City" Type="OutArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Se utiliza para guardar el nombre del estado" Name="out_State" Type="OutArgument(x:String)" />
@@ -7,7 +7,15 @@
         <RequiredArgumentAttribute />
       </x:Property.Attributes>
     </x:Property>
+    <x:Property Name="in_URLCp" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
   </x:Members>
+  <this:ReadDomicilio.in_URLCp>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ReadDomicilio.in_URLCp>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
@@ -152,7 +160,7 @@
       <AssemblyReference>UiPath.DocumentUnderstanding.ML.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetAddressIA" sap:VirtualizedContainerService.HintSize="772.8000000000001,383.65666666666664" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetAddressIA" sap:VirtualizedContainerService.HintSize="766.8000000000001,2156" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="CPText" />
     </Sequence.Variables>
@@ -161,7 +169,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Reading RFC" sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Reading Address&quot;]">
+    <ui:LogMessage DisplayName="Log Message Reading RFC" sap:VirtualizedContainerService.HintSize="555.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Reading Address&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -169,19 +177,19 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="Se va a obtener la dirección mediante la extracción y búsqueda del código postal desde el RFC." DisplayName="GetAddressIA" sap:VirtualizedContainerService.HintSize="449.6,101.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+    <Sequence sap2010:Annotation.AnnotationText="Se va a obtener la dirección mediante la extracción y búsqueda del código postal desde el RFC." DisplayName="GetAddressIA" sap:VirtualizedContainerService.HintSize="555.2,1910.4" sap2010:WorkflowViewState.IdRef="Sequence_10">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="Result" />
         <Variable x:TypeArguments="x:String" Name="RFCText" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text RFC" sap:VirtualizedContainerService.HintSize="416,123" sap2010:WorkflowViewState.IdRef="ExtractPDFText_4" PdfFile="[in_File]" Text="[RFCText]">
+      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text RFC" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="ExtractPDFText_4" PdfFile="[in_File]" Text="[RFCText]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -189,7 +197,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uisape:ExtractPDFText>
-      <Assign DisplayName="Set Variable Value CPText" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign DisplayName="Set Variable Value CPText" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[CPText]</OutArgument>
         </Assign.To>
@@ -203,7 +211,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <ui:IfElseIfV2 Condition="[String.IsNullOrWhiteSpace(RFCText) Or String.IsNullOrEmpty(RFCText)]" DisplayName="If - checking for an empty variable" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
+      <ui:IfElseIfV2 Condition="[String.IsNullOrWhiteSpace(RFCText) Or String.IsNullOrEmpty(RFCText)]" DisplayName="If - checking for an empty variable" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
         <ui:IfElseIfV2.Else>
           <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_19">
             <sap:WorkflowViewStateService.ViewState>
@@ -296,7 +304,7 @@ Texto OCR: " + RFCText]</InArgument>
           </Sequence>
         </ui:IfElseIfV2.Then>
       </ui:IfElseIfV2>
-      <If Condition="[String.IsNullOrWhiteSpace(CPText)]" DisplayName="If Is Not Valid CP" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="If_2">
+      <If Condition="[String.IsNullOrWhiteSpace(CPText)]" DisplayName="If Is Not Valid CP" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="If_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -330,7 +338,7 @@ Texto OCR: " + RFCText]</InArgument>
           </Sequence>
         </If.Else>
       </If>
-      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Postal code search" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Version="V2">
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Postal code search" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,1480.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="5dc996fa-3ad1-4e8e-b501-0c2dbc226636" Version="V2">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
@@ -456,7 +464,7 @@ Texto OCR: " + RFCText]</InArgument>
           </ActivityFunc>
         </uix:NApplicationCard.OCREngine>
         <uix:NApplicationCard.TargetApp>
-          <uix:TargetApp Area="-1928, -8, 1936, 1048" BrowserType="Chrome" ContentHash="xyQR46yhXkuFld9df0NoyA" IconBase64="iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABuklEQVRoQ9WaMUvDQBSA73+6ubh08w+4OLsogg46OugoChJwSt0EXdRNQZcuKtJaKzz5AhfSd01JTJPcGz5o75L3vpb07t1dnYi4Jnx/vcvrQyr3yZHcnG5LcjiQy911Od9Zy+A1bfRxDddyj45Tl6ChCr8/E3m+SyQ92coF68K9xCCWjl+FoGEZs+lYnoZncrW/EYj8F2IRk9g63zKChjLeHoeSHAyCxKuC2OTQecsIGjSz6URuL/aCRG1BLnJqD03QUGT8MZLr480geNuQk9zap5L45+glGw100K4gNw7aa6k4n7ZPaQ8OZd980MDz1cfjUQYui575QLzLH2JVcNKec28YjvRNsaCHyvwFE0Cb43RTcCtOUrk4s5e+ODZwnBOnXljlNN4WOPraJhOn2NEXxQquuXjaoMrrGlwzcWpj3Rk7ODsKe90ROzg7ViW6I3ZwdiypdEfs4OxiKKbqgrMrLmytgLPTjVawK272UTH74zQ7HJqdgMxO+WaLLLNlremFhNmlm9nFMpjdngCTG0Iek1twYHbTE0xuM3tMbux7TB6leEweXhUxd1xYxOQBbRFzR+KL6OtPCH90Y5RLk9sqnAAAAABJRU5ErkJggg==" InformativeScreenshot="763aa25c7d106041835c3f2cfc94bef6.jpg" Reference="hFGESaY85EKq0jA2OTA8zQ/m0YVkRy-zUCH94zk_exwtg" Selector="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" Url="https://www.correosdemexico.gob.mx/sslservicios/consultacp/descarga.aspx" Version="V2">
+          <uix:TargetApp Area="-1928, -8, 1936, 1048" BrowserType="Chrome" ContentHash="xyQR46yhXkuFld9df0NoyA" IconBase64="iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABuklEQVRoQ9WaMUvDQBSA73+6ubh08w+4OLsogg46OugoChJwSt0EXdRNQZcuKtJaKzz5AhfSd01JTJPcGz5o75L3vpb07t1dnYi4Jnx/vcvrQyr3yZHcnG5LcjiQy911Od9Zy+A1bfRxDddyj45Tl6ChCr8/E3m+SyQ92coF68K9xCCWjl+FoGEZs+lYnoZncrW/EYj8F2IRk9g63zKChjLeHoeSHAyCxKuC2OTQecsIGjSz6URuL/aCRG1BLnJqD03QUGT8MZLr480geNuQk9zap5L45+glGw100K4gNw7aa6k4n7ZPaQ8OZd980MDz1cfjUQYui575QLzLH2JVcNKec28YjvRNsaCHyvwFE0Cb43RTcCtOUrk4s5e+ODZwnBOnXljlNN4WOPraJhOn2NEXxQquuXjaoMrrGlwzcWpj3Rk7ODsKe90ROzg7ViW6I3ZwdiypdEfs4OxiKKbqgrMrLmytgLPTjVawK272UTH74zQ7HJqdgMxO+WaLLLNlremFhNmlm9nFMpjdngCTG0Iek1twYHbTE0xuM3tMbux7TB6leEweXhUxd1xYxOQBbRFzR+KL6OtPCH90Y5RLk9sqnAAAAABJRU5ErkJggg==" InformativeScreenshot="763aa25c7d106041835c3f2cfc94bef6.jpg" Reference="hFGESaY85EKq0jA2OTA8zQ/m0YVkRy-zUCH94zk_exwtg" Selector="&lt;html app='chrome.exe' title='Consulta de Códigos Postales' /&gt;" Url="[in_URLCp]" Version="V2">
             <uix:TargetApp.Arguments>
               <InArgument x:TypeArguments="x:String" />
             </uix:TargetApp.Arguments>
@@ -467,13 +475,13 @@ Texto OCR: " + RFCText]</InArgument>
         </uix:NApplicationCard.TargetApp>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uix:NApplicationCard>
     </Sequence>
-    <If Condition="[String.IsNullOrEmpty(out_City) Or String.IsNullOrEmpty(out_State)]" DisplayName="If Not Valid" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[String.IsNullOrEmpty(out_City) Or String.IsNullOrEmpty(out_State)]" DisplayName="If Not Valid" sap:VirtualizedContainerService.HintSize="555.2,48" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
