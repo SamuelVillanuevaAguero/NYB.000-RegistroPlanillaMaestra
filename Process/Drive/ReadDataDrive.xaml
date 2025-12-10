@@ -141,7 +141,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="766.8000000000001,1406.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="768.4000000000001,1406.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ugm:GmailMessage" Name="Email" />
       <Variable x:TypeArguments="ugdm:GDriveRemoteItem[]" Name="filesOrFolders">
@@ -442,7 +442,7 @@
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Logs - Invoke Workflow File (Process\GoogleSheets\Logs.xaml)" sap:VirtualizedContainerService.HintSize="497.6,60.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Process\GoogleSheets\Logs.xaml">
+                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Logs - Invoke Workflow File (Process\GoogleSheets\Logs.xaml)" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Process\GoogleSheets\Logs.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
                             <InArgument x:TypeArguments="ugdm:GDriveRemoteItem" x:Key="in_SpreadSheet">[in_SpreadSheet]</InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_Message">["Falló en la lectura del documento: " + CurrentFile.Name]</InArgument>
@@ -455,7 +455,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:InvokeWorkflowFile>
-                        <Rethrow DisplayName="Rethrow BE" sap:VirtualizedContainerService.HintSize="497.6,52" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+                        <Rethrow DisplayName="Rethrow BE" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
                       </Sequence>
                     </ActivityAction>
                   </Catch>
