@@ -141,7 +141,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="768.4000000000001,1406.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadDataDrive" sap:VirtualizedContainerService.HintSize="698,1580.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ugm:GmailMessage" Name="Email" />
       <Variable x:TypeArguments="ugdm:GDriveRemoteItem[]" Name="filesOrFolders">
@@ -152,6 +152,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Variable>
+      <Variable x:TypeArguments="x:String" Name="ID" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -515,11 +516,25 @@
         </sap:WorkflowViewStateService.ViewState>
       </uga:ForEachFileFolderConnections>
     </Sequence>
+    <Assign DisplayName="Create ID" sap:VirtualizedContainerService.HintSize="520,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[ID]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["VC" + out_CURP.Substring(0, 10)]</InArgument>
+      </Assign.Value>
+    </Assign>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RegisterTransaction - Invoke Workflow File (Process\GoogleSheets\RegisterTransaction.xaml)" sap:VirtualizedContainerService.HintSize="520,172" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Process\GoogleSheets\RegisterTransaction.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="s:String[]" x:Key="in_Array" xml:space="preserve">[New String() {
-"", "", "", "",
-out_Name, "'"+out_NSS, out_CURP, out_RFC,
+"",
+ID,
+"", "",
+out_Name, 
+"'"+
+out_NSS, 
+out_CURP, 
+out_RFC,
 out_Gender,
 out_Birthday,
 "",
