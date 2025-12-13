@@ -1,5 +1,15 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="RegisterTransaction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugase="clr-namespace:UiPath.GSuite.Activities.Sheets.Enums;assembly=UiPath.GSuite.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="in_ColName" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="in_SheetName" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
     <x:Property Name="in_Array" Type="InArgument(s:String[])">
       <x:Property.Attributes>
         <RequiredArgumentAttribute />
@@ -129,7 +139,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="RegisterTransaction" sap:VirtualizedContainerService.HintSize="766.8000000000001,1258.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="RegisterTransaction" sap:VirtualizedContainerService.HintSize="698,808" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="index">
         <sap:WorkflowViewStateService.ViewState>
@@ -146,7 +156,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message GoogleSheets" sap:VirtualizedContainerService.HintSize="484.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Inserting into GoogleSheets&quot;]" />
-    <Sequence DisplayName="RegisterTransaction" sap:VirtualizedContainerService.HintSize="484.8,1060.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence DisplayName="RegisterTransaction" sap:VirtualizedContainerService.HintSize="484.8,610.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="Cell" />
       </Sequence.Variables>
@@ -155,15 +165,15 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InterruptibleDoWhile CurrentIndex="[index]" DisplayName="Do While Sheet" sap:VirtualizedContainerService.HintSize="451.2,484" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+      <ui:InterruptibleDoWhile CurrentIndex="[index]" DisplayName="Do While Sheet" sap:VirtualizedContainerService.HintSize="451.2,479.2" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
         <ui:InterruptibleDoWhile.Body>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,353.6" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,348.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uga:ReadCellConnections x:TypeArguments="x:String" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ManualEntrySpreadsheetId="{x:Null}" Spreadsheet="{x:Null}" AuthScopesInvalid="False" BrowserItemFriendlyName="Planilla Maestra" BrowserItemId="https://docs.google.com/spreadsheets/d/1XgbRWXOwzD6hUO4MylSSzaAIC2x6HNv9yDQbKx4U6cE/edit?usp=drivesdk" Cell="[&quot;E&quot; &amp; (index + 1)]" CellValueType="Text" ConnectionId="6fb93819-04f4-4cee-8a34-f026674e903a" DisplayName="Sheet" HideCell="False" sap:VirtualizedContainerService.HintSize="416,289.6" sap2010:WorkflowViewState.IdRef="ReadCellConnections`1_1" ItemSelectionMode="Browse" RangeLocation="Vigente" Result="[Cell]" UseConnectionService="True" WhatToRead="Values">
+            <uga:ReadCellConnections x:TypeArguments="x:String" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ManualEntrySpreadsheetId="{x:Null}" Spreadsheet="{x:Null}" AuthScopesInvalid="False" BrowserItemFriendlyName="Planilla Maestra" BrowserItemId="https://docs.google.com/spreadsheets/d/1XgbRWXOwzD6hUO4MylSSzaAIC2x6HNv9yDQbKx4U6cE/edit?usp=drivesdk" Cell="[in_ColName &amp; (index + 1)]" CellValueType="Text" ConnectionId="6fb93819-04f4-4cee-8a34-f026674e903a" DisplayName="Sheet" HideCell="False" sap:VirtualizedContainerService.HintSize="416,284.8" sap2010:WorkflowViewState.IdRef="ReadCellConnections`1_1" ItemSelectionMode="Browse" RangeLocation="[in_SheetName]" Result="[Cell]" UseConnectionService="True" WhatToRead="Values">
               <uga:ReadCellConnections.FileIdBackup>
                 <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID0" StoredValue="Browse">
                   <usau:BackupSlot.BackupValues>
@@ -199,7 +209,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:InterruptibleDoWhile>
-      <uga:WriteRowConnections AllFields="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" DataRow="{x:Null}" ManualEntrySpreadsheetId="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" ArrayRow="[in_Array]" AuthScopesInvalid="False" BrowserItemFriendlyName="Planilla Maestra" BrowserItemId="https://docs.google.com/spreadsheets/d/1XgbRWXOwzD6hUO4MylSSzaAIC2x6HNv9yDQbKx4U6cE/edit?usp=drivesdk" ConnectionId="6fb93819-04f4-4cee-8a34-f026674e903a" DataType="ArrayRow" DisplayName="Sheet" HasHeaders="False" sap:VirtualizedContainerService.HintSize="451.2,493.6" sap2010:WorkflowViewState.IdRef="WriteRowConnections_5" ItemSelectionMode="Browse" Range="Vigente" RowPosition="[index + 2]" UseConnectionService="True" WorkingWithTemplateSpreadsheet="False" WriteMode="Insert">
+      <uga:WriteRowConnections AllFields="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" DataRow="{x:Null}" ManualEntrySpreadsheetId="{x:Null}" Spreadsheet="{x:Null}" TemplateBrowserItemFriendlyName="{x:Null}" TemplateBrowserItemId="{x:Null}" ArrayRow="[in_Array]" AuthScopesInvalid="False" BrowserItemFriendlyName="Planilla Maestra" BrowserItemId="https://docs.google.com/spreadsheets/d/1XgbRWXOwzD6hUO4MylSSzaAIC2x6HNv9yDQbKx4U6cE/edit?usp=drivesdk" ConnectionId="6fb93819-04f4-4cee-8a34-f026674e903a" DataType="ArrayRow" DisplayName="Sheet" HasHeaders="False" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="WriteRowConnections_5" ItemSelectionMode="Browse" Range="Vigente" RowPosition="[index + 2]" UseConnectionService="True" WorkingWithTemplateSpreadsheet="False" WriteMode="Insert">
         <uga:WriteRowConnections.FileIdBackup>
           <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID1" StoredValue="Browse">
             <usau:BackupSlot.BackupValues>
@@ -237,6 +247,12 @@
         <uga:WriteRowConnections.State>
           <uga:ActivityState />
         </uga:WriteRowConnections.State>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </uga:WriteRowConnections>
     </Sequence>
   </Sequence>

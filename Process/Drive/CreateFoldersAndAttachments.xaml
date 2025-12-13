@@ -1,5 +1,10 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="CreateFoldersAnd_Attachments" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:uggm="clr-namespace:UiPath.GSuite.Gmail.Models;assembly=UiPath.GSuite" xmlns:ugm="clr-namespace:UiPath.GSuite.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="CreateFoldersAnd_Attachments" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:uggm="clr-namespace:UiPath.GSuite.Gmail.Models;assembly=UiPath.GSuite" xmlns:ugm="clr-namespace:UiPath.GSuite.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="in_FolderDrive" Type="InArgument(ugdm:GDriveRemoteItem)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
     <x:Property Name="in_EmailID" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
@@ -118,7 +123,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateFoldersAnd_Attachments" sap:VirtualizedContainerService.HintSize="766.8000000000001,1658.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CreateFoldersAnd_Attachments" sap:VirtualizedContainerService.HintSize="698,1054.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="uggm:GmailAttachmentLocalItem[]" Name="Attachments" />
       <Variable x:TypeArguments="ugm:GmailMessage" Name="Email" />
@@ -128,8 +133,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Folders Drive" sap:VirtualizedContainerService.HintSize="484.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Creating Folders in Drive&quot;]" />
-    <Sequence sap2010:Annotation.AnnotationText="NOTA: Se utiliza el ID del correo para no tener que aplicar filtros de forma redundante" DisplayName="DownloadAttachments" sap:VirtualizedContainerService.HintSize="484.8,331.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <ui:LogMessage DisplayName="Log Message Folders Drive" sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Creating Folders in Drive&quot;]" />
+    <Sequence sap2010:Annotation.AnnotationText="NOTA: Se utiliza el ID del correo para no tener que aplicar filtros de forma redundante" DisplayName="DownloadAttachments" sap:VirtualizedContainerService.HintSize="449.6,331.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -156,7 +161,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </uga:DownloadAttachmentsConnections>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="Se crea la carpeta en drive del practicante/residente y se suben los adjuntos para una lectura posterior" DisplayName="CreateFolderDrive" sap:VirtualizedContainerService.HintSize="484.8,1129.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="Se crea la carpeta en drive del practicante/residente y se suben los adjuntos para una lectura posterior" DisplayName="CreateFolderDrive" sap:VirtualizedContainerService.HintSize="449.6,525.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="ugdm:GDriveRemoteItem" Name="FolderDrive" />
       </Sequence.Variables>
@@ -166,100 +171,29 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <TryCatch sap2010:Annotation.AnnotationText="- Si la carpeta existe no se crea, se obtiene el existente&#xA;- Si la carpeta no existe, se crea y se obtiene" DisplayName="If exist Folder or Not" sap:VirtualizedContainerService.HintSize="451.2,892.8" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+      <uga:CreateFolderConnections BrowserParentFolderFriendlyName="{x:Null}" BrowserParentFolderId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" FolderIdBackup="{x:Reference __ReferenceID0}" ManualEntryParentFolderId="{x:Null}" AuthScopesInvalid="False" ConflictResolution="Fail" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="416,288.8" sap2010:WorkflowViewState.IdRef="CreateFolderConnections_2" NewFolderDescription="[&quot;Carpeta donde se van a guardar los adjuntos del correo &quot; + Email.FromAddress]" NewFolderName="[Email.FromAddress]" ParentFolderExisting="[in_FolderDrive]" ParentFolderInputMode="UseExisting" Result="[FolderDrive]" UseConnectionService="True">
+        <uga:CreateFolderConnections.Item>
+          <ugam:DriveItemArgument BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" ConnectionKey="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" IdOrUrl="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" Existing="[in_FolderDrive]" FullPathHint="My Drive/Registros" InputMode="UseExisting" ParentIdFullPathHint="[Nothing]">
+            <ugam:DriveItemArgument.Backup>
+              <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID0" StoredValue="UseExisting">
+                <usau:BackupSlot.BackupValues>
+                  <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="2">
+                    <InArgument x:TypeArguments="x:String">https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI</InArgument>
+                    <InArgument x:TypeArguments="x:String">Registros</InArgument>
+                  </scg:List>
+                </usau:BackupSlot.BackupValues>
+              </usau:BackupSlot>
+            </ugam:DriveItemArgument.Backup>
+          </ugam:DriveItemArgument>
+        </uga:CreateFolderConnections.Item>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <TryCatch.Try>
-          <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="449.6,296.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <uga:GetFileFolderConnections BrowserFileFolderId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ExistingItem="{x:Null}" FileFolderFriendlyName="{x:Null}" ManualEntryFileFolderFullPath="{x:Null}" ManualEntryFileFolderId="{x:Null}" AuthScopesInvalid="False" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" DisplayName="Get Folder" FileFolderInputMode="RelativePath" sap:VirtualizedContainerService.HintSize="416,232.8" sap2010:WorkflowViewState.IdRef="GetFileFolderConnections_2" ItemInputMode="RelativePath" ManualEntryFileFolderRelativePath="[Email.FromAddress]" ParentFileFolderFriendlyName="Registros" ParentFileFolderId="https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI" Result="[FolderDrive]" UseConnectionService="True">
-              <uga:GetFileFolderConnections.FileFolderIdBackup>
-                <usau:BackupSlot x:TypeArguments="ugade:EDriveMode" StoredValue="{x:Null}">
-                  <usau:BackupSlot.BackupValues>
-                    <scg:Dictionary x:TypeArguments="ugade:EDriveMode, scg:List(x:Object)" />
-                  </usau:BackupSlot.BackupValues>
-                </usau:BackupSlot>
-              </uga:GetFileFolderConnections.FileFolderIdBackup>
-              <uga:GetFileFolderConnections.Item>
-                <ugam:DriveItemArgument BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" ConnectionKey="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" IdOrUrl="{x:Null}" FullPathHint="My Drive/Registros/andrea.burgos.perea@hotmail.com" InputMode="RelativePath" ParentId="https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI" ParentIdFriendlyName="Registros" ParentIdFullPathHint="My Drive/Registros" RelativePath="[Email.FromAddress]">
-                  <ugam:DriveItemArgument.Backup>
-                    <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" StoredValue="RelativePath">
-                      <usau:BackupSlot.BackupValues>
-                        <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="2">
-                          <InArgument x:TypeArguments="x:String">https://drive.google.com/drive/folders/14F8YZsy56MiKhj4PpDQ9v7Nt-1MluQyX</InArgument>
-                          <InArgument x:TypeArguments="x:String">andrea.burgos.perea@hotmail.com</InArgument>
-                        </scg:List>
-                        <scg:List x:TypeArguments="x:Object" x:Key="RelativePath" Capacity="3">
-                          <InArgument x:TypeArguments="x:String">https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI</InArgument>
-                          <InArgument x:TypeArguments="x:String">Registros</InArgument>
-                          <InArgument x:TypeArguments="x:String">[Email.FromAddress]</InArgument>
-                        </scg:List>
-                      </usau:BackupSlot.BackupValues>
-                    </usau:BackupSlot>
-                  </ugam:DriveItemArgument.Backup>
-                </ugam:DriveItemArgument>
-              </uga:GetFileFolderConnections.Item>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uga:GetFileFolderConnections>
-          </Sequence>
-        </TryCatch.Try>
-        <TryCatch.Catches>
-          <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
-            <ActivityAction x:TypeArguments="s:Exception">
-              <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-              </ActivityAction.Argument>
-              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,348.8" sap2010:WorkflowViewState.IdRef="Sequence_10">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <uga:CreateFolderConnections ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" FolderIdBackup="{x:Reference __ReferenceID0}" ManualEntryParentFolderId="{x:Null}" ParentFolderExisting="{x:Null}" AuthScopesInvalid="False" BrowserParentFolderFriendlyName="Registros" BrowserParentFolderId="https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI" ConflictResolution="Fail" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="416,284.8" sap2010:WorkflowViewState.IdRef="CreateFolderConnections_2" NewFolderDescription="[&quot;Carpeta donde se van a guardar los adjuntos del correo &quot; + Email.FromAddress]" NewFolderName="[Email.FromAddress]" ParentFolderInputMode="Browse" Result="[FolderDrive]" UseConnectionService="True">
-                  <uga:CreateFolderConnections.Item>
-                    <ugam:DriveItemArgument ConnectionDescriptor="{x:Null}" ConnectionKey="{x:Null}" Existing="{x:Null}" FullPath="{x:Null}" IdOrUrl="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" BrowserId="https://drive.google.com/drive/folders/1PUOxSkwFku2BZ34CbWuoTp5wNauKIZsI" FriendlyName="Registros" FullPathHint="My Drive/Registros" InputMode="Browse" ParentIdFullPathHint="[Nothing]">
-                      <ugam:DriveItemArgument.Backup>
-                        <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID0" StoredValue="Browse">
-                          <usau:BackupSlot.BackupValues>
-                            <scg:Dictionary x:TypeArguments="ugade:EDriveItemMode, scg:List(x:Object)" />
-                          </usau:BackupSlot.BackupValues>
-                        </usau:BackupSlot>
-                      </ugam:DriveItemArgument.Backup>
-                    </ugam:DriveItemArgument>
-                  </uga:CreateFolderConnections.Item>
-                </uga:CreateFolderConnections>
-              </Sequence>
-            </ActivityAction>
-          </Catch>
-        </TryCatch.Catches>
-        <TryCatch.Finally>
-          <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </Sequence>
-        </TryCatch.Finally>
-      </TryCatch>
-      <uga:UploadFilesConnections AllResults="{x:Null}" BrowseFolderId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" FilesList="{x:Null}" FirstResult="{x:Null}" FolderIdBackup="{x:Reference __ReferenceID1}" ManualFolderId="{x:Null}" OverwriteExistingFile="{x:Null}" SaveToFolderName="{x:Null}" SingleFileToUpload="{x:Null}" sap2010:Annotation.AnnotationText="Se cargan los adjuntos de la documentación Beecker a la carpeta drive de cada Practicante/Residente" AuthScopesInvalid="False" ConflictResolution="AddSeparate" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" Convert="False" DestinationFolder="[FolderDrive]" DisplayName="Upload Attachments" FilesInputMode="MultipleByVariable" FolderInputMode="UseExisting" sap:VirtualizedContainerService.HintSize="451.2,108.8" sap2010:WorkflowViewState.IdRef="UploadFilesConnections_1" MultipleFilesToUpload="[Attachments]" UseConnectionService="True">
+      </uga:CreateFolderConnections>
+      <uga:UploadFilesConnections AllResults="{x:Null}" BrowseFolderId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" FilesList="{x:Null}" FirstResult="{x:Null}" FolderIdBackup="{x:Reference __ReferenceID1}" ManualFolderId="{x:Null}" OverwriteExistingFile="{x:Null}" SaveToFolderName="{x:Null}" SingleFileToUpload="{x:Null}" sap2010:Annotation.AnnotationText="Se cargan los adjuntos de la documentación Beecker a la carpeta drive de cada Practicante/Residente" AuthScopesInvalid="False" ConflictResolution="AddSeparate" ConnectionId="2bd701f5-af16-4308-b164-afbf90d4df78" Convert="False" DestinationFolder="[FolderDrive]" DisplayName="Upload Attachments" FilesInputMode="MultipleByVariable" FolderInputMode="UseExisting" sap:VirtualizedContainerService.HintSize="416,108.8" sap2010:WorkflowViewState.IdRef="UploadFilesConnections_1" MultipleFilesToUpload="[Attachments]" UseConnectionService="True">
         <uga:UploadFilesConnections.FilesBackup>
           <usau:BackupSlot x:TypeArguments="ugade:FilesInputMode" StoredValue="MultipleByVariable">
             <usau:BackupSlot.BackupValues>
