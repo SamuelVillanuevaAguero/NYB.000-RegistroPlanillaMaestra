@@ -128,6 +128,9 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Parallel</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="GetNameAndCURP" sap:VirtualizedContainerService.HintSize="726.8000000000001,2963.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -263,7 +266,7 @@
                               <OutArgument x:TypeArguments="x:String">[out_FolderName]</OutArgument>
                             </ui:AssignOperation.To>
                             <ui:AssignOperation.Value>
-                              <InArgument x:TypeArguments="x:String">[String.Join(" ", TextName.Trim.Split(" "c).Skip(TextName.Trim.Split(" "c).Length - 2)) + " " + String.Join(" ", TextName.Trim.Split(" "c).Take(TextName.Trim.Split(" "c).Length - 2))]</InArgument>
+                              <InArgument x:TypeArguments="x:String">[StrConv(String.Join(" ", TextName.Trim.Split(" "c).Skip(TextName.Trim.Split(" "c).Length - 2)) + " " + String.Join(" ", TextName.Trim.Split(" "c).Take(TextName.Trim.Split(" "c).Length - 2)), VbStrConv.ProperCase)]</InArgument>
                             </ui:AssignOperation.Value>
                           </ui:AssignOperation>
                         </scg:List>
